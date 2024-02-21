@@ -11,7 +11,7 @@ interface TemplateProps {
 }
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
-    const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.personal);
+    const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.work);
     return {
         title: data.frontmatter.title,
         description: data.frontmatter.projectBrief,

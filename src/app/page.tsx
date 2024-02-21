@@ -23,8 +23,8 @@ export default async function Home() {
                 <div className="contained-content mt-16 animate-fade-in-slow sm:mt-24" id="BioDescription">
                     <div className="text-zinc-400">
                         <MBodyLead className="mb-6">
-                            I’m <span className="text-transparent bg-gradient-to-r from-orange-500 via-purple-500  to-red-500 bg-clip-text bg-300% animate-flow-background">Max McKinney</span>. I’m
-                            currently a Designer at Figma. I love to tinker and build with all things web technology based, extend software, and build classic cars.
+                            I’m <span className="text-transparent bg-gradient-to-r from-orange-500 via-purple-500  to-red-500 bg-clip-text bg-[length:300%] animate-flow-background">Max McKinney</span>
+                            . I’m currently a Designer at Figma. I love to tinker and build with all things web technology based, extend software, and build classic cars.
                         </MBodyLead>
 
                         <MBodyLead className="mb-6">

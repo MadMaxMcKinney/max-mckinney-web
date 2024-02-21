@@ -16,7 +16,7 @@ const Header = () => {
                 {/* Site Logo Container */}
                 <div className="flex flex-row items-center justify-start">
                     <Link className="transition-opacity hover:opacity-80" href="/">
-                        <Image className="h-auto w-12" src={logo} placeholder="blur" alt="Max McKinney Logo" />
+                        <Image className="h-auto w-12" src={logo} placeholder="blur" alt="Max McKinney Logo" priority />
                     </Link>
                 </div>
 
