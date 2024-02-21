@@ -1,4 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+// @ts-check
+import withPlaiceholder from "@plaiceholder/next";
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    images: { remotePatterns: [{ hostname: "*" }] },
+};
+
+export default withPlaiceholder(nextConfig);
