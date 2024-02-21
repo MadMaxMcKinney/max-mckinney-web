@@ -15,7 +15,7 @@ export default function ShapeLogo() {
 
     return (
         <Lottie
-            options={{ loop: false, autoplay: isPlayingShapes, rendererSettings: { preserveAspectRatio: "xMidYMid slice" }, animationData: animationData.default }}
+            options={{ loop: false, autoplay: isPlayingShapes, rendererSettings: { preserveAspectRatio: "xMidYMid slice" }, animationData: animationData }}
             style={{ width: "150px", height: "45px", cursor: "default" }}
         />
     );
