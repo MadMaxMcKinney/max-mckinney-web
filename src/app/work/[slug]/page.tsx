@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { MBodyLight, MHeading03 } from "@components/Typography";
-import { getMarkdownBySlug, ProjectDir, WorkProject } from "@/fetchers";
+import { getAllWorkProjects, getMarkdownBySlug, ProjectDir, WorkProject } from "@/fetchers";
 import { Metadata } from "next";
 import useBase64Image from "@/hooks/useBase64Image";
 
@@ -9,6 +9,15 @@ interface TemplateProps {
     params: {
         slug: string;
     };
+}
+
+export async function generateStaticParams() {
+    const data = await getAllWorkProjects();
+    return data.map((project) => ({
+        params: {
+            slug: project.slug,
+        },
+    }));
 }
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
