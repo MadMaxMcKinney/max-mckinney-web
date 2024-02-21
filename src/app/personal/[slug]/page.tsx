@@ -23,7 +23,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
-    const data = await getMarkdownBySlug<PersonalProject>(params.slug, ProjectDir.personal);
+    const { slug } = params;
+    const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
     return {
         title: data.frontmatter.title,
         description: data.frontmatter.description,
@@ -31,7 +32,8 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 }
 
 export default async function ({ params }: TemplateProps) {
-    const data = await getMarkdownBySlug<PersonalProject>(params.slug, ProjectDir.personal);
+    const { slug } = params;
+    const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
     const base64Icon = await useBase64Image(data.frontmatter.icon);
     return (
         <>
