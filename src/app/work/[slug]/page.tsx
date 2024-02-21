@@ -3,6 +3,7 @@ import Image from "next/image";
 import { MBodyLight, MHeading03 } from "@components/Typography";
 import { getMarkdownBySlug, ProjectDir, WorkProject } from "@/fetchers";
 import { Metadata } from "next";
+import useBase64Image from "@/hooks/useBase64Image";
 
 interface TemplateProps {
     params: {
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 
 export default async function Template({ params }: TemplateProps) {
     const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.work);
+    const backgroundBase64Image = await useBase64Image(data.frontmatter.image);
 
     return (
         <>
@@ -27,7 +29,17 @@ export default async function Template({ params }: TemplateProps) {
                 style={{ "--themeColor": data.frontmatter.themeColor } as React.CSSProperties}
                 className="h-[430px] flex justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-[#05010d] to-90%"
             >
-                <Image className="animate-fade-in" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: `100%` }} src={data.frontmatter.image} alt="" aria-hidden fill priority />
+                <Image
+                    className="animate-fade-in object-cover"
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: `100%` }}
+                    src={data.frontmatter.image}
+                    alt=""
+                    aria-hidden
+                    fill
+                    priority
+                    placeholder="blur"
+                    blurDataURL={backgroundBase64Image}
+                />
                 <h1 className="font-bold text-center text-4xl z-10 md:text-6xl animate-fade-in-slow">{data.frontmatter.title}</h1>
             </div>
 
