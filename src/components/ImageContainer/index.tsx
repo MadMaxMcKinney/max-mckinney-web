@@ -20,12 +20,12 @@ export default async function (props: ImageContainerProps) {
 
     return (
         <>
-            {props.src && props.alt && (
+            {props.src && (
                 <div className="relative w-full rounded overflow-clip shadow-md">
-                    <Image src={props.src} alt={props.alt} width={1000} height={900} placeholder="blur" blurDataURL={blurData} className="w-full h-auto object-fill m-0" />
+                    <Image src={props.src} alt={props.alt ?? ""} width={1000} height={900} placeholder="blur" blurDataURL={blurData} className="w-full h-auto object-fill m-0" />
                 </div>
             )}
-            {props.srcs && props.alts && (
+            {props.srcs && (
                 <div className="flex gap-4 flex-col md:flex-row">
                     {props.srcs.map((src, index) => (
                         <div className="relative w-full rounded overflow-clip shadow-md">
