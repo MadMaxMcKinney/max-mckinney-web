@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Pill from "../Pills/Pill";
+import Pill from "@components/Pill";
 import ReadMoreButton from "@components/Buttons/ReadMoreButton";
 import { MBody, MHeading02 } from "@components/Typography";
 import useBase64Image from "@/hooks/useBase64Image";

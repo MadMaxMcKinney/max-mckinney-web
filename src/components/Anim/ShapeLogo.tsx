@@ -10,7 +10,7 @@ export default function ShapeLogo() {
     useEffect(() => {
         setTimeout(() => {
             setIsPlayingShapes(true);
-        }, 800);
+        }, 400);
     }, []);
 
     return (

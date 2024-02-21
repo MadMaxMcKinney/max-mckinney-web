@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import siteConfig from "@/siteConfig";
 
 export const metadata: Metadata = {
-    title: "Max McKinney",
-    description: "I’m Max McKinney, a design leader building for empathy and humanizing technology. I specialize in web experiences and thrive in undefined problem spaces.",
+    title: {
+        template: `%s | ${siteConfig.title}`,
+        default: siteConfig.title,
+    },
+    description: siteConfig.description,
+    metadataBase: new URL("https://maxmckinney.com"),
 };
 
 export default function RootLayout({
@@ -16,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <Nav location="/" />
+                <Nav />
                 {children}
                 <Footer />
             </body>

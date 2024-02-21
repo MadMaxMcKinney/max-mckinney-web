@@ -1,6 +1,6 @@
 import React from "react";
 import { MBody } from "../Typography";
-import { RocketLaunchIcon } from "@heroicons/react/20/solid";
+import { PiRocketLaunch } from "react-icons/pi";
 
 const PersonalProjectLinkButton = (props) => {
     return (
@@ -10,7 +10,7 @@ const PersonalProjectLinkButton = (props) => {
             style={{ "--accentColor": props.accent }}
             className={`flex w-fit gap-2 items-center justify-center rounded-full px-4 py-2 bg-[var(--accentColor)] border border-solid border-transparent transition transform hover:border-white active:scale-95`}
         >
-            <RocketLaunchIcon className="w-5 h-5"></RocketLaunchIcon>
+            <PiRocketLaunch className="w-5 h-5"></PiRocketLaunch>
             <MBody>View project</MBody>
         </a>
     );

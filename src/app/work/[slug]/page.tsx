@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { MBodyLight, MHeading03 } from "@components/Typography";
-import { getWorkProjectBySlug } from "@/fetchers";
+import { getMarkdownBySlug, ProjectDir, WorkProject } from "@/fetchers";
+import { Metadata } from "next";
 
 interface TemplateProps {
     params: {
@@ -9,34 +10,19 @@ interface TemplateProps {
     };
 }
 
+export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
+    const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.personal);
+    return {
+        title: data.frontmatter.title,
+        description: data.frontmatter.projectBrief,
+    };
+}
+
 export default async function Template({ params }: TemplateProps) {
-    const data = await getWorkProjectBySlug(params.slug);
+    const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.work);
 
     return (
         <>
-            {/* <Helmet title={data.site.siteMetadata.title + " | " + data.markdownRemark.frontmatter.title}>
-                <meta name="theme-color" content={data.markdownRemark.frontmatter.themeColor} />
-
-                <meta name="description" content={data.markdownRemark.frontmatter.projectShortBrief} />
-                <meta name="image" content={data.site.siteMetadata.siteUrl + getImage(data.markdownRemark.frontmatter.thumb)} />
-                <meta itemprop="name" content={data.site.siteMetadata.title + " | " + data.markdownRemark.frontmatter.title} />
-                <meta itemprop="description" content={data.markdownRemark.frontmatter.projectShortBrief} />
-                <meta itemprop="image" content={data.site.siteMetadata.siteUrl + getImage(data.markdownRemark.frontmatter.thumb)} />
-
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:title" content={data.site.siteMetadata.title + " | " + data.markdownRemark.frontmatter.title} />
-                <meta name="twitter:description" content={data.markdownRemark.frontmatter.projectShortBrief} />
-                <meta name="twitter:site" content="@madmaxmckinney" />
-                <meta name="twitter:image" content={data.site.siteMetadata.siteUrl + getImage(data.markdownRemark.frontmatter.thumb)} />
-
-                <meta name="og:title" content={data.site.siteMetadata.title + " | " + data.markdownRemark.frontmatter.title} />
-                <meta name="og:description" content={data.markdownRemark.frontmatter.projectShortBrief} />
-                <meta name="og:image" content={data.site.siteMetadata.siteUrl + getImage(data.markdownRemark.frontmatter.thumb)} />
-                <meta name="og:site_name" content="Max McKinney" />
-
-                <meta name="msapplication-TileColor" content={data.markdownRemark.frontmatter.themeColor} />
-            </Helmet> */}
-
             <div
                 style={{ "--themeColor": data.frontmatter.themeColor } as React.CSSProperties}
                 className="h-[430px] flex justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-[#05010d] to-90%"
