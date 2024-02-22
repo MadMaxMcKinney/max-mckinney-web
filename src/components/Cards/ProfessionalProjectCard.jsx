@@ -4,12 +4,12 @@ import Pill from "@components/Pill";
 import ReadMoreButton from "@components/Buttons/ReadMoreButton";
 import { MBody, MHeading02 } from "@components/Typography";
 
-const ProfessionalProjectCard = async ({ frontmatter, slug }) => {
+const ProfessionalProjectCard = async ({ frontmatter, slug, content }) => {
     return (
         <div>
             {/* Preview Image */}
             <div className="rounded-lg relative max-w-7xl h-96 border border-white/20 overflow-hidden mx-auto md:h-[650px]">
-                <Image className="object-cover h-full" src={frontmatter.thumb} alt={"Project image for portfolio item " + frontmatter.title} />
+                <Image className="object-cover h-full" src={frontmatter.thumb} alt={"Project image for portfolio item " + frontmatter.title} fill />
             </div>
 
             {/* Card Content */}
