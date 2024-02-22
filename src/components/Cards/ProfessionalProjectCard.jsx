@@ -10,7 +10,7 @@ const ProfessionalProjectCard = async ({ data }) => {
         <div>
             {/* Preview Image */}
             <div className="rounded-lg relative max-w-7xl h-96 border border-white/20 overflow-hidden mx-auto md:h-[650px]">
-                <img className="object-cover h-full" src={data.frontmatter.thumb} alt={"Project image for portfolio item " + data.frontmatter.title} />
+                {/* <img className="object-cover h-full" src={data.frontmatter.thumb} alt={"Project image for portfolio item " + data.frontmatter.title} /> */}
             </div>
 
             {/* Card Content */}
