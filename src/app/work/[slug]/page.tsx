@@ -3,7 +3,6 @@ import Image from "next/image";
 import { MBodyLight, MHeading03 } from "@components/Typography";
 import { getAllWorkProjects, getMarkdownBySlug, ProjectDir, WorkProject } from "@/fetchers";
 import { Metadata } from "next";
-import useBase64Image from "@/hooks/useBase64Image";
 
 interface TemplateProps {
     params: {
@@ -11,14 +10,14 @@ interface TemplateProps {
     };
 }
 
-// export async function generateStaticParams() {
-//     const data = await getAllWorkProjects();
-//     return data.map((project) => ({
-//         params: {
-//             slug: project.slug,
-//         },
-//     }));
-// }
+export async function generateStaticParams() {
+    const data = await getAllWorkProjects();
+    return data.map((project) => ({
+        params: {
+            slug: project.slug,
+        },
+    }));
+}
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
     const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.work);
@@ -30,7 +29,6 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 
 export default async function Template({ params }: TemplateProps) {
     const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.work);
-    const backgroundBase64Image = await useBase64Image(data.frontmatter.image);
 
     return (
         <>
@@ -46,8 +44,6 @@ export default async function Template({ params }: TemplateProps) {
                     aria-hidden
                     fill
                     priority
-                    placeholder="blur"
-                    blurDataURL={backgroundBase64Image}
                 />
                 <h1 className="font-bold text-center text-4xl z-10 md:text-6xl animate-fade-in-slow">{data.frontmatter.title}</h1>
             </div>
