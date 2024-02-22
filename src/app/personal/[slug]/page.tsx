@@ -34,21 +34,11 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 export default async function ({ params }: TemplateProps) {
     const { slug } = params;
     const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
-    const base64Icon = await useBase64Image(data.frontmatter.icon);
+    // const base64Icon = await useBase64Image(data.frontmatter.icon);
     return (
         <>
             <div className="page-grid">
-                <Image
-                    className="w-24 h-24 mb-6 mt-44 animate-fade-in-fast rounded-3xl"
-                    width={96}
-                    height={96}
-                    src={data.frontmatter.icon}
-                    alt=""
-                    aria-hidden
-                    placeholder="blur"
-                    blurDataURL={base64Icon}
-                    priority
-                />
+                <Image className="w-24 h-24 mb-6 mt-44 animate-fade-in-fast rounded-3xl" width={96} height={96} src={data.frontmatter.icon} alt="" aria-hidden priority />
                 <div className="flex flex-col-reverse gap-4 items-start animate-fade-in-fast mb-8 mt-2 md:mt-0 md:mb-4 md:gap-4 md:flex-row md:items-center">
                     <MHeading01 className="text-white">{data.frontmatter.title}</MHeading01>
                     <Pill type="themed" theme={data.frontmatter.accent} text={data.frontmatter.projectType} />

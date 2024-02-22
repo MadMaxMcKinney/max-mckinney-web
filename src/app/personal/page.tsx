@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 
 export default async function () {
     const personalProjects = await getAllPersonalProjects();
-    const base64Icons = await Promise.all(personalProjects.map((project) => useBase64Image(project.frontmatter.icon)));
 
     return (
         <div className="page-grid">
@@ -32,17 +31,7 @@ export default async function () {
                     personalProjects.map((project, index) => {
                         return (
                             <PersonalProjectCard href={"/personal/" + project.slug} accent={project.frontmatter.accent} key={project.frontmatter.title}>
-                                <Image
-                                    id="SideImage"
-                                    className="w-24 h-24 rounded-3xl"
-                                    placeholder="blur"
-                                    blurDataURL={base64Icons[index]}
-                                    width={96}
-                                    height={96}
-                                    src={project.frontmatter.icon}
-                                    alt=""
-                                    aria-hidden
-                                />
+                                <Image id="SideImage" className="w-24 h-24 rounded-3xl" width={96} height={96} src={project.frontmatter.icon} alt="" aria-hidden />
                                 <div className="flex flex-col gap-2">
                                     <MHeading03>{project.frontmatter.title}</MHeading03>
                                     <MBody className="text-zinc-400 flex-1">{project.frontmatter.description}</MBody>
