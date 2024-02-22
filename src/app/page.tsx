@@ -4,7 +4,7 @@ import ShapeLogo from "@/components/Anim/ShapeLogo";
 import { getAllWorkProjects } from "@/fetchers";
 
 export default async function Home() {
-    //const workProjects = await getAllWorkProjects();
+    const workProjects = await getAllWorkProjects();
 
     return (
         <>
