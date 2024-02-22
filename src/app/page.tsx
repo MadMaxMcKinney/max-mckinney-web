@@ -36,10 +36,7 @@ export default async function Home() {
 
                 {/* Project Card Grid */}
                 <div id="ProjectGrid" className="animate-fade-in-slow mt-24 grid grid-cols-1 gap-16 sm:mt-30 lg:gap-32">
-                    {workProjects &&
-                        workProjects.map((project) => (
-                            <ProfessionalProjectCard frontmatter={project.frontmatter} content={project.content} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>
-                        ))}
+                    {workProjects && workProjects.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
                 </div>
             </div>
         </>
