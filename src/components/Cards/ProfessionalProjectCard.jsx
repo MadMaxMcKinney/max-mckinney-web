@@ -6,13 +6,11 @@ import { MBody, MHeading02 } from "@components/Typography";
 import useBase64Image from "@/hooks/useBase64Image";
 
 const ProfessionalProjectCard = async ({ data }) => {
-    //const base64Image = await useBase64Image(data.frontmatter.thumb);
-
     return (
         <div>
             {/* Preview Image */}
             <div className="rounded-lg relative max-w-7xl h-96 border border-white/20 overflow-hidden mx-auto md:h-[650px]">
-                <Image className="object-cover h-full" src={data.frontmatter.thumb} alt={"Project image for portfolio item " + data.frontmatter.title} fill />
+                <img className="object-cover h-full" src={data.frontmatter.thumb} alt={"Project image for portfolio item " + data.frontmatter.title} />
             </div>
 
             {/* Card Content */}
