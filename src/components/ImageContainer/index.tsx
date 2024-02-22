@@ -13,14 +13,14 @@ export default async function (props: ImageContainerProps) {
         <>
             {props.src && (
                 <div className="relative w-full rounded overflow-clip shadow-md">
-                    <Image src={props.src} alt={props.alt ?? ""} width={1000} height={900} className="w-full h-auto object-fill m-0" />
+                    <img src={props.src} alt={props.alt ?? ""} width={1000} height={900} className="w-full h-auto object-fill m-0" />
                 </div>
             )}
             {props.srcs && (
                 <div className="flex gap-4 flex-col md:flex-row">
                     {props.srcs.map((src, index) => (
                         <div className="relative w-full rounded overflow-clip shadow-md">
-                            <Image key={index} src={src} alt={props.alts?.[index] ?? ""} width={1000} height={900} className="w-full h-auto object-fill m-0" />
+                            <img key={index} src={src} alt={props.alts?.[index] ?? ""} width={1000} height={900} className="w-full h-auto object-fill m-0" />
                         </div>
                     ))}
                 </div>

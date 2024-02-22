@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 
 export default async function Template({ params }: TemplateProps) {
     const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.work);
-
     return (
         <>
             <div
