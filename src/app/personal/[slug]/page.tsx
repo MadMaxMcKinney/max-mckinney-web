@@ -13,14 +13,14 @@ interface TemplateProps {
     };
 }
 
-export async function generateStaticParams() {
-    const data = await getAllPersonalProjects();
-    return data.map((project) => ({
-        params: {
-            slug: project.slug,
-        },
-    }));
-}
+// export async function generateStaticParams() {
+//     const data = await getAllPersonalProjects();
+//     return data.map((project) => ({
+//         params: {
+//             slug: project.slug,
+//         },
+//     }));
+// }
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
     const { slug } = params;

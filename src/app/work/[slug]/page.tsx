@@ -11,14 +11,14 @@ interface TemplateProps {
     };
 }
 
-export async function generateStaticParams() {
-    const data = await getAllWorkProjects();
-    return data.map((project) => ({
-        params: {
-            slug: project.slug,
-        },
-    }));
-}
+// export async function generateStaticParams() {
+//     const data = await getAllWorkProjects();
+//     return data.map((project) => ({
+//         params: {
+//             slug: project.slug,
+//         },
+//     }));
+// }
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
     const data = await getMarkdownBySlug<WorkProject>(params.slug, ProjectDir.work);
