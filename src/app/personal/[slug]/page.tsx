@@ -41,7 +41,11 @@ export default async function ({ params }: TemplateProps) {
                 <Image className="w-24 h-24 mb-6 mt-44 animate-fade-in-fast rounded-3xl" width={96} height={96} src={data.frontmatter.icon} alt="" aria-hidden priority />
                 <div className="flex flex-col-reverse gap-4 items-start animate-fade-in-fast mb-8 mt-2 md:mt-0 md:mb-4 md:gap-4 md:flex-row md:items-center">
                     <MHeading01 className="text-white">{data.frontmatter.title}</MHeading01>
-                    <Pill type="themed" theme={data.frontmatter.accent} text={data.frontmatter.projectType} />
+                    <div className="flex flex-wrap gap-2">
+                        {data.frontmatter.projectTypes.map((type) => (
+                            <Pill key={type} type="themed" theme={data.frontmatter.accent} text={type} />
+                        ))}
+                    </div>
                 </div>
                 <MBodyXL className="text-zinc-400 mb-12 max-w-3xl animate-fade-in">{data.frontmatter.description}</MBodyXL>
 

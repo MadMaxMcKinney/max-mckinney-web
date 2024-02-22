@@ -36,8 +36,10 @@ export default async function () {
                                     <MHeading03>{project.frontmatter.title}</MHeading03>
                                     <MBody className="text-zinc-400 flex-1">{project.frontmatter.description}</MBody>
                                 </div>
-                                <div className="flex">
-                                    <Pill type="themed" theme={project.frontmatter.accent} text={project.frontmatter.projectType} />
+                                <div className="flex flex-wrap gap-2">
+                                    {project.frontmatter.projectTypes.map((type) => (
+                                        <Pill key={type} type="themed" theme={project.frontmatter.accent} text={type} />
+                                    ))}
                                 </div>
                             </PersonalProjectCard>
                         );

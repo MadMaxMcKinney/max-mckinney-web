@@ -27,7 +27,7 @@ export interface PersonalProject {
     icon: string;
     seoImage: string;
     sortDate: string;
-    projectType: string;
+    projectTypes: string[];
     projectLink: string;
     sourceLink?: string;
 }
