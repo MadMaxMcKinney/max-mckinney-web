@@ -4,6 +4,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import ImageContainer from "@/components/ImageContainer";
 import Image from "next/image";
 import { PersonalProject, WorkProject } from "@/types";
+import { JSXElementConstructor, ReactElement } from "react";
 
 export const ProjectDir = {
     work: path.join(process.cwd(), "src", "work"),
@@ -51,19 +52,35 @@ export async function getAllWorkProjects(sortedByLatest = true) {
     }
 }
 
-export async function getAllPersonalProjects(sortedByLatest = true) {
+export async function getAllPersonalProjects(
+    { sortedByLatest, includeFolders, includeProjects }: { sortedByLatest?: boolean; includeFolders?: boolean; includeProjects?: boolean } = {
+        sortedByLatest: true,
+        includeFolders: true,
+        includeProjects: true,
+    }
+) {
     const fileNames = fs.readdirSync(ProjectDir.personal);
-    const allPersonalProjectsData = fileNames.map(async (fileName) => {
-        const slug = fileName.replace(/\.mdx$/, "");
-        return await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
-    });
+    const allPersonalProjectsData: { frontmatter: PersonalProject; content: ReactElement<any, string | JSXElementConstructor<any>>; slug: string }[] = [];
+
+    await Promise.all(
+        fileNames.map(async (fileName) => {
+            const slug = fileName.replace(/\.mdx$/, "");
+            const project = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
+
+            // If we don't want to include folders and the project is a folder, skip it, otherwise add it to the array
+            if (!includeFolders && project.frontmatter.folderFor) return;
+            if (!includeProjects && !project.frontmatter.folderFor) return;
+
+            allPersonalProjectsData.push(project);
+        })
+    );
 
     if (!sortedByLatest) {
-        return Promise.all(allPersonalProjectsData);
+        return allPersonalProjectsData;
     } else {
-        const sortedData = await Promise.all(allPersonalProjectsData);
+        const sortedData = allPersonalProjectsData;
         sortedData.sort((a, b) => {
-            if (a.frontmatter.sortDate < b.frontmatter.sortDate) {
+            if (a!.frontmatter.sortDate < b!.frontmatter.sortDate) {
                 return 1;
             } else {
                 return -1;
@@ -71,4 +88,33 @@ export async function getAllPersonalProjects(sortedByLatest = true) {
         });
         return sortedData;
     }
+}
+
+export async function getAllPersonalProjectsInFolder(folder: string) {
+    const fileNames = fs.readdirSync(ProjectDir.personal);
+    const allPersonalProjectsData: { frontmatter: PersonalProject; content: ReactElement<any, string | JSXElementConstructor<any>>; slug: string }[] = [];
+    // Get all projects in the folder
+    await Promise.all(
+        fileNames.map(async (fileName) => {
+            const slug = fileName.replace(/\.mdx$/, "");
+            const project = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
+
+            if (project.frontmatter.folder?.toLowerCase() === folder.toLowerCase()) {
+                allPersonalProjectsData.push(project);
+            } else {
+                return;
+            }
+        })
+    );
+
+    // Sort by latest
+    const sortedData = allPersonalProjectsData;
+    sortedData.sort((a, b) => {
+        if (a!.frontmatter.sortDate < b!.frontmatter.sortDate) {
+            return 1;
+        } else {
+            return -1;
+        }
+    });
+    return sortedData;
 }

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { MHeading01, MBodyXL } from "@components/Typography";
 import Pill from "@components/Pill";
-import { getMarkdownBySlug, ProjectDir, PersonalProject, getAllPersonalProjects } from "@/fetchers";
+import { getMarkdownBySlug, ProjectDir, getAllPersonalProjects } from "@/fetchers";
 import useBase64Image from "@/hooks/useBase64Image";
 import PersonalProjectLinkButton from "@components/Buttons/PersonalProjectLinkButton";
 import PersonalProjectLinkSourceButton from "@components/Buttons/PersonalProjectLinkSourceButton";
 import { Metadata } from "next";
+import { PersonalProject } from "@/types";
 
 interface TemplateProps {
     params: {
@@ -14,7 +15,7 @@ interface TemplateProps {
 }
 
 export async function generateStaticParams() {
-    const data = await getAllPersonalProjects();
+    const data = await getAllPersonalProjects({ includeFolders: false });
     return data.map((project) => ({
         params: {
             slug: project.slug,
@@ -34,7 +35,6 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 export default async function ({ params }: TemplateProps) {
     const { slug } = params;
     const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
-    // const base64Icon = await useBase64Image(data.frontmatter.icon);
     return (
         <>
             <div className="page-grid">
