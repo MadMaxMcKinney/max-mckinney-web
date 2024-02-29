@@ -25,7 +25,7 @@ export default async function () {
                 I dabble in a lot, but primarily in web tech, native apps, and educational design content. There’s probably something here to catch your interest.
             </MBodyXL>
 
-            <div id="SideProjectGrid" className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24 animate-fade-in-slow">
+            <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24 animate-fade-in-slow">
                 {personalProjects &&
                     personalProjects.map((project) => {
                         if (!(project.frontmatter.folder || project.frontmatter.folderFor)) {
