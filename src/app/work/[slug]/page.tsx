@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { MBodyLight, MHeading03 } from "@components/Typography";
-import { getAllWorkProjects, getMarkdownBySlug, ProjectDir, WorkProject } from "@/fetchers";
+import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/fetchers";
+import { WorkProject } from "@/types";
 import { Metadata } from "next";
 
 interface TemplateProps {

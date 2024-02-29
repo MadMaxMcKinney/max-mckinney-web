@@ -16,6 +16,15 @@ const markdownComponents = {
     Image,
 };
 
+/**
+ * Get a markdown file by its slug and directory
+ *
+ * @export getMarkdownBySlug
+ * @template Type
+ * @param {string} slug The slug of the markdown file, this is the file name without the extension
+ * @param {string} dir The directory of the markdown file
+ * @returns The frontmatter, content, and slug of the markdown file
+ */
 export async function getMarkdownBySlug<Type>(slug: string, dir: string) {
     const fileName = `${slug}.mdx`;
     const fullPath = path.join(dir, fileName);
@@ -30,6 +39,11 @@ export async function getMarkdownBySlug<Type>(slug: string, dir: string) {
     return { frontmatter, content, slug: path.parse(fileName).name };
 }
 
+/**
+ * Get all work projects
+ * @param sortedByLatest Will sort the projects by the latest date using the `sortDate` frontmatter key
+ * @returns An array of work projects
+ */
 export async function getAllWorkProjects(sortedByLatest = true) {
     const fileNames = fs.readdirSync(ProjectDir.work);
     const allWorkProjectsData = fileNames.map(async (fileName) => {
@@ -52,6 +66,13 @@ export async function getAllWorkProjects(sortedByLatest = true) {
     }
 }
 
+/**
+ * Get all personal projects including folders. Folders are projects that have a `folderFor` frontmatter key.
+ * @param sortedByLatest Will sort the projects by the latest date
+ * @param includeFolders Will include folders in the returned array
+ * @param includeProjects Will include normal projects in the returned array
+ * @returns An array of personal projects
+ */
 export async function getAllPersonalProjects(
     { sortedByLatest, includeFolders, includeProjects }: { sortedByLatest?: boolean; includeFolders?: boolean; includeProjects?: boolean } = {
         sortedByLatest: true,
@@ -90,6 +111,11 @@ export async function getAllPersonalProjects(
     }
 }
 
+/**
+ * Gets all personal projects in a specific folder, sorted by latest. This is useful for the collection pages so you don't need to filter the projects yourself from the `getAllPersonalProjects` function.
+ * @param folder The folder to get the projects from
+ * @returns An array of personal projects
+ */
 export async function getAllPersonalProjectsInFolder(folder: string) {
     const fileNames = fs.readdirSync(ProjectDir.personal);
     const allPersonalProjectsData: { frontmatter: PersonalProject; content: ReactElement<any, string | JSXElementConstructor<any>>; slug: string }[] = [];
