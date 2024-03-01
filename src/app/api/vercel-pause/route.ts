@@ -1,20 +1,13 @@
 import crypto from "crypto";
 
 export async function GET(request: Request) {
-    const { INTEGRATION_SECRET } = process.env;
-
-    if (typeof INTEGRATION_SECRET != "string") {
-        throw new Error("No integration secret found");
-    }
-
     const rawBody = await request.text();
     const rawBodyBuffer = Buffer.from(rawBody, "utf-8");
-    const bodySignature = sha1(rawBodyBuffer, INTEGRATION_SECRET);
 
-    if (bodySignature !== request.headers.get("x-vercel-signature")) {
-        return Response.json({
-            code: "invalid_signature",
-            error: "signature didn't match",
+    const isValid = await verifySignature(request);
+    if (!isValid) {
+        return new Response("Invalid signature", {
+            status: 401,
         });
     }
 
@@ -50,6 +43,11 @@ export async function GET(request: Request) {
     });
 }
 
-function sha1(data: Buffer, secret: string): string {
-    return crypto.createHmac("sha1", secret).update(data).digest("hex");
+async function verifySignature(req: any) {
+    const payload = await req.text();
+    const signature = crypto
+        .createHmac("sha1", process.env.WEBHOOK_SECRET as string)
+        .update(payload)
+        .digest("hex");
+    return signature === req.headers["x-vercel-signature"];
 }
