@@ -40,9 +40,9 @@ export default async function ({ params }: TemplateProps) {
     return (
         <>
             <div className="page-grid">
-                <div className="mt-32 sm:mt-56 ">
+                <div className="mt-32 sm:mt-56 flex flex-col items-start">
                     <Link href="/personal">
-                        <MHeading06 className={`grid grid-flow-col w-fit gap-1 mb-6 text-sm font-bold text-zinc-400 place-items-center transition-all group animate-fade-in-fast hover:opacity-70`}>
+                        <MHeading06 className={`grid grid-flow-col gap-1 mb-6 text-sm font-bold text-zinc-400 place-items-center transition-all group animate-fade-in-fast hover:opacity-70`}>
                             <PiArrowLeft className="w-4 h-4 mr-2 transform translate-y-px group-hover:animate-pulse-right"></PiArrowLeft> Personal
                         </MHeading06>
                     </Link>
@@ -51,7 +51,7 @@ export default async function ({ params }: TemplateProps) {
                     <MBodyXL className="mb-8 text-zinc-400 max-w-3xl animate-fade-in">{folder.description}</MBodyXL>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24 animate-fade-in-slow">
+                <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24 animate-fade-in">
                     {projectsInFolder &&
                         projectsInFolder.map((project) => {
                             return (
