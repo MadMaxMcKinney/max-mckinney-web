@@ -20,7 +20,8 @@
         "paths": {
             "@/*": ["./src/*"],
             "@components/*": ["./src/components/*"],
-            "@assets/*": ["./src/assets/*"]
+            "@assets/*": ["./src/assets/*"],
+            "@util/*": ["./src/util/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Typography/index.tsx", "tailwind.config.js"],
