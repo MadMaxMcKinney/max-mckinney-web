@@ -54,7 +54,7 @@ export default async function ({ params }: TemplateProps) {
                     {data.frontmatter.sourceLink && <PersonalProjectLinkSourceButton href={data.frontmatter.sourceLink} accent={data.frontmatter.accent} />}
                 </div>
 
-                <div className="prose prose-lg max-w-none text-zinc-200 mt-16 animate-fade-in-very-slow [&_img]:rounded-sm [&_p]:opacity-85">{data.content}</div>
+                <div className="prose prose-lg prose-p:font-medium max-w-none text-zinc-300 mt-16 animate-fade-in-very-slow [&_img]:rounded-sm [&_p]:opacity-85">{data.content}</div>
             </div>
         </>
     );

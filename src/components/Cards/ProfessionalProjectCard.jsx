@@ -13,7 +13,7 @@ const ProfessionalProjectCard = async ({ info, slug }) => {
             </div>
 
             {/* Card Content */}
-            <div className="contained-content mt-12 flex flex-col gap-6 items-start">
+            <div className="contained-content mt-6 md:mt-12 flex flex-col gap-6 items-start">
                 {/* Pills */}
                 <div className="inline-grid grid-flow-col gap-3">
                     <Pill type="primary" text={info.projectRole} />

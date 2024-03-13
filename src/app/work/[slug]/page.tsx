@@ -4,6 +4,7 @@ import { MBodyLight, MHeading03 } from "@components/Typography";
 import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/fetchers";
 import { WorkProject } from "@/types";
 import { Metadata } from "next";
+import Pill from "@/components/Pill";
 
 interface TemplateProps {
     params: {
@@ -34,7 +35,7 @@ export default async function Template({ params }: TemplateProps) {
         <>
             <div
                 style={{ "--themeColor": data.frontmatter.themeColor } as React.CSSProperties}
-                className="h-[430px] flex justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-[#05010d] to-90%"
+                className="h-[430px] flex flex-col gap-10 justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-[#05010d] to-90%"
             >
                 <Image
                     className="animate-fade-in object-cover"
@@ -46,10 +47,15 @@ export default async function Template({ params }: TemplateProps) {
                     priority
                 />
                 <h1 className="font-bold text-center text-4xl z-10 md:text-6xl animate-fade-in-slow">{data.frontmatter.title}</h1>
+                <div className="flex gap-4 flex-wrap justify-center z-20 animate-fade-in-slow">
+                    <Pill text={data.frontmatter.projectRole} type="themed" theme={data.frontmatter.accentColor} />
+                    <Pill text={data.frontmatter.projectClient} type="themed" theme={data.frontmatter.accentColor} />
+                    <Pill text={data.frontmatter.projectDate} type="themed" theme={data.frontmatter.accentColor} />
+                </div>
             </div>
 
             <div className="page-grid page-grid-sm text-white animate-fade-in-up">
-                <div className="flex gap-6 lg:gap-12">
+                {/* <div className="flex gap-6 lg:gap-12">
                     <div>
                         <MHeading03 className="mb-1">Role</MHeading03>
                         <MBodyLight className="mb-4">{data.frontmatter.projectRole}</MBodyLight>
@@ -62,7 +68,7 @@ export default async function Template({ params }: TemplateProps) {
                         <MHeading03 className="mb-1">Date</MHeading03>
                         <MBodyLight className="mb-4">{data.frontmatter.projectDate}</MBodyLight>
                     </div>
-                </div>
+                </div> */}
 
                 <div>
                     <MHeading03 className="mb-1">Brief</MHeading03>

@@ -18,6 +18,9 @@ const config: Config = {
                 "fade-in-up": "fade-in-up 1s",
                 "color-change": "color-change 6s infinite",
             },
+            fontFamily: {
+                display: ["Rubik", "sans-serif"],
+            },
             keyframes: {
                 "pulsing-right": {
                     from: { transform: "translateX(0)" },
