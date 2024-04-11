@@ -26,7 +26,7 @@ const ProfessionalProjectCard = async ({ info, slug }) => {
                 </div>
 
                 <div id="ProjectActions">
-                    <ReadMoreButton accent={info.accentColor} href={`/work/${slug}`}>
+                    <ReadMoreButton accent="#fff" href={`/work/${slug}`}>
                         View case study
                     </ReadMoreButton>
                 </div>
