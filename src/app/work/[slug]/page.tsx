@@ -38,7 +38,7 @@ export default async function Template({ params }: TemplateProps) {
                 className="h-[430px] flex flex-col gap-10 justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-[#05010d] to-90%"
             >
                 <Image
-                    className="animate-fade-in object-cover filter saturate-0 "
+                    className="animate-fade-in object-cover filter saturate-0 contrast-[1.1] after:absolute after:inset-0 after:bg-red-400"
                     style={{ position: "absolute", top: 0, left: 0, width: "100%", height: `100%` }}
                     src={data.frontmatter.image}
                     alt=""
@@ -48,9 +48,9 @@ export default async function Template({ params }: TemplateProps) {
                 />
                 <h1 className="font-bold text-center text-4xl z-10 md:text-6xl animate-fade-in-slow">{data.frontmatter.title}</h1>
                 <div className="flex gap-4 flex-wrap justify-center z-20 animate-fade-in-slow">
-                    <Pill text={data.frontmatter.projectRole} type="primary" />
-                    <Pill text={data.frontmatter.projectClient} type="primary" />
-                    <Pill text={data.frontmatter.projectDate} type="primary" />
+                    <Pill text={data.frontmatter.projectRole} type="themed" theme={data.frontmatter.accentColor} />
+                    <Pill text={data.frontmatter.projectClient} type="themed" theme={data.frontmatter.accentColor} />
+                    <Pill text={data.frontmatter.projectDate} type="themed" theme={data.frontmatter.accentColor} />
                 </div>
             </div>
 
