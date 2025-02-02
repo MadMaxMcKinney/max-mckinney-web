@@ -72,12 +72,12 @@ export default async function Template({ params }: TemplateProps) {
 
                 <div>
                     <MHeading03 className="mb-1">Brief</MHeading03>
-                    <MBodyLight className="mb-4">{data.frontmatter.projectBrief}</MBodyLight>
+                    <MBodyLight className="mb-4 text-zinc-400 leading-8">{data.frontmatter.projectBrief}</MBodyLight>
                 </div>
 
                 <MHeading03 className="mt-14 mb-1 animate-fade-in-up">Case Study</MHeading03>
 
-                <div className="prose prose-lg text-white max-w-none animate-fade-in-up">{data.content}</div>
+                <div className="prose prose-lg text-white max-w-none animate-fade-in-up prose-p:text-zinc-400">{data.content}</div>
             </div>
         </>
     );
