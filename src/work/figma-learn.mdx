@@ -1,0 +1,96 @@
+---
+title: "Figma Learn (Help Center)"
+projectClient: "Figma"
+projectDate: "2021 – Present"
+projectRole: "Designer & Frontend Developer"
+projectBrief: "Redesigned and rebuilt Figma’s Help Center - Figma Learn, using modern tooling and a component-based approach. Led frontend development and visual design efforts, introduced scalable authoring tools, and collaborated cross-functionally to enhance the support and education experience. Worked closely with our content strategist and technical writers to implement a custom IA framework and deliver a flexible, branded experience on top of Zendesk's platform, pushing the boundaries of what was possible within the system."
+projectShortBrief: "Redesigned and rebuilt the Figma Help Center using modern tools and scalable authoring systems within Zendesk. Led frontend development, created custom educational components, and enabled content teams to deliver better, faster."
+categories: ["Frontend", "Systems", "Product"]
+themeColor: "#3B47FF"
+accentColor: "#3B47FF"
+image: "/work/figma-help-center/figma-help-center-bg.png"
+thumb: "/work/figma-help-center/figma-help-center-thumb.png"
+sortDate: "2024-06-01"
+---
+
+The [Figma Help Center](https://help.figma.com/hc/en-us) is a foundational resource visited by millions of users each month. It supports a wide spectrum of learning—from first-time onboarding to advanced troubleshooting. From 2022 onwards, I’ve served as the design and frontend lead for this platform, shaping both its visual direction and technical infrastructure.
+
+IMAGE: Overview screenshot of Help Center homepage
+
+#### Modernized the frontend
+
+The project began with a clear need: improve the usability, maintainability, and overall quality of the Help Center experience. The previous implementation, built using Zendesk’s default theming tools, was inflexible and difficult to scale. I rebuilt the entire theme from scratch using a modern stack including React, TypeScript, Tailwind CSS, and a custom build pipeline tailored for Zendesk’s deployment model/formatting.
+
+This foundation allowed for better developer ergonomics and made it significantly easier to roll out visual changes, new components, and accessibility improvements over time.
+
+I introduced Git and GitHub-based workflows to version control the Help Center’s codebase and enable safer, more transparent collaboration across design, engineering, and support contributors. Included in this was automated PR reviews, CI/CD pipelines, and a custom theme deployment process that integrated with Zendesk’s publishing system.
+
+IMAGE: Codebase or components
+
+#### Led the design for the Help Center
+
+As part of the rebuild and ongoing updates, I led the redesign (and continued evolution) of the Help Center UI to align with Figma’s evolving brand and accessibility guidelines. This involved building a custom design system specifically for support and documentation use cases, with reusable components such as:
+
+-   Informational callouts (tips, notes, warnings)
+-   Tabs, accordions, and expandable sections
+-   UI selectors and complex dropdowns
+-   Code blocks with syntax highlighting
+-   Interactive images
+-   Special interactive components like product selectors, simplified Figma UI elements to demonstrate features, and more
+
+Each component was built to be responsive, accessible, and easy to manage for both technical and non-technical authors. To support this, I created comprehensive documentation and usage guidelines to ensure consistency across the Help Center, as well as a component consumption system for our content authors.
+
+IMAGE: Gallery of components as used in real articles -->
+
+#### Built tools to empower content authors
+
+To support the work of our educators and technical writers, I created a custom component authoring system that allowed writers to embed and configure components using Raycast, a productivity tool for MacOS, which would generate structured Web Component markup. These tools were designed to work seamlessly inside Zendesk’s constrained WYSIWYG editor, enhancing day-to-day content creation without requiring engineering intervention.
+
+The result was faster article production, higher visual consistency, and better overall user comprehension. Prior to this, interactive "components" were copied and pasted from a central Notion database, which was error-prone and difficult to maintain. The new system allowed writers to focus on content quality rather than technical implementation, and kept the component code centralized in a way that could be updated independently of the articles.
+
+IMAGE: Before/after of a support article using components -->
+
+#### Implemented a custom navigation system
+
+I partnered closely with our content strategist to plan and implement a custom information architecture (IA) framework. This included building custom navigation structures that were not possible with Zendesk’s default templates. I implemented:
+
+-   Hierarchical topic menus
+-   Dynamic breadcrumbs
+-   Context-aware next steps and “related article” modules
+-   Mobile-friendly navigation with persistent affordances
+
+These updates helped orient users more effectively and improved discoverability across hundreds of support topics.
+
+IMAGE: Screenshot of custom navigation in action -->
+
+#### Extended Zendesk beyond its defaults
+
+Much of this work required deep exploration into how far Zendesk’s templating engine and supporting systems could be pushed. I implemented features not natively supported by the platform, including:
+
+-   React to Web Components pipeline enabling React components to be used within Zendesk's templating system
+-   Custom build tools to compile and optimize a large number of assets for Zendesk’s environment
+-   Modular, testable JavaScript logic
+-   Modern CSS techniques to ensure consistent theming across all components
+-   Accessibility enhancements like ARIA roles, keyboard navigation, and screen reader support
+-   Metadata support for articles/course/projects via "tags" using a custom key-value system
+-   Custom analytics and component-based tracking to measure user engagement and content effectiveness
+
+All of these changes were deployed without compromising Zendesk’s publishing workflow—preserving what worked while expanding what was possible.
+
+Extensive documentation was created to ensure long-term sustainability of the theme, making it easier for future contributors to build upon or maintain the system.
+
+IMAGE: Dev tools or theme setup documentation snippet -->
+
+#### Supported Figma’s education and course ecosystem
+
+In addition to standard product documentation, the Help Center increasingly became a home for educational content such as courses and projects. I designed and built a series of educational components that complemented our course offerings—such as interactive exercises, inline guidance, course hub pages, and progress tracking. These allowed our support articles to go beyond passive information delivery and actively reinforce learning.
+
+One particular highlight was the creation of a "Course Hub" template that served as a centralized landing page for each course. This hub provided an overview of the course content, key learning objectives, and links to individual lessons or modules. In order to work within Zendesk's constraints, but still provide our content authors with the flexibility of metadata a course would need (course length, topics, etc.), I created a custom key-value metadata system using Zendesk's article tags that allowed authors to define course properties in a structured way. This enabled us to create dynamic course hubs that could be easily updated as content evolved.
+
+IMAGE: Course hub -->
+
+#### Closing thoughts
+
+Redesigning and rebuilding Figma’s Help Center was an effort that blended frontend engineering, design systems thinking, and author tooling into a single (limited) platform. The work required pushing Zendesk far beyond its intended use case, while maintaining reliability and ease-of-use for both authors and end users.
+
+This project demonstrated the value of investing in infrastructure for educational content—not just in terms of visual polish, but in the workflows, tooling, and systems that empower teams to scale their efforts. By building a stable, extensible foundation, we were able to give content authors greater creative freedom, capture more analytics to understand the impact of our work, ship richer user experiences, and support a growing global community of Figma learners with confidence.
