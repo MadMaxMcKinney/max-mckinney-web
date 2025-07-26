@@ -77,7 +77,9 @@ export default async function Template({ params }: TemplateProps) {
 
                 <MHeading03 className="mt-14 mb-1 animate-fade-in-up">Case Study</MHeading03>
 
-                <div className="prose prose-lg text-white max-w-none animate-fade-in-up prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">{data.content}</div>
+                <div className="prose prose-lg text-white max-w-none animate-fade-in-up prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
+                    {data.content}
+                </div>
             </div>
         </>
     );
