@@ -17,6 +17,7 @@ export interface PersonalProject {
     title: string;
     description: string;
     accent: string;
+    accentForeground?: string;
     locationText: string;
     icon: string;
     seoImage: string;

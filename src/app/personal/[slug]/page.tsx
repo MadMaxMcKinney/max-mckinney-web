@@ -50,7 +50,10 @@ export default async function ({ params }: TemplateProps) {
                 <MBodyXL className="text-zinc-400 mb-12 max-w-3xl animate-fade-in">{data.frontmatter.description}</MBodyXL>
 
                 <div className="flex flex-wrap gap-4 justify-start animate-fade-in-very-slow">
-                    {data.frontmatter.projectLink && <PersonalProjectLinkButton href={data.frontmatter.projectLink} accent={data.frontmatter.accent} />}
+                    {" "}
+                    {data.frontmatter.projectLink && (
+                        <PersonalProjectLinkButton href={data.frontmatter.projectLink} accent={data.frontmatter.accent} accentForeground={data.frontmatter.accentForeground} />
+                    )}
                     {data.frontmatter.sourceLink && <PersonalProjectLinkSourceButton href={data.frontmatter.sourceLink} accent={data.frontmatter.accent} />}
                 </div>
 
