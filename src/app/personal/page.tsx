@@ -1,9 +1,9 @@
-import { MHeading01, MBodyXL } from "@components/Typography";
-import PersonalProjectCard from "@components/Cards/PersonalProjectCard";
+import { MHeading01, MBodyXL } from "@/app/components/Typography";
+import PersonalProjectCard from "@/app/components/Cards/PersonalProjectCard";
 import Image from "next/image";
-import { MHeading03, MBody } from "@components/Typography";
-import Pill from "@components/Pill";
-import { getAllPersonalProjects } from "@/fetchers";
+import { MHeading03, MBody } from "@/app/components/Typography";
+import Pill from "@/app/components/Pill";
+import { getAllPersonalProjects } from "@/app/fetchers";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

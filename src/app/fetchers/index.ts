@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
-import ImageContainer from "@/components/ImageContainer";
+import ImageContainer from "@/app/components/ImageContainer";
 import Image from "next/image";
 import { PersonalProject, WorkProject } from "@/types";
 import { JSXElementConstructor, ReactElement } from "react";

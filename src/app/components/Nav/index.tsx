@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@assets/img/max_word_mark.png";
-import PageNavButton from "@/components/Buttons/PageNavButton";
+import PageNavButton from "@components/Buttons/PageNavButton";
 import { usePathname } from "next/navigation";
 
 const Header = () => {

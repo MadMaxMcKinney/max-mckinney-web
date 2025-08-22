@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { MHeading01, MBodyXL, MHeading03, MBody, MHeading06 } from "@components/Typography";
-import Pill from "@components/Pill";
-import { getMarkdownBySlug, ProjectDir, getAllPersonalProjects, getAllPersonalProjectsInFolder } from "@/fetchers";
-import PersonalProjectCard from "@components/Cards/PersonalProjectCard";
+import { MHeading01, MBodyXL, MHeading03, MBody, MHeading06 } from "@/app/components/Typography";
+import Pill from "@/app/components/Pill";
+import { getMarkdownBySlug, ProjectDir, getAllPersonalProjects, getAllPersonalProjectsInFolder } from "@/app/fetchers";
+import PersonalProjectCard from "@/app/components/Cards/PersonalProjectCard";
 import { Metadata } from "next";
 import { PersonalProject } from "@/types";
 import { PiArrowLeft } from "react-icons/pi";

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { MHeading01, MBodyXL } from "@components/Typography";
-import Pill from "@components/Pill";
-import { getMarkdownBySlug, ProjectDir, getAllPersonalProjects } from "@/fetchers";
-import useBase64Image from "@/hooks/useBase64Image";
+import { MHeading01, MBodyXL } from "@/app/components/Typography";
+import Pill from "@/app/components/Pill";
+import { getMarkdownBySlug, ProjectDir, getAllPersonalProjects } from "@/app/fetchers";
+import useBase64Image from "@/app/hooks/useBase64Image";
 import PersonalProjectLinkButton from "@components/Buttons/PersonalProjectLinkButton";
 import PersonalProjectLinkSourceButton from "@components/Buttons/PersonalProjectLinkSourceButton";
 import { Metadata } from "next";

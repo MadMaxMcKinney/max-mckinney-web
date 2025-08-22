@@ -1,7 +1,7 @@
-import { MHeadingHero, MBodyLead } from "@/components/Typography";
-import ProfessionalProjectCard from "@/components/Cards/ProfessionalProjectCard";
-import ShapeLogo from "@/components/Anim/ShapeLogo";
-import { getAllWorkProjects } from "@/fetchers";
+import { MHeadingHero, MBodyLead } from "@/app/components/Typography";
+import ProfessionalProjectCard from "@components/Cards/ProfessionalProjectCard";
+import ShapeLogo from "@/app/components/Anim/ShapeLogo";
+import { getAllWorkProjects } from "@/app/fetchers";
 
 export default async function Home() {
     const workProjects = await getAllWorkProjects();

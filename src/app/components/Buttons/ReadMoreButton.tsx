@@ -1,5 +1,5 @@
 import React from "react";
-import { MHeading05 } from "@components/Typography";
+import { MHeading05 } from "@/app/components/Typography";
 import { PiArrowRight } from "react-icons/pi";
 import Link from "next/link";
 

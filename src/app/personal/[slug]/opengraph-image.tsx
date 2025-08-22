@@ -1,4 +1,4 @@
-import { ProjectDir, getMarkdownBySlug } from "@/fetchers";
+import { ProjectDir, getMarkdownBySlug } from "@/app/fetchers";
 import { PersonalProject } from "@/types";
 import { ImageResponse } from "next/og";
 import { headers } from "next/headers";

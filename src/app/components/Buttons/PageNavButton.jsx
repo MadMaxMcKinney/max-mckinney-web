@@ -1,5 +1,5 @@
 import React from "react";
-import { MHeading06 } from "@/components/Typography";
+import { MHeading06 } from "@components/Typography";
 import { PiArrowRight } from "react-icons/pi";
 
 const PageNavButton = (props) => {

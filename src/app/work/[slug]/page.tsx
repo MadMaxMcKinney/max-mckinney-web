@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { MBodyLight, MHeading03 } from "@components/Typography";
-import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/fetchers";
+import { MBodyLight, MHeading03 } from "@/app/components/Typography";
+import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/app/fetchers";
 import { WorkProject } from "@/types";
 import { Metadata } from "next";
-import Pill from "@/components/Pill";
+import Pill from "@/app/components/Pill";
 
 interface TemplateProps {
     params: {
