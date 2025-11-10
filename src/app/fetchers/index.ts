@@ -115,6 +115,10 @@ export async function getAllPersonalProjects(
  * Gets all personal projects in a specific folder, sorted by latest. This is useful for the collection pages so you don't need to filter the projects yourself from the `getAllPersonalProjects` function.
  * @param folder The folder to get the projects from
  * @returns An array of personal projects
+ * @example
+ * const projectsInFolder = await getAllPersonalProjectsInFolder("raycast");
+ * console.log(projectsInFolder);
+ * // Returns all projects with the frontmatter key `folder` set to "raycast"
  */
 export async function getAllPersonalProjectsInFolder(folder: string) {
     const fileNames = fs.readdirSync(ProjectDir.personal);
