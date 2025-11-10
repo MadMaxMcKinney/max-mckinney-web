@@ -35,7 +35,7 @@ export default async function Template({ params }: TemplateProps) {
         <>
             <div
                 style={{ "--themeColor": data.frontmatter.themeColor } as React.CSSProperties}
-                className="h-[430px] flex flex-col gap-10 justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-[#05010d] to-90%"
+                className="h-[430px] flex flex-col gap-10 justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-black to-90%"
             >
                 <Image
                     className="animate-fade-in object-cover filter saturate-0 contrast-[1.1] after:absolute after:inset-0 after:bg-red-400"
