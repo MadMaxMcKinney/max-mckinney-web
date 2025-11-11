@@ -5,7 +5,7 @@ import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/app/fetcher
 import { WorkProject } from "@/types";
 import { Metadata } from "next";
 import Pill from "@/app/components/Pill";
-import { FadeIn } from "@/app/components/Anim";
+import { FadeIn, StaggeredFadeIn } from "@/app/components/Anim";
 
 interface TemplateProps {
     params: {
@@ -49,12 +49,14 @@ export default async function Template({ params }: TemplateProps) {
                         priority
                     />
                 </FadeIn>
-                <FadeIn delay={0.5} duration={1} as="h1" className="font-bold text-center text-4xl z-10 md:text-6xl">{data.frontmatter.title}</FadeIn>
-                <FadeIn delay={0.8} duration={1} className="flex gap-4 flex-wrap justify-center z-20">
+                <FadeIn dir="down" delay={0.5} duration={1} as="h1" className="font-bold text-center text-4xl z-10 md:text-6xl">
+                    {data.frontmatter.title}
+                </FadeIn>
+                <StaggeredFadeIn delay={0.8} duration={1} className="flex gap-4 flex-wrap justify-center z-20">
                     <Pill text={data.frontmatter.projectRole} type="themed" theme={data.frontmatter.accentColor} />
                     <Pill text={data.frontmatter.projectClient} type="themed" theme={data.frontmatter.accentColor} />
                     <Pill text={data.frontmatter.projectDate} type="themed" theme={data.frontmatter.accentColor} />
-                </FadeIn>
+                </StaggeredFadeIn>
             </div>
 
             <FadeIn dir="up" delay={1} duration={1.5} className="page-grid page-grid-sm text-white">
@@ -82,7 +84,12 @@ export default async function Template({ params }: TemplateProps) {
                     <MHeading03 className="mt-14 mb-1">Case Study</MHeading03>
                 </FadeIn>
 
-                <FadeIn dir="up" delay={0.6} duration={1} className="prose prose-lg text-white max-w-none prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
+                <FadeIn
+                    dir="up"
+                    delay={0.6}
+                    duration={1}
+                    className="prose prose-lg text-white max-w-none prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300"
+                >
                     {data.content}
                 </FadeIn>
             </FadeIn>

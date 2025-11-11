@@ -8,6 +8,7 @@ import { PersonalProject } from "@/types";
 import { PiArrowLeft } from "react-icons/pi";
 import Link from "next/link";
 import { FadeIn } from "@/app/components/Anim";
+import BreadcrumbReturn from "@/app/components/BreadcrumbReturn";
 
 interface TemplateProps {
     params: {
@@ -42,22 +43,18 @@ export default async function ({ params }: TemplateProps) {
         <>
             <div className="page-grid">
                 <FadeIn duration={1} className="mt-32 sm:mt-56 flex flex-col items-start">
-                    <Link href="/personal">
-                        <MHeading06 className={`grid grid-flow-col gap-1 mb-6 text-sm font-bold text-zinc-400 place-items-center transition-all group hover:opacity-70`}>
-                            <PiArrowLeft className="w-4 h-4 mr-2 transform translate-y-px group-hover:animate-pulse-right"></PiArrowLeft> Personal
-                        </MHeading06>
-                    </Link>
+                    <BreadcrumbReturn href="/personal/" location="Back to Personal/" />
                 </FadeIn>
-                
-                <FadeIn delay={0.3} duration={1} as="div">
+
+                <FadeIn dir="up" delay={0.3} duration={1} as="div">
                     <MHeading01 className="mb-6 text-white">{folder.title}</MHeading01>
                 </FadeIn>
 
-                <FadeIn delay={0.6} duration={1} as="div">
+                <FadeIn dir="up" delay={0.6} duration={1} as="div">
                     <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">{folder.description}</MBodyXL>
                 </FadeIn>
 
-                <FadeIn delay={0.9} duration={1} className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24">
+                <FadeIn dir="up" delay={0.9} duration={1} className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24">
                     {projectsInFolder &&
                         projectsInFolder.map((project) => {
                             return (
