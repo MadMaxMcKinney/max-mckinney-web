@@ -21,10 +21,10 @@ export default function FadeIn({ children, delay = 0, duration = 1, className = 
             gsap.fromTo(
                 ref.current,
                 {
-                    opacity: 0,
+                    autoAlpha: 0,
                 },
                 {
-                    opacity: 1,
+                    autoAlpha: 1,
                     duration,
                     delay,
                     ease: "power2.out",
@@ -36,7 +36,7 @@ export default function FadeIn({ children, delay = 0, duration = 1, className = 
     const Component = as;
 
     return (
-        <Component ref={ref} className={className} id={id}>
+        <Component ref={ref} className={className} id={id} style={{ visibility: "hidden" }}>
             {children}
         </Component>
     );

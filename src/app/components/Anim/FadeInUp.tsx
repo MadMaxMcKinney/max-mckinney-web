@@ -22,11 +22,11 @@ export default function FadeInUp({ children, delay = 0, duration = 1, distance =
             gsap.fromTo(
                 ref.current,
                 {
-                    opacity: 0,
+                    autoAlpha: 0,
                     y: distance,
                 },
                 {
-                    opacity: 1,
+                    autoAlpha: 1,
                     y: 0,
                     duration,
                     delay,
@@ -39,7 +39,7 @@ export default function FadeInUp({ children, delay = 0, duration = 1, distance =
     const Component = as;
 
     return (
-        <Component ref={ref} className={className} id={id}>
+        <Component ref={ref} className={className} id={id} style={{ visibility: "hidden" }}>
             {children}
         </Component>
     );

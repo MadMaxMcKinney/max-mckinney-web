@@ -25,11 +25,11 @@ export default function StaggeredFadeIn({ children, stagger = 0.2, delay = 0, du
             gsap.fromTo(
                 childElements,
                 {
-                    opacity: 0,
+                    autoAlpha: 0,
                     y: distance,
                 },
                 {
-                    opacity: 1,
+                    autoAlpha: 1,
                     y: 0,
                     duration,
                     delay,
@@ -42,9 +42,19 @@ export default function StaggeredFadeIn({ children, stagger = 0.2, delay = 0, du
 
     const Component = as;
 
+    // Clone children with visibility hidden to prevent FOUC
+    const hiddenChildren = React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+                style: { ...((child.props as any).style || {}), visibility: "hidden" },
+            } as any);
+        }
+        return child;
+    });
+
     return (
         <Component ref={ref} className={className} id={id}>
-            {children}
+            {hiddenChildren}
         </Component>
     );
 }
