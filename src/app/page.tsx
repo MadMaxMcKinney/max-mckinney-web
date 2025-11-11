@@ -1,6 +1,6 @@
-import { MHeadingHero, MBodyLead } from "@/app/components/Typography";
+import { MBodyLead } from "@/app/components/Typography";
 import ProfessionalProjectCard from "@components/Cards/ProfessionalProjectCard";
-import { ShapeLogo, StaggeredFadeIn, FadeIn } from "@/app/components/Anim";
+import { ShapeLogo, TextStagger, FadeIn } from "@/app/components/Anim";
 import { getAllWorkProjects } from "@/app/fetchers";
 
 export default async function Home() {
@@ -14,15 +14,43 @@ export default async function Home() {
                         <div className="mb-2 animate-shapes-in">
                             <ShapeLogo />
                         </div>
-                        <StaggeredFadeIn stagger={0.3} delay={0.5}>
-                            <MHeadingHero>Designer.</MHeadingHero>
-                            <MHeadingHero>Leader.</MHeadingHero>
-                            <MHeadingHero>Nerd.</MHeadingHero>
-                        </StaggeredFadeIn>
+                        <TextStagger
+                            as="h1"
+                            className="font-bold text-6xl text-white sm:text-7xl md:text-8xl"
+                            stagger={0.03}
+                            delay={0.5}
+                            duration={0.6}
+                            dir="up"
+                            distance={30}
+                        >
+                            Designer.
+                        </TextStagger>
+                        <TextStagger
+                            as="h1"
+                            className="font-bold text-6xl text-white sm:text-7xl md:text-8xl"
+                            stagger={0.03}
+                            delay={0.8}
+                            duration={0.6}
+                            dir="up"
+                            distance={30}
+                        >
+                            Leader.
+                        </TextStagger>
+                        <TextStagger
+                            as="h1"
+                            className="font-bold text-6xl text-white sm:text-7xl md:text-8xl"
+                            stagger={0.03}
+                            delay={1.1}
+                            duration={0.6}
+                            dir="up"
+                            distance={30}
+                        >
+                            Nerd.
+                        </TextStagger>
                     </div>
                 </div>
 
-                <FadeIn delay={1} duration={1.5} className="contained-content mt-16 sm:mt-24" id="BioDescription">
+                <FadeIn delay={1.5} duration={1.5} className="contained-content mt-16 sm:mt-24" id="BioDescription">
                     <div className="text-zinc-400">
                         <MBodyLead className="mb-6">
                             I'm <span className="text-transparent bg-gradient-to-r from-orange-500 via-purple-500  to-red-500 bg-clip-text bg-[length:300%] animate-flow-background">Max McKinney</span>
@@ -37,7 +65,7 @@ export default async function Home() {
                 </FadeIn>
 
                 {/* Project Card Grid */}
-                <FadeIn delay={1.5} duration={1.5} id="ProjectGrid" className="mt-24 grid grid-cols-1 gap-16 sm:mt-30 lg:gap-32">
+                <FadeIn delay={2} duration={1.5} id="ProjectGrid" className="mt-24 grid grid-cols-1 gap-16 sm:mt-30 lg:gap-32">
                     {workProjects && workProjects.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
                 </FadeIn>
             </div>

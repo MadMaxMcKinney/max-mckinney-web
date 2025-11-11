@@ -3,11 +3,12 @@
 import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import SplitText from "gsap/dist/SplitText";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
-interface StaggeredFadeInProps {
-    children: React.ReactNode;
+interface TextStaggerProps {
+    children: string;
     stagger?: number;
     delay?: number;
     duration?: number;
@@ -18,12 +19,16 @@ interface StaggeredFadeInProps {
     as?: any;
 }
 
-export default function StaggeredFadeIn({ children, stagger = 0.2, delay = 0, duration = 1, distance = 20, dir = "up", className = "", id, as = "div" }: StaggeredFadeInProps) {
+export default function TextStagger({ children, stagger = 0.03, delay = 0, duration = 0.6, distance = 20, dir = "up", className = "", id, as = "div" }: TextStaggerProps) {
     const ref = useRef<any>(null);
 
     useGSAP(() => {
         if (ref.current) {
-            const childElements = ref.current.children;
+            // Use SplitText to split by characters
+            const split = new SplitText(ref.current, {
+                type: "chars",
+                charsClass: "char",
+            });
 
             const fromVars: gsap.TweenVars = {
                 autoAlpha: 0,
@@ -57,29 +62,25 @@ export default function StaggeredFadeIn({ children, stagger = 0.2, delay = 0, du
                     break;
                 case "none":
                 default:
-                    // No movement, just fade
                     break;
             }
 
-            gsap.fromTo(childElements, fromVars, toVars);
+            gsap.fromTo(split.chars, fromVars, toVars);
+            console.log(ref);
+            gsap.to(ref, { autoAlpha: 1, duration: 1 });
+
+            // Cleanup function to revert the split when component unmounts
+            return () => {
+                split.revert();
+            };
         }
-    }, [stagger, delay, duration, distance, dir]);
+    }, [stagger, delay, duration, distance, dir, children]);
 
     const Component = as;
 
-    // Clone children with visibility hidden to prevent FOUC
-    const hiddenChildren = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
-                style: { ...((child.props as any).style || {}), visibility: "hidden" },
-            } as any);
-        }
-        return child;
-    });
-
     return (
-        <Component ref={ref} className={className} id={id}>
-            {hiddenChildren}
+        <Component ref={ref} className={className} id={id} style={{ visibility: "hidden" }}>
+            {children}
         </Component>
     );
 }
