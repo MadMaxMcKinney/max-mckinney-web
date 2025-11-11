@@ -5,6 +5,7 @@ import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/app/fetcher
 import { WorkProject } from "@/types";
 import { Metadata } from "next";
 import Pill from "@/app/components/Pill";
+import { FadeIn, FadeInUp } from "@/app/components/Anim";
 
 interface TemplateProps {
     params: {
@@ -37,24 +38,26 @@ export default async function Template({ params }: TemplateProps) {
                 style={{ "--themeColor": data.frontmatter.themeColor } as React.CSSProperties}
                 className="h-[430px] flex flex-col gap-10 justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-black to-90%"
             >
-                <Image
-                    className="object-cover filter saturate-0 contrast-[1.1] after:absolute after:inset-0 after:bg-red-400"
-                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: `100%` }}
-                    src={data.frontmatter.image}
-                    alt=""
-                    aria-hidden
-                    fill
-                    priority
-                />
-                <h1 className="font-bold text-center text-4xl z-10 md:text-6xl">{data.frontmatter.title}</h1>
-                <div className="flex gap-4 flex-wrap justify-center z-20">
+                <FadeIn duration={1.5}>
+                    <Image
+                        className="object-cover filter saturate-0 contrast-[1.1] after:absolute after:inset-0 after:bg-red-400"
+                        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: `100%` }}
+                        src={data.frontmatter.image}
+                        alt=""
+                        aria-hidden
+                        fill
+                        priority
+                    />
+                </FadeIn>
+                <FadeIn delay={0.5} duration={1} as="h1" className="font-bold text-center text-4xl z-10 md:text-6xl">{data.frontmatter.title}</FadeIn>
+                <FadeIn delay={0.8} duration={1} className="flex gap-4 flex-wrap justify-center z-20">
                     <Pill text={data.frontmatter.projectRole} type="themed" theme={data.frontmatter.accentColor} />
                     <Pill text={data.frontmatter.projectClient} type="themed" theme={data.frontmatter.accentColor} />
                     <Pill text={data.frontmatter.projectDate} type="themed" theme={data.frontmatter.accentColor} />
-                </div>
+                </FadeIn>
             </div>
 
-            <div className="page-grid page-grid-sm text-white">
+            <FadeInUp delay={1} duration={1.5} className="page-grid page-grid-sm text-white">
                 {/* <div className="flex gap-6 lg:gap-12">
                     <div>
                         <MHeading03 className="mb-1">Role</MHeading03>
@@ -75,12 +78,14 @@ export default async function Template({ params }: TemplateProps) {
                     <MBodyLight className="mb-4 text-zinc-300 leading-8">{data.frontmatter.projectBrief}</MBodyLight>
                 </div>
 
-                <MHeading03 className="mt-14 mb-1">Case Study</MHeading03>
+                <FadeInUp delay={0.3} duration={1} as="div">
+                    <MHeading03 className="mt-14 mb-1">Case Study</MHeading03>
+                </FadeInUp>
 
-                <div className="prose prose-lg text-white max-w-none prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
+                <FadeInUp delay={0.6} duration={1} className="prose prose-lg text-white max-w-none prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
                     {data.content}
-                </div>
-            </div>
+                </FadeInUp>
+            </FadeInUp>
         </>
     );
 }

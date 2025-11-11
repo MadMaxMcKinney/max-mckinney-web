@@ -5,6 +5,7 @@ import { MHeading03, MBody } from "@/app/components/Typography";
 import Pill from "@/app/components/Pill";
 import { getAllPersonalProjects } from "@/app/fetchers";
 import { Metadata } from "next";
+import { FadeIn } from "@/app/components/Anim";
 
 export const metadata: Metadata = {
     title: "Personal",
@@ -17,15 +18,21 @@ export default async function () {
 
     return (
         <div className="page-grid">
-            <MHeading01 className="mb-6 mt-32 sm:mt-56 text-white">hello.</MHeading01>
+            <FadeIn duration={1} as="div">
+                <MHeading01 className="mb-6 mt-32 sm:mt-56 text-white">hello.</MHeading01>
+            </FadeIn>
 
-            <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">These are some of my personal projects.</MBodyXL>
+            <FadeIn delay={0.3} duration={1} as="div">
+                <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">These are some of my personal projects.</MBodyXL>
+            </FadeIn>
 
-            <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">
-                I dabble in a lot, but primarily in web tech, native apps, and educational design content. There’s probably something here to catch your interest.
-            </MBodyXL>
+            <FadeIn delay={0.6} duration={1} as="div">
+                <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">
+                    I dabble in a lot, but primarily in web tech, native apps, and educational design content. There's probably something here to catch your interest.
+                </MBodyXL>
+            </FadeIn>
 
-            <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24">
+            <FadeIn delay={0.9} duration={1} className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24">
                 {personalProjects &&
                     personalProjects.map((project) => {
                         if (!(project.frontmatter.folder || project.frontmatter.folderFor)) {
@@ -60,7 +67,7 @@ export default async function () {
                             );
                         }
                     })}
-            </div>
+            </FadeIn>
         </div>
     );
 }

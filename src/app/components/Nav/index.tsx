@@ -6,12 +6,13 @@ import Image from "next/image";
 import logo from "@assets/img/max_word_mark.png";
 import PageNavButton from "@components/Buttons/PageNavButton";
 import { usePathname } from "next/navigation";
+import { FadeIn } from "@/app/components/Anim";
 
 const Header = () => {
     const pathname = usePathname();
 
     return (
-        <header className="h-16 grid place-items-center w-full mt-4 px-6 z-10 top-0 absolute">
+        <FadeIn as="header" duration={1} className="h-16 grid place-items-center w-full mt-4 px-6 z-10 top-0 absolute">
             <div className="flex justify-between mx-auto w-full xl:max-w-7xl">
                 {/* Site Logo Container */}
                 <div className="flex flex-row items-center justify-start">
@@ -38,7 +39,7 @@ const Header = () => {
                     </li>
                 </ul>
             </div>
-        </header>
+        </FadeIn>
     );
 };
 
