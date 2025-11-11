@@ -66,8 +66,7 @@ export default function TextStagger({ children, stagger = 0.03, delay = 0, durat
             }
 
             gsap.fromTo(split.chars, fromVars, toVars);
-            console.log(ref);
-            gsap.to(ref, { autoAlpha: 1, duration: 1 });
+            gsap.to(ref.current, { autoAlpha: 1, duration: 1 });
 
             // Cleanup function to revert the split when component unmounts
             return () => {
