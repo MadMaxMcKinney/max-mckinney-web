@@ -4,41 +4,76 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
+type Direction = "up" | "down" | "left" | "right" | "none";
+
 interface StaggeredFadeInProps {
     children: React.ReactNode;
     stagger?: number;
     delay?: number;
     duration?: number;
     distance?: number;
+    dir?: Direction;
     className?: string;
     id?: string;
     as?: any;
 }
 
-export default function StaggeredFadeIn({ children, stagger = 0.2, delay = 0, duration = 1, distance = 20, className = "", id, as = "div" }: StaggeredFadeInProps) {
+export default function StaggeredFadeIn({
+    children,
+    stagger = 0.2,
+    delay = 0,
+    duration = 1,
+    distance = 20,
+    dir = "up",
+    className = "",
+    id,
+    as = "div"
+}: StaggeredFadeInProps) {
     const ref = useRef<any>(null);
 
     useGSAP(() => {
         if (ref.current) {
             const childElements = ref.current.children;
 
-            gsap.fromTo(
-                childElements,
-                {
-                    autoAlpha: 0,
-                    y: distance,
-                },
-                {
-                    autoAlpha: 1,
-                    y: 0,
-                    duration,
-                    delay,
-                    stagger,
-                    ease: "power2.out",
-                }
-            );
+            const fromVars: gsap.TweenVars = {
+                autoAlpha: 0,
+            };
+
+            const toVars: gsap.TweenVars = {
+                autoAlpha: 1,
+                duration,
+                delay,
+                stagger,
+                ease: "power2.out",
+            };
+
+            // Add directional movement based on dir prop
+            switch (dir) {
+                case "up":
+                    fromVars.y = distance;
+                    toVars.y = 0;
+                    break;
+                case "down":
+                    fromVars.y = -distance;
+                    toVars.y = 0;
+                    break;
+                case "left":
+                    fromVars.x = distance;
+                    toVars.x = 0;
+                    break;
+                case "right":
+                    fromVars.x = -distance;
+                    toVars.x = 0;
+                    break;
+                case "none":
+                default:
+                    // No movement, just fade
+                    break;
+            }
+
+            gsap.fromTo(childElements, fromVars, toVars);
         }
-    }, [stagger, delay, duration, distance]);
+    }, [stagger, delay, duration, distance, dir]);
 
     const Component = as;
 
