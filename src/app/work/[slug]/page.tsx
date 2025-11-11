@@ -38,7 +38,7 @@ export default async function Template({ params }: TemplateProps) {
                 className="h-[430px] flex flex-col gap-10 justify-center items-center relative px-6 md:h-[800px] after:absolute after:inset-0 after:bg-gradient-to-b from-black/0 to-black to-90%"
             >
                 <Image
-                    className="animate-fade-in object-cover filter saturate-0 contrast-[1.1] after:absolute after:inset-0 after:bg-red-400"
+                    className="object-cover filter saturate-0 contrast-[1.1] after:absolute after:inset-0 after:bg-red-400"
                     style={{ position: "absolute", top: 0, left: 0, width: "100%", height: `100%` }}
                     src={data.frontmatter.image}
                     alt=""
@@ -46,15 +46,15 @@ export default async function Template({ params }: TemplateProps) {
                     fill
                     priority
                 />
-                <h1 className="font-bold text-center text-4xl z-10 md:text-6xl animate-fade-in-slow">{data.frontmatter.title}</h1>
-                <div className="flex gap-4 flex-wrap justify-center z-20 animate-fade-in-slow">
+                <h1 className="font-bold text-center text-4xl z-10 md:text-6xl">{data.frontmatter.title}</h1>
+                <div className="flex gap-4 flex-wrap justify-center z-20">
                     <Pill text={data.frontmatter.projectRole} type="themed" theme={data.frontmatter.accentColor} />
                     <Pill text={data.frontmatter.projectClient} type="themed" theme={data.frontmatter.accentColor} />
                     <Pill text={data.frontmatter.projectDate} type="themed" theme={data.frontmatter.accentColor} />
                 </div>
             </div>
 
-            <div className="page-grid page-grid-sm text-white animate-fade-in-up">
+            <div className="page-grid page-grid-sm text-white">
                 {/* <div className="flex gap-6 lg:gap-12">
                     <div>
                         <MHeading03 className="mb-1">Role</MHeading03>
@@ -75,9 +75,9 @@ export default async function Template({ params }: TemplateProps) {
                     <MBodyLight className="mb-4 text-zinc-300 leading-8">{data.frontmatter.projectBrief}</MBodyLight>
                 </div>
 
-                <MHeading03 className="mt-14 mb-1 animate-fade-in-up">Case Study</MHeading03>
+                <MHeading03 className="mt-14 mb-1">Case Study</MHeading03>
 
-                <div className="prose prose-lg text-white max-w-none animate-fade-in-up prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
+                <div className="prose prose-lg text-white max-w-none prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
                     {data.content}
                 </div>
             </div>

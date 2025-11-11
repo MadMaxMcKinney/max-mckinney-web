@@ -14,13 +14,13 @@ export default async function Home() {
                         <div className="mb-2 animate-shapes-in">
                             <ShapeLogo />
                         </div>
-                        <MHeadingHero className="animate-fade-in">Designer.</MHeadingHero>
-                        <MHeadingHero className="animate-fade-in-slow">Leader.</MHeadingHero>
-                        <MHeadingHero className="animate-fade-in-very-slow">Nerd.</MHeadingHero>
+                        <MHeadingHero>Designer.</MHeadingHero>
+                        <MHeadingHero>Leader.</MHeadingHero>
+                        <MHeadingHero>Nerd.</MHeadingHero>
                     </div>
                 </div>
 
-                <div className="contained-content mt-16 animate-fade-in-slow sm:mt-24" id="BioDescription">
+                <div className="contained-content mt-16 sm:mt-24" id="BioDescription">
                     <div className="text-zinc-400">
                         <MBodyLead className="mb-6">
                             I’m <span className="text-transparent bg-gradient-to-r from-orange-500 via-purple-500  to-red-500 bg-clip-text bg-[length:300%] animate-flow-background">Max McKinney</span>
@@ -35,7 +35,7 @@ export default async function Home() {
                 </div>
 
                 {/* Project Card Grid */}
-                <div id="ProjectGrid" className="animate-fade-in-slow mt-24 grid grid-cols-1 gap-16 sm:mt-30 lg:gap-32">
+                <div id="ProjectGrid" className="mt-24 grid grid-cols-1 gap-16 sm:mt-30 lg:gap-32">
                     {workProjects && workProjects.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
                 </div>
             </div>

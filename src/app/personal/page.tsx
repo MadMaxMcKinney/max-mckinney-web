@@ -17,15 +17,15 @@ export default async function () {
 
     return (
         <div className="page-grid">
-            <MHeading01 className="mb-6 mt-32 sm:mt-56 animate-fade-in-fast text-white">hello.</MHeading01>
+            <MHeading01 className="mb-6 mt-32 sm:mt-56 text-white">hello.</MHeading01>
 
-            <MBodyXL className="mb-8 text-zinc-400 max-w-3xl animate-fade-in">These are some of my personal projects.</MBodyXL>
+            <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">These are some of my personal projects.</MBodyXL>
 
-            <MBodyXL className="mb-8 text-zinc-400 max-w-3xl animate-fade-in-slow">
+            <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">
                 I dabble in a lot, but primarily in web tech, native apps, and educational design content. There’s probably something here to catch your interest.
             </MBodyXL>
 
-            <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24 animate-fade-in">
+            <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24">
                 {personalProjects &&
                     personalProjects.map((project) => {
                         if (!(project.frontmatter.folder || project.frontmatter.folderFor)) {
