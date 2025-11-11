@@ -5,7 +5,7 @@ import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/app/fetcher
 import { WorkProject } from "@/types";
 import { Metadata } from "next";
 import Pill from "@/app/components/Pill";
-import { FadeIn, FadeInUp } from "@/app/components/Anim";
+import { FadeIn } from "@/app/components/Anim";
 
 interface TemplateProps {
     params: {
@@ -57,7 +57,7 @@ export default async function Template({ params }: TemplateProps) {
                 </FadeIn>
             </div>
 
-            <FadeInUp delay={1} duration={1.5} className="page-grid page-grid-sm text-white">
+            <FadeIn dir="up" delay={1} duration={1.5} className="page-grid page-grid-sm text-white">
                 {/* <div className="flex gap-6 lg:gap-12">
                     <div>
                         <MHeading03 className="mb-1">Role</MHeading03>
@@ -78,14 +78,14 @@ export default async function Template({ params }: TemplateProps) {
                     <MBodyLight className="mb-4 text-zinc-300 leading-8">{data.frontmatter.projectBrief}</MBodyLight>
                 </div>
 
-                <FadeInUp delay={0.3} duration={1} as="div">
+                <FadeIn dir="up" delay={0.3} duration={1} as="div">
                     <MHeading03 className="mt-14 mb-1">Case Study</MHeading03>
-                </FadeInUp>
+                </FadeIn>
 
-                <FadeInUp delay={0.6} duration={1} className="prose prose-lg text-white max-w-none prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
+                <FadeIn dir="up" delay={0.6} duration={1} className="prose prose-lg text-white max-w-none prose-li:mt-1 prose-li:mb-1 prose-a:text-zinc-300 prose-p:text-zinc-300 prose-ul:text-zinc-300">
                     {data.content}
-                </FadeInUp>
-            </FadeInUp>
+                </FadeIn>
+            </FadeIn>
         </>
     );
 }

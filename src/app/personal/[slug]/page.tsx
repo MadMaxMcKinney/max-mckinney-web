@@ -7,7 +7,7 @@ import PersonalProjectLinkButton from "@components/Buttons/PersonalProjectLinkBu
 import PersonalProjectLinkSourceButton from "@components/Buttons/PersonalProjectLinkSourceButton";
 import { Metadata } from "next";
 import { PersonalProject } from "@/types";
-import { FadeIn, FadeInUp } from "@/app/components/Anim";
+import { FadeIn } from "@/app/components/Anim";
 
 interface TemplateProps {
     params: {
@@ -63,7 +63,7 @@ export default async function ({ params }: TemplateProps) {
                     {data.frontmatter.sourceLink && <PersonalProjectLinkSourceButton href={data.frontmatter.sourceLink} accent={data.frontmatter.accent} />}
                 </FadeIn>
 
-                <FadeInUp delay={1.2} duration={1.5} className="prose prose-lg prose-p:font-medium max-w-none text-zinc-300 mt-16 [&_img]:rounded-sm [&_p]:opacity-85">{data.content}</FadeInUp>
+                <FadeIn dir="up" delay={1.2} duration={1.5} className="prose prose-lg prose-p:font-medium max-w-none text-zinc-300 mt-16 [&_img]:rounded-sm [&_p]:opacity-85">{data.content}</FadeIn>
             </div>
         </>
     );
