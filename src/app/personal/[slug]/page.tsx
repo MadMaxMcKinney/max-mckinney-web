@@ -7,7 +7,7 @@ import PersonalProjectLinkButton from "@components/Buttons/PersonalProjectLinkBu
 import PersonalProjectLinkSourceButton from "@components/Buttons/PersonalProjectLinkSourceButton";
 import { Metadata } from "next";
 import { PersonalProject } from "@/types";
-import { FadeIn } from "@/app/components/Anim";
+import { FadeIn, StaggeredFadeIn } from "@/app/components/Anim";
 import BreadcrumbReturn from "@/app/components/BreadcrumbReturn";
 
 interface TemplateProps {
