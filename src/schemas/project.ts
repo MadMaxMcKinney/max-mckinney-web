@@ -1,6 +1,11 @@
 import { z } from "zod";
 
 /**
+ * Centralized project types used across all project schemas
+ */
+export const PROJECT_TYPES = ["web", "app", "ai", "ios", "brand", "education", "raycast", "tool", "cli"] as const;
+
+/**
  * Schema for Personal Project frontmatter validation
  * Based on analysis of all personal project MDX files
  */
@@ -13,7 +18,7 @@ export const PersonalProjectSchema = z.object({
     icon: z.string().min(1, "Icon path is required"),
     seoImage: z.string().min(1, "SEO image path is required"),
     sortDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Sort date must be in YYYY-MM-DD format"),
-    projectTypes: z.array(z.enum(["web", "app", "ai", "iOS", "brand", "education", "raycast"])).min(1, "At least one project type is required"),
+    projectTypes: z.array(z.enum(PROJECT_TYPES)).min(1, "At least one project type is required"),
     projectLink: z.string().url("Project link must be a valid URL"),
 
     // Optional fields
@@ -62,7 +67,7 @@ export const FolderProjectSchema = z.object({
     locationText: z.string().min(1, "Location text is required"),
     sortDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Sort date must be in YYYY-MM-DD format"),
     icon: z.string().min(1, "Icon path is required"),
-    projectTypes: z.array(z.enum(["web", "app", "ai", "iOS", "brand", "education", "raycast"])).min(1, "At least one project type is required"),
+    projectTypes: z.array(z.enum(PROJECT_TYPES)).min(1, "At least one project type is required"),
     folderFor: z.string().min(1, "Folder identifier is required"),
 });
 
