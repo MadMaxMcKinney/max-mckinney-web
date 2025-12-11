@@ -77,9 +77,7 @@ async function promptBasicInfo(): Promise<ProjectAnswers> {
     return { ...answers, slug: finalSlug };
 }
 
-async function promptPersonalProject(): Promise<PersonalProjectAnswers> {
-    const basicInfo = (await promptBasicInfo()) as ProjectAnswers & { projectType: "personal" };
-
+async function promptPersonalProject(basicInfo: ProjectAnswers & { projectType: "personal" }): Promise<PersonalProjectAnswers> {
     console.log("\n📝 Required fields:");
     const required = await inquirer.prompt([
         {
@@ -182,9 +180,7 @@ async function promptPersonalProject(): Promise<PersonalProjectAnswers> {
     } as PersonalProjectAnswers;
 }
 
-async function promptWorkProject(): Promise<WorkProjectAnswers> {
-    const basicInfo = (await promptBasicInfo()) as ProjectAnswers & { projectType: "work" };
-
+async function promptWorkProject(basicInfo: ProjectAnswers & { projectType: "work" }): Promise<WorkProjectAnswers> {
     console.log("\n📝 Required fields:");
     const required = await inquirer.prompt([
         {
@@ -317,16 +313,16 @@ async function main() {
     console.log("🚀 Create New Project\n");
 
     try {
-        const projectData = await promptBasicInfo();
+        const basicInfo = await promptBasicInfo();
 
         let data: PersonalProjectAnswers | WorkProjectAnswers;
 
-        if (projectData.projectType === "personal") {
-            data = await promptPersonalProject();
+        if (basicInfo.projectType === "personal") {
+            data = await promptPersonalProject(basicInfo as ProjectAnswers & { projectType: "personal" });
             // Validate with schema
             PersonalProjectSchema.parse(data);
         } else {
-            data = await promptWorkProject();
+            data = await promptWorkProject(basicInfo as ProjectAnswers & { projectType: "work" });
             // Validate with schema
             WorkProjectSchema.parse(data);
         }
