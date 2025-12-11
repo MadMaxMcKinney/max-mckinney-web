@@ -2,10 +2,10 @@
 import fs from "fs";
 import path from "path";
 import inquirer from "inquirer";
-import { PersonalProjectSchema, WorkProjectSchema, type PersonalProject, type WorkProject } from "../src/schemas/project";
+import { PersonalProjectSchema, WorkProjectSchema, FolderProjectSchema, type PersonalProject, type WorkProject, type FolderProject } from "../src/schemas/project";
 
 interface ProjectAnswers {
-    projectType: "personal" | "work";
+    projectType: "personal" | "work" | "folder";
     title: string;
     slug: string;
 }
@@ -13,6 +13,8 @@ interface ProjectAnswers {
 interface PersonalProjectAnswers extends ProjectAnswers, PersonalProject {}
 
 interface WorkProjectAnswers extends ProjectAnswers, WorkProject {}
+
+interface FolderProjectAnswers extends ProjectAnswers, FolderProject {}
 
 function createSlug(title: string): string {
     return title
@@ -36,6 +38,7 @@ async function promptBasicInfo(): Promise<ProjectAnswers> {
             choices: [
                 { name: "Personal Project", value: "personal" },
                 { name: "Work Project", value: "work" },
+                { name: "Folder (for grouping projects)", value: "folder" },
             ],
         },
         {
@@ -164,12 +167,7 @@ async function promptPersonalProject(basicInfo: ProjectAnswers & { projectType: 
         {
             type: "input",
             name: "folder",
-            message: "Folder (for grouping projects, optional):",
-        },
-        {
-            type: "input",
-            name: "folderFor",
-            message: "Folder for (if this IS a folder entry, optional):",
+            message: "Parent folder identifier (if this project belongs to a folder, optional):",
         },
     ]);
 
@@ -178,6 +176,61 @@ async function promptPersonalProject(basicInfo: ProjectAnswers & { projectType: 
         ...required,
         ...Object.fromEntries(Object.entries(optional).filter(([_, v]) => v)),
     } as PersonalProjectAnswers;
+}
+
+async function promptFolderProject(basicInfo: ProjectAnswers & { projectType: "folder" }): Promise<FolderProjectAnswers> {
+    console.log("\n📝 Required fields:");
+    const required = await inquirer.prompt([
+        {
+            type: "input",
+            name: "description",
+            message: "Description:",
+            validate: (input: string) => input.trim().length > 0 || "Description is required",
+        },
+        {
+            type: "input",
+            name: "accent",
+            message: "Accent color (hex, e.g. #FF0000):",
+            validate: (input: string) => /^#[0-9A-Fa-f]{6}$/.test(input) || "Must be a valid hex color",
+        },
+        {
+            type: "input",
+            name: "locationText",
+            message: "Location text (URL path):",
+            validate: (input: string) => input.trim().length > 0 || "Location text is required",
+        },
+        {
+            type: "input",
+            name: "icon",
+            message: "Icon path:",
+            validate: (input: string) => input.trim().length > 0 || "Icon path is required",
+        },
+        {
+            type: "input",
+            name: "sortDate",
+            message: "Sort date (YYYY-MM-DD):",
+            default: formatDate(new Date()),
+            validate: (input: string) => /^\d{4}-\d{2}-\d{2}$/.test(input) || "Must be in YYYY-MM-DD format",
+        },
+        {
+            type: "checkbox",
+            name: "projectTypes",
+            message: "Project types:",
+            choices: ["web", "app", "ai", "iOS", "brand", "education", "raycast"],
+            validate: (answer: string[]) => answer.length > 0 || "At least one project type is required",
+        },
+        {
+            type: "input",
+            name: "folderFor",
+            message: "Folder identifier (used by child projects to reference this folder):",
+            validate: (input: string) => input.trim().length > 0 || "Folder identifier is required",
+        },
+    ]);
+
+    return {
+        ...basicInfo,
+        ...required,
+    } as FolderProjectAnswers;
 }
 
 async function promptWorkProject(basicInfo: ProjectAnswers & { projectType: "work" }): Promise<WorkProjectAnswers> {
@@ -273,7 +326,7 @@ async function promptWorkProject(basicInfo: ProjectAnswers & { projectType: "wor
     } as WorkProjectAnswers;
 }
 
-function generateMDXContent(data: PersonalProjectAnswers | WorkProjectAnswers): string {
+function generateMDXContent(data: PersonalProjectAnswers | WorkProjectAnswers | FolderProjectAnswers): string {
     const frontmatter = Object.entries(data)
         .filter(([key, _]) => key !== "projectType" && key !== "slug")
         .map(([key, value]) => {
@@ -284,7 +337,13 @@ function generateMDXContent(data: PersonalProjectAnswers | WorkProjectAnswers): 
         })
         .join("\n");
 
-    return `---
+    const contentTemplate =
+        data.projectType === "folder"
+            ? `---
+${frontmatter}
+---
+`
+            : `---
 ${frontmatter}
 ---
 
@@ -307,6 +366,8 @@ ${frontmatter}
 
 <!-- Add process details here -->
 `;
+
+    return contentTemplate;
 }
 
 async function main() {
@@ -315,12 +376,16 @@ async function main() {
     try {
         const basicInfo = await promptBasicInfo();
 
-        let data: PersonalProjectAnswers | WorkProjectAnswers;
+        let data: PersonalProjectAnswers | WorkProjectAnswers | FolderProjectAnswers;
 
         if (basicInfo.projectType === "personal") {
             data = await promptPersonalProject(basicInfo as ProjectAnswers & { projectType: "personal" });
             // Validate with schema
             PersonalProjectSchema.parse(data);
+        } else if (basicInfo.projectType === "folder") {
+            data = await promptFolderProject(basicInfo as ProjectAnswers & { projectType: "folder" });
+            // Validate with schema
+            FolderProjectSchema.parse(data);
         } else {
             data = await promptWorkProject(basicInfo as ProjectAnswers & { projectType: "work" });
             // Validate with schema
@@ -328,7 +393,7 @@ async function main() {
         }
 
         // Generate MDX file
-        const dir = path.join(process.cwd(), "src", data.projectType);
+        const dir = path.join(process.cwd(), "src", data.projectType === "folder" ? "personal" : data.projectType);
         const filename = `${data.slug}.mdx`;
         const filepath = path.join(dir, filename);
 
