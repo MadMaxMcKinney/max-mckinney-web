@@ -74,12 +74,12 @@ Components are organized functionally:
 ### ImageContainer Array Props
 When using ImageContainer in MDX with multiple images, do not use expression props like `srcs={["/a.png", "/b.png"]}`.
 
-Use stringified JSON instead:
+Use pipe-delimited strings instead:
 
 ```mdx
 <ImageContainer
-  srcs='["/work/example/a.png", "/work/example/b.png"]'
-  alts='["Alt A", "Alt B"]'
+  srcs="/work/example/a.png|/work/example/b.png"
+  alts="Alt A|Alt B"
   subtitle="Example subtitle"
 />
 ```
@@ -87,4 +87,4 @@ Use stringified JSON instead:
 Why:
 - The MDX pipeline in this repo uses next-mdx-remote/rsc.
 - Expression-valued props can be dropped during compile in this setup.
-- String attributes are preserved and parsed by ImageContainer.
+- Simple string attributes are preserved and parsed by ImageContainer.

@@ -28,10 +28,10 @@ function normalizeToStringArray(value: unknown): string[] {
             }
         }
 
-        // Handles accidental comma/newline-delimited strings.
-        if (trimmed.includes(",") || trimmed.includes("\n")) {
+        // Supports simple author-friendly delimiter syntax: "a|b|c" or newline-separated values.
+        if (trimmed.includes("|") || trimmed.includes("\n")) {
             return trimmed
-                .split(/[,\n]/)
+                .split(/[|\n]/)
                 .map((item) => item.trim().replace(/^['"]|['"]$/g, ""))
                 .filter(Boolean);
         }
