@@ -1,11 +1,8 @@
 import { MHeading01, MBodyXL } from "@/app/components/Typography";
-import PersonalProjectCard from "@/app/components/Cards/PersonalProjectCard";
-import Image from "next/image";
-import { MHeading03, MBody } from "@/app/components/Typography";
-import Pill from "@/app/components/Pill";
+import PersonalGrid, { PersonalGridProject } from "./PersonalGrid";
 import { getAllPersonalProjects } from "@/app/fetchers";
 import { Metadata } from "next";
-import { FadeIn, StaggeredFadeIn } from "@/app/components/Anim";
+import { FadeIn } from "@/app/components/Anim";
 
 export const metadata: Metadata = {
     title: "Personal",
@@ -14,10 +11,29 @@ export const metadata: Metadata = {
 };
 
 export default async function () {
-    const personalProjects = await getAllPersonalProjects();
+    const all = await getAllPersonalProjects();
+
+    // Show every project inline, sorted by date. Collection members blend in with the
+    // rest; the collection entry pages themselves (folderFor) are skipped.
+    const projects: PersonalGridProject[] = all
+        .filter((p) => !p.frontmatter.folderFor)
+        .map((p) => {
+            const fm = p.frontmatter as any;
+            return {
+                slug: p.slug,
+                title: fm.title,
+                icon: fm.icon,
+                media: fm.cardMedia ?? fm.seoImage ?? null,
+                poster: fm.seoImage ?? null,
+                aspect: (fm.cardAspect as "16/9" | "9/16") ?? "16/9",
+                accent: fm.accent,
+                projectTypes: fm.projectTypes,
+                href: `/personal/${p.slug}`,
+            };
+        });
 
     return (
-        <div className="page-grid">
+        <div className="page-grid page-grid-lg">
             <FadeIn dir="up" duration={1} as="div">
                 <MHeading01 className="mb-6 mt-32 sm:mt-56 text-white">hello.</MHeading01>
             </FadeIn>
@@ -32,42 +48,7 @@ export default async function () {
                 </MBodyXL>
             </FadeIn>
 
-            <StaggeredFadeIn stagger={0.1} delay={0.9} duration={1} className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:gap-8 md:gap-14 sm:mt-24">
-                {personalProjects &&
-                    personalProjects.map((project) => {
-                        if (!(project.frontmatter.folder || project.frontmatter.folderFor)) {
-                            return (
-                                <PersonalProjectCard href={"/personal/" + project.slug} accent={project.frontmatter.accent} key={project.frontmatter.title}>
-                                    <Image id="SideImage" className="w-24 h-24 rounded-3xl" width={96} height={96} src={project.frontmatter.icon} alt="" aria-hidden />
-                                    <div className="flex flex-col gap-2">
-                                        <MHeading03>{project.frontmatter.title}</MHeading03>
-                                        <MBody className="text-zinc-400 flex-1">{project.frontmatter.description}</MBody>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.frontmatter.projectTypes.map((type) => (
-                                            <Pill key={type} type="themed" theme={project.frontmatter.accent} text={type} />
-                                        ))}
-                                    </div>
-                                </PersonalProjectCard>
-                            );
-                        } else if (project.frontmatter.folderFor) {
-                            return (
-                                <PersonalProjectCard href={`/personal/collection/${project.frontmatter.folderFor}/`} accent={project.frontmatter.accent} key={project.frontmatter.title} isFolder>
-                                    <Image id="SideImage" className="w-24 h-24 rounded-3xl" width={96} height={96} src={project.frontmatter.icon} alt="" aria-hidden />
-                                    <div className="flex flex-col gap-2">
-                                        <MHeading03>{project.frontmatter.title}</MHeading03>
-                                        <MBody className="text-zinc-400 flex-1">{project.frontmatter.description}</MBody>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.frontmatter.projectTypes.map((type) => (
-                                            <Pill key={type} type="themed" theme={project.frontmatter.accent} text={type} />
-                                        ))}
-                                    </div>
-                                </PersonalProjectCard>
-                            );
-                        }
-                    })}
-            </StaggeredFadeIn>
+            <PersonalGrid projects={projects} className="mt-12 sm:mt-24" />
         </div>
     );
 }

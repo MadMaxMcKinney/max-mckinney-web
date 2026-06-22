@@ -33,6 +33,9 @@
     .page-grid-sm {
         --page-grid-content-width: 900px;
     }
+    .page-grid-xl {
+        --page-grid-content-width: 1600px;
+    }
 }
 
 ::selection {

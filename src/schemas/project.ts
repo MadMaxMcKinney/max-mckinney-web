@@ -28,6 +28,11 @@ export const PersonalProjectSchema = z.object({
         .optional(),
     sourceLink: z.string().url("Source link must be a valid URL").optional(),
 
+    // Card art (personal index page). cardMedia may be an image or a video
+    // (.mp4/.webm/.mov); when omitted the card falls back to `seoImage`.
+    cardMedia: z.string().optional(),
+    cardAspect: z.enum(["16/9", "9/16"]).optional(), // defaults to "16/9"
+
     // Folder system fields (for organizing related projects)
     folder: z.string().optional(), // Used to group projects under a folder
     folderFor: z.string().optional(), // Used to define a folder entry
@@ -69,6 +74,10 @@ export const FolderProjectSchema = z.object({
     icon: z.string().min(1, "Icon path is required"),
     projectTypes: z.array(z.enum(PROJECT_TYPES)).min(1, "At least one project type is required"),
     folderFor: z.string().min(1, "Folder identifier is required"),
+
+    // Optional card art for the personal index page (image or video).
+    cardMedia: z.string().optional(),
+    cardAspect: z.enum(["16/9", "9/16"]).optional(),
 });
 
 // Type exports for use in your application
