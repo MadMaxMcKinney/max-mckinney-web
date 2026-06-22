@@ -4,6 +4,7 @@ import { CSSProperties, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/app/components/Anim";
+import Label from "@/app/components/Label";
 
 export interface PersonalGridProject {
     slug: string;
@@ -65,7 +66,7 @@ function Tile({ project }: { project: PersonalGridProject }) {
                 {project.isFolder && <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">Collection</span>}
             </div>
             <h3 className="mt-3 font-serif text-base font-medium text-white transition-colors group-hover:text-[var(--accent)]">{project.title}</h3>
-            <p className="mt-1 text-xs uppercase tracking-wider text-zinc-500">{meta}</p>
+            <Label className="mt-1">{meta}</Label>
         </Link>
     );
 }

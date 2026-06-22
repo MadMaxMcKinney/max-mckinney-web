@@ -28,7 +28,7 @@ export default async function Home() {
                     </div>
                 </div>
 
-                <FadeIn delay={1.5} duration={1.5} className="contained-content mt-12 sm:mt-16" id="BioDescription">
+                <FadeIn delay={1.5} duration={1.5} className="contained-content mt-12" id="BioDescription">
                     <div className="text-zinc-400">
                         <MBodyLead className="mb-6">
                             I'm <span className="text-white">Max McKinney</span>. A designer, engineer, and big 'ol nerd. I'm currently a <span className="italic font-medium">Designer at Figma</span>.
@@ -45,10 +45,14 @@ export default async function Home() {
                 {/* Project Card Grid — two staggered columns */}
                 <FadeIn delay={2} duration={1.5} id="ProjectGrid" className="mx-auto mt-24 grid max-w-[var(--content-max-width)] grid-cols-1 gap-x-12 sm:mt-32 md:grid-cols-2">
                     <div className="flex flex-col gap-20 lg:gap-28">
-                        {leftColumn.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
+                        {leftColumn.map((project) => (
+                            <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>
+                        ))}
                     </div>
                     <div className="flex flex-col gap-20 md:mt-24 lg:mt-32 lg:gap-28">
-                        {rightColumn.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
+                        {rightColumn.map((project) => (
+                            <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>
+                        ))}
                     </div>
                 </FadeIn>
             </div>

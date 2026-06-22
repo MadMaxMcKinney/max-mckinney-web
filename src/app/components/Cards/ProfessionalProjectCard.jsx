@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MBody, MHeading02 } from "@components/Typography";
+import Label from "@components/Label";
 import { PiArrowRight } from "react-icons/pi";
 
 const ProfessionalProjectCard = ({ info, slug }) => {
@@ -22,7 +23,7 @@ const ProfessionalProjectCard = ({ info, slug }) => {
 
             {/* Content */}
             <div className="mt-6 flex flex-col gap-3 md:mt-8">
-                <p className="text-xs uppercase tracking-wider text-zinc-500">{meta}</p>
+                <Label>{meta}</Label>
                 <MHeading02 className="text-white transition-colors group-hover:text-[var(--accent)]">{info.title}</MHeading02>
                 <MBody className="max-w-2xl text-zinc-400">{info.projectShortBrief}</MBody>
                 <span className="mt-1 inline-flex items-center gap-1.5 text-base font-medium text-white">

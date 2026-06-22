@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { PersonalProject } from "@/types";
 import { FadeIn } from "@/app/components/Anim";
 import BreadcrumbReturn from "@/app/components/BreadcrumbReturn";
+import Label from "@/app/components/Label";
 
 interface TemplateProps {
     params: {
@@ -42,7 +43,7 @@ export default async function ({ params }: TemplateProps) {
                 </FadeIn> */}
 
                 <FadeIn dir="up" delay={0.1} duration={1} as="div" className="mt-32 sm:mt-56">
-                    <p className="mb-3 text-xs uppercase tracking-wider text-zinc-500">{data.frontmatter.projectTypes.join(" · ")}</p>
+                    <Label className="mb-3">{data.frontmatter.projectTypes.join(" · ")}</Label>
                 </FadeIn>
 
                 <FadeIn dir="up" delay={0.2} duration={1} as="div">
