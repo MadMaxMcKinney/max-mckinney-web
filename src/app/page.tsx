@@ -17,13 +17,13 @@ export default async function Home() {
                             <ShapeLogo />
                         </div>
                         <TextStagger as="h1" className="font-medium text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.5} duration={0.6} dir="up" distance={30}>
-                            Designer.
+                            designer.
                         </TextStagger>
                         <TextStagger as="h1" className="font-medium pt-4 text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.8} duration={0.6} dir="up" distance={30}>
-                            Builder.
+                            builder.
                         </TextStagger>
                         <TextStagger as="h1" className="font-medium text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={1.1} duration={0.6} dir="up" distance={30}>
-                            Leader.
+                            leader.
                         </TextStagger>
                     </div>
                 </div>
