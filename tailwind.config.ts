@@ -20,6 +20,7 @@ const config: Config = {
             },
             fontFamily: {
                 display: ["Rubik", "sans-serif"],
+                serif: ["Lora", "Georgia", "serif"],
             },
             keyframes: {
                 "pulsing-right": {

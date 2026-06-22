@@ -30,7 +30,7 @@ function aspectClass(a: "16/9" | "9/16") {
 function useColumnCount() {
     const [n, setN] = useState(3);
     useEffect(() => {
-        const calc = () => setN(window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1);
+        const calc = () => setN(window.innerWidth >= 1024 ? 2 : window.innerWidth >= 640 ? 2 : 1);
         calc();
         window.addEventListener("resize", calc);
         return () => window.removeEventListener("resize", calc);
@@ -64,7 +64,7 @@ function Tile({ project }: { project: PersonalGridProject }) {
                 <TileMedia project={project} className="transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
                 {project.isFolder && <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">Collection</span>}
             </div>
-            <h3 className="mt-3 font-display text-base font-semibold text-white transition-colors group-hover:text-[var(--accent)]">{project.title}</h3>
+            <h3 className="mt-3 font-serif text-base font-medium text-white transition-colors group-hover:text-[var(--accent)]">{project.title}</h3>
             <p className="mt-1 text-xs uppercase tracking-wider text-zinc-500">{meta}</p>
         </Link>
     );

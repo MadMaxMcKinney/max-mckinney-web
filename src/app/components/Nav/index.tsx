@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <FadeIn dir="up" as="header" duration={1} className="h-16 grid place-items-center w-full mt-4 px-6 z-10 top-0 absolute">
-            <div className="flex justify-between mx-auto w-full xl:max-w-7xl">
+            <div className="flex justify-between mx-auto w-full max-w-[1500px]">
                 {/* Site Logo Container */}
                 <div className="flex flex-row items-center justify-start">
                     <Link className="transition-opacity hover:opacity-80" href="/">
@@ -26,14 +26,14 @@ const Header = () => {
                     <li id="professionalProjects">
                         <Link href={"/"}>
                             <PageNavButton isActivePage={pathname === "/" ? true : false}>
-                                <p>Work</p>
+                                <p>work.</p>
                             </PageNavButton>
                         </Link>
                     </li>
                     <li id="personalProjects">
                         <Link href="/personal">
                             <PageNavButton isActivePage={RegExp("/personal.?").test(pathname) ? true : false}>
-                                <p>Personal</p>
+                                <p>personal.</p>
                             </PageNavButton>
                         </Link>
                     </li>

@@ -1,4 +1,4 @@
-import { MHeading01, MBodyXL } from "@/app/components/Typography";
+import { MHeading01, MBodyXL, MHeading02 } from "@/app/components/Typography";
 import PersonalGrid, { PersonalGridProject } from "./PersonalGrid";
 import { getAllPersonalProjects } from "@/app/fetchers";
 import { Metadata } from "next";
@@ -33,18 +33,19 @@ export default async function () {
         });
 
     return (
-        <div className="page-grid page-grid-lg">
+        <div className="page-grid page-grid-xl">
             <FadeIn dir="up" duration={1} as="div">
-                <MHeading01 className="mb-6 mt-32 sm:mt-56 text-white">hello.</MHeading01>
+                <MHeading02 className="mb-6 mt-32 sm:mt-56 text-white">i find myself constantly building.</MHeading02>
             </FadeIn>
-
+            {/* 
             <FadeIn dir="up" delay={0.2} duration={1} as="div">
-                <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">These are some of my personal projects.</MBodyXL>
-            </FadeIn>
+                <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">I find myself constantly building.</MBodyXL>
+            </FadeIn> */}
 
             <FadeIn dir="up" delay={0.4} duration={1} as="div">
                 <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">
-                    I dabble in a lot, but primarily in web tech, native apps, and educational design content. There's probably something here to catch your interest.
+                    Designing and engineering, specifically around web technologies, native applications, and educational content, are my passion. I try to make time to tinker and build in this space
+                    outside of my career and other responsibilities (cars).
                 </MBodyXL>
             </FadeIn>
 

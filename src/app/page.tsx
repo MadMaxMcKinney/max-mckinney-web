@@ -14,23 +14,23 @@ export default async function Home() {
                         <div className="mb-2 animate-shapes-in">
                             <ShapeLogo />
                         </div>
-                        <TextStagger as="h1" className="font-bold text-6xl text-white sm:text-7xl md:text-8xl" stagger={0.03} delay={0.5} duration={0.6} dir="up" distance={30}>
+                        <TextStagger as="h1" className="font-bold text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.5} duration={0.6} dir="up" distance={30}>
                             Designer.
                         </TextStagger>
-                        <TextStagger as="h1" className="font-bold text-6xl text-white sm:text-7xl md:text-8xl" stagger={0.03} delay={0.8} duration={0.6} dir="up" distance={30}>
+                        <TextStagger as="h1" className="font-bold pt-4 text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.8} duration={0.6} dir="up" distance={30}>
                             Builder.
                         </TextStagger>
-                        <TextStagger as="h1" className="font-bold text-6xl text-white sm:text-7xl md:text-8xl" stagger={0.03} delay={1.1} duration={0.6} dir="up" distance={30}>
+                        <TextStagger as="h1" className="font-bold text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={1.1} duration={0.6} dir="up" distance={30}>
                             Leader.
                         </TextStagger>
                     </div>
                 </div>
 
-                <FadeIn delay={1.5} duration={1.5} className="contained-content mt-16 sm:mt-24" id="BioDescription">
+                <FadeIn delay={1.5} duration={1.5} className="contained-content mt-12 sm:mt-16" id="BioDescription">
                     <div className="text-zinc-400">
                         <MBodyLead className="mb-6">
-                            I'm <span className="text-transparent bg-gradient-to-r from-orange-500 via-purple-500  to-red-500 bg-clip-text bg-[length:300%] animate-flow-background">Max McKinney</span>
-                            . I'm currently a Designer at Figma. I love to tinker and build with all things web technology based, extend software, and build classic cars.
+                            I'm <span className="text-white">Max McKinney</span>. A designer, engineer, and big 'ol nerd. I'm currently a <span className="italic font-medium">Designer at Figma</span>.
+                            I love to tinker and build with all things web technology based, extend software, and build classic cars.
                         </MBodyLead>
 
                         <MBodyLead className="mb-6">
