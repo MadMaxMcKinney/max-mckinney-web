@@ -5,6 +5,8 @@ import { getAllWorkProjects } from "@/app/fetchers";
 
 export default async function Home() {
     const workProjects = await getAllWorkProjects();
+    const leftColumn = workProjects.filter((_, i) => i % 2 === 0);
+    const rightColumn = workProjects.filter((_, i) => i % 2 === 1);
 
     return (
         <>
@@ -14,13 +16,13 @@ export default async function Home() {
                         <div className="mb-2 animate-shapes-in">
                             <ShapeLogo />
                         </div>
-                        <TextStagger as="h1" className="font-bold text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.5} duration={0.6} dir="up" distance={30}>
+                        <TextStagger as="h1" className="font-medium text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.5} duration={0.6} dir="up" distance={30}>
                             Designer.
                         </TextStagger>
-                        <TextStagger as="h1" className="font-bold pt-4 text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.8} duration={0.6} dir="up" distance={30}>
+                        <TextStagger as="h1" className="font-medium pt-4 text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.8} duration={0.6} dir="up" distance={30}>
                             Builder.
                         </TextStagger>
-                        <TextStagger as="h1" className="font-bold text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={1.1} duration={0.6} dir="up" distance={30}>
+                        <TextStagger as="h1" className="font-medium text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={1.1} duration={0.6} dir="up" distance={30}>
                             Leader.
                         </TextStagger>
                     </div>
@@ -40,9 +42,14 @@ export default async function Home() {
                     </div>
                 </FadeIn>
 
-                {/* Project Card Grid */}
-                <FadeIn delay={2} duration={1.5} id="ProjectGrid" className="mt-24 grid grid-cols-1 gap-16 sm:mt-30 lg:gap-32">
-                    {workProjects && workProjects.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
+                {/* Project Card Grid — two staggered columns */}
+                <FadeIn delay={2} duration={1.5} id="ProjectGrid" className="mx-auto mt-24 grid max-w-[var(--content-max-width)] grid-cols-1 gap-x-12 sm:mt-32 md:grid-cols-2">
+                    <div className="flex flex-col gap-20 lg:gap-28">
+                        {leftColumn.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
+                    </div>
+                    <div className="flex flex-col gap-20 md:mt-24 lg:mt-32 lg:gap-28">
+                        {rightColumn.map((project) => <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>)}
+                    </div>
                 </FadeIn>
             </div>
         </>

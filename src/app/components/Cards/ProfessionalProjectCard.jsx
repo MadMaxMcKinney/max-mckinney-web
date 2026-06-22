@@ -1,37 +1,36 @@
 import React from "react";
 import Image from "next/image";
-import Pill from "@components/Pill";
-import ReadMoreButton from "@components/Buttons/ReadMoreButton";
+import Link from "next/link";
 import { MBody, MHeading02 } from "@components/Typography";
+import { PiArrowRight } from "react-icons/pi";
 
-const ProfessionalProjectCard = async ({ info, slug }) => {
+const ProfessionalProjectCard = ({ info, slug }) => {
+    const meta = [info.projectRole, info.projectClient].filter(Boolean).join(" · ");
+
     return (
-        <div>
-            {/* Preview Image */}
-            <div className="rounded-lg relative max-w-7xl h-96 border border-white/20 overflow-hidden mx-auto md:h-[650px]">
-                <Image className="object-cover h-full" src={info.thumb} alt={"Project image for portfolio item " + info.title} fill />
+        <Link href={`/work/${slug}`} style={{ "--accent": info.accentColor }} className="group block">
+            {/* Preview image */}
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[#0c0c12]">
+                <Image
+                    src={info.thumb}
+                    alt={"Project image for portfolio item " + info.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
             </div>
 
-            {/* Card Content */}
-            <div className="contained-content mt-6 md:mt-12 flex flex-col gap-6 items-start">
-                {/* Pills */}
-                <div className="inline-grid grid-flow-col gap-3">
-                    <Pill type="themed" theme="#ffffff" text={info.projectRole} />
-                </div>
-
-                {/* Words */}
-                <div className="flex flex-col gap-4">
-                    <MHeading02>{info.title}</MHeading02>
-                    <MBody className="text-zinc-400 flex-1">{info.projectShortBrief}</MBody>
-                </div>
-
-                <div id="ProjectActions">
-                    <ReadMoreButton accent="#fff" href={`/work/${slug}`}>
-                        View case study
-                    </ReadMoreButton>
-                </div>
+            {/* Content */}
+            <div className="mt-6 flex flex-col gap-3 md:mt-8">
+                <p className="text-xs uppercase tracking-wider text-zinc-500">{meta}</p>
+                <MHeading02 className="text-white transition-colors group-hover:text-[var(--accent)]">{info.title}</MHeading02>
+                <MBody className="max-w-2xl text-zinc-400">{info.projectShortBrief}</MBody>
+                <span className="mt-1 inline-flex items-center gap-1.5 text-base font-medium text-white">
+                    View case study
+                    <PiArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
             </div>
-        </div>
+        </Link>
     );
 };
 
