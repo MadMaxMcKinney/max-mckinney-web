@@ -25,16 +25,12 @@ const Header = () => {
                     {/* Page Tabs */}
                     <li id="professionalProjects">
                         <Link href={"/"}>
-                            <PageNavButton isActivePage={pathname === "/" ? true : false}>
-                                <p>work.</p>
-                            </PageNavButton>
+                            <PageNavButton isActivePage={pathname === "/" ? true : false}>work.</PageNavButton>
                         </Link>
                     </li>
                     <li id="personalProjects">
                         <Link href="/personal">
-                            <PageNavButton isActivePage={RegExp("/personal.?").test(pathname) ? true : false}>
-                                <p>personal.</p>
-                            </PageNavButton>
+                            <PageNavButton isActivePage={RegExp("/personal.?").test(pathname) ? true : false}>personal.</PageNavButton>
                         </Link>
                     </li>
                 </ul>
