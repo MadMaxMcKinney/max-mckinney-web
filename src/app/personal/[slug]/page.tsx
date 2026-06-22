@@ -1,13 +1,10 @@
-import Image from "next/image";
 import { MHeading01, MBodyXL } from "@/app/components/Typography";
-import Pill from "@/app/components/Pill";
 import { getMarkdownBySlug, ProjectDir, getAllPersonalProjects } from "@/app/fetchers";
-import useBase64Image from "@/app/hooks/useBase64Image";
 import PersonalProjectLinkButton from "@components/Buttons/PersonalProjectLinkButton";
 import PersonalProjectLinkSourceButton from "@components/Buttons/PersonalProjectLinkSourceButton";
 import { Metadata } from "next";
 import { PersonalProject } from "@/types";
-import { FadeIn, StaggeredFadeIn } from "@/app/components/Anim";
+import { FadeIn } from "@/app/components/Anim";
 import BreadcrumbReturn from "@/app/components/BreadcrumbReturn";
 
 interface TemplateProps {
@@ -40,31 +37,24 @@ export default async function ({ params }: TemplateProps) {
     return (
         <>
             <div className="page-grid">
-                <FadeIn duration={1} className="mt-32 sm:mt-56 mb-6 flex flex-col items-start">
+                {/* <FadeIn duration={1} className="mt-32 sm:mt-56 mb-6 flex flex-col items-start">
                     <BreadcrumbReturn href="/personal/" location="Back to Personal/" />
+                </FadeIn> */}
+
+                <FadeIn dir="up" delay={0.1} duration={1} as="div" className="mt-32 sm:mt-56">
+                    <p className="mb-3 text-xs uppercase tracking-wider text-zinc-500">{data.frontmatter.projectTypes.join(" · ")}</p>
                 </FadeIn>
 
-                <FadeIn dir="up" duration={1} as="div">
-                    <Image className="w-24 h-24 mb-6 rounded-3xl" width={96} height={96} src={data.frontmatter.icon} alt="" aria-hidden priority />
-                </FadeIn>
-
-                <FadeIn dir="up" delay={0.2} duration={1} className="flex flex-col-reverse gap-4 items-start mb-8 mt-2 md:mt-0 md:mb-4 md:gap-4 md:flex-row md:items-center">
-                    <MHeading01 className="text-white">{data.frontmatter.title}</MHeading01>
-                    <div className="flex flex-wrap gap-2">
-                        {data.frontmatter.projectTypes.map((type) => (
-                            <Pill key={type} type="themed" theme={data.frontmatter.accent} text={type} />
-                        ))}
-                    </div>
+                <FadeIn dir="up" delay={0.2} duration={1} as="div">
+                    <MHeading01 className="mb-6 text-white">{data.frontmatter.title}</MHeading01>
                 </FadeIn>
 
                 <FadeIn dir="up" delay={0.4} duration={1} as="div">
-                    <MBodyXL className="text-zinc-400 mb-12 max-w-3xl">{data.frontmatter.description}</MBodyXL>
+                    <MBodyXL className="text-zinc-400 mb-8 max-w-3xl">{data.frontmatter.description}</MBodyXL>
                 </FadeIn>
 
-                <FadeIn dir="up" delay={0.6} duration={1} className="flex flex-wrap gap-4 justify-start">
-                    {data.frontmatter.projectLink && (
-                        <PersonalProjectLinkButton href={data.frontmatter.projectLink} accent={data.frontmatter.accent} accentForeground={data.frontmatter.accentForeground} />
-                    )}
+                <FadeIn dir="up" delay={0.6} duration={1} className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                    {data.frontmatter.projectLink && <PersonalProjectLinkButton href={data.frontmatter.projectLink} accent={data.frontmatter.accent} />}
                     {data.frontmatter.sourceLink && <PersonalProjectLinkSourceButton href={data.frontmatter.sourceLink} accent={data.frontmatter.accent} />}
                 </FadeIn>
 

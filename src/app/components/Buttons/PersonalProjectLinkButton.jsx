@@ -1,20 +1,15 @@
 import React from "react";
-import { MBody } from "../Typography";
-import { PiRocketLaunch, PiShare } from "react-icons/pi";
+import { PiArrowUpRight } from "react-icons/pi";
 
 const PersonalProjectLinkButton = (props) => {
     return (
         <a
             href={props.href}
-            accent={props.accent}
-            style={{
-                "--accentColor": props.accent,
-                "--accentForeground": props.accentForeground || "#ffffff",
-            }}
-            className={`flex w-fit gap-1 items-center justify-center rounded-xl px-4 py-2 bg-[var(--accentColor)] text-[var(--accentForeground)] border border-solid border-transparent transition-all hover:border-white hover:rounded-2xl`}
+            style={{ "--accentColor": props.accent }}
+            className="group inline-flex w-fit items-center gap-1.5 text-base font-medium text-white transition-colors hover:text-[var(--accentColor)]"
         >
-            <PiShare className="w-5 h-5"></PiShare>
-            <MBody>View project</MBody>
+            View project
+            <PiArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
     );
 };
