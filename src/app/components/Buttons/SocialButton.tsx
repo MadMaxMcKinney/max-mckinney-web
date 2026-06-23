@@ -9,7 +9,7 @@ interface SocialButtonProps {
 
 export const SocialButton = (props: SocialButtonProps) => {
     return (
-        <a href={props.href} target={props.target ? props.target : "_blank"} rel={props.rel} className={`grid place-items-center transition-all text-xl no-underline text-zinc-300 hover:opacity-70`}>
+        <a href={props.href} target={props.target ? props.target : "_blank"} rel={props.rel} className={`text-sm font-light uppercase text-zinc-400 no-underline transition-all hover:text-white`}>
             {props.children}
         </a>
     );
