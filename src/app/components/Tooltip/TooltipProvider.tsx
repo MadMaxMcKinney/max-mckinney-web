@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { TooltipContext } from "./TooltipContext";
 import TooltipSurface from "./TooltipSurface";
-import type { TooltipContent, TooltipController, TooltipEdges } from "./types";
+import type { TooltipContent, TooltipController, TooltipEdges, TooltipPadding } from "./types";
 
 // Tooltip trails the cursor by this offset so it never sits under the pointer.
 const OFFSET_X = 16;
@@ -51,6 +51,7 @@ export default function TooltipProvider({ children }: { children: React.ReactNod
     const surfaceRef = useRef<HTMLDivElement>(null);
     const [content, setContent] = useState<TooltipContent>(null);
     const [edges, setEdges] = useState<TooltipEdges | undefined>(undefined);
+    const [padding, setPadding] = useState<TooltipPadding | undefined>(undefined);
 
     // GSAP handles, created once; calling these tweens toward a target smoothly.
     const xTo = useRef<gsap.QuickToFunc | null>(null);
@@ -111,9 +112,10 @@ export default function TooltipProvider({ children }: { children: React.ReactNod
     }, []);
 
     const show = useCallback(
-        (next: TooltipContent, clientX: number, clientY: number, nextEdges?: TooltipEdges) => {
+        (next: TooltipContent, clientX: number, clientY: number, nextEdges?: TooltipEdges, nextPadding?: TooltipPadding) => {
             setContent(next);
             setEdges(nextEdges);
+            setPadding(nextPadding);
 
             const el = surfaceRef.current;
             if (!el) return;
@@ -176,7 +178,7 @@ export default function TooltipProvider({ children }: { children: React.ReactNod
     return (
         <TooltipContext.Provider value={controller}>
             {children}
-            <TooltipSurface ref={surfaceRef} content={content} edges={edges} />
+            <TooltipSurface ref={surfaceRef} content={content} edges={edges} padding={padding} />
         </TooltipContext.Provider>
     );
 }

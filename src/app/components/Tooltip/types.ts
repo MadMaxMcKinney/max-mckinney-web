@@ -10,6 +10,25 @@ export type TooltipContent = ReactNode;
  */
 export type TooltipEdges = number | string;
 
+/** A single length: numbers are px, strings pass straight to CSS (e.g. "1rem"). */
+export type TooltipLength = number | string;
+
+/**
+ * Inner padding. A single value applies to all sides; the object form allows
+ * per-edge control, with `x`/`y` shorthands for horizontal/vertical. More
+ * specific keys (e.g. `top`) win over their shorthand (`y`). Omit for defaults.
+ */
+export type TooltipPadding =
+    | TooltipLength
+    | {
+          top?: TooltipLength;
+          right?: TooltipLength;
+          bottom?: TooltipLength;
+          left?: TooltipLength;
+          x?: TooltipLength;
+          y?: TooltipLength;
+      };
+
 /**
  * The control surface shared via context. Triggers never touch the DOM or
  * animation directly; they just push content and a starting position, or ask
@@ -17,7 +36,7 @@ export type TooltipEdges = number | string;
  */
 export interface TooltipController {
     /** Show (or swap to) `content`, seeding the tooltip at viewport coords. */
-    show: (content: TooltipContent, clientX: number, clientY: number, edges?: TooltipEdges) => void;
+    show: (content: TooltipContent, clientX: number, clientY: number, edges?: TooltipEdges, padding?: TooltipPadding) => void;
     /** Playfully hide the active tooltip. */
     hide: () => void;
 }
