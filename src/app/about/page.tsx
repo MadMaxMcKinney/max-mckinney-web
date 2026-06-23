@@ -35,6 +35,10 @@ export default function AboutPage() {
         <div className="page-grid page-grid-xl">
             {/* Bio */}
             <FadeIn dir="up" duration={1} as="div" className="mt-28 max-w-3xl sm:mt-40">
+                <div className="relative h-40 w-40 mb-8">
+                    <Image src={"/about/max-neon-portrait.jpg"} alt={"Photo of Max McKinney, behind a neon sign, looking at the camera"} fill priority className="object-cover w-60 rounded-full" />
+                    <span className="absolute bottom-0 right-0 text-5xl">👋</span>
+                </div>
                 <Label className="mb-5">Hi, I'm Max McKinney.</Label>
                 <MHeading01 className="mb-6 text-white">{bio.lead}</MHeading01>
                 <p className="text-lg text-zinc-400 sm:text-xl">{bio.body}</p>
