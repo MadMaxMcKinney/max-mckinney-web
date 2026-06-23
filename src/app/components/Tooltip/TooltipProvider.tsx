@@ -15,6 +15,30 @@ const TILT_FACTOR = 0.6;
 const TILT_MAX = 12;
 // Rotation eases back to neutral this long after the cursor stops moving.
 const SETTLE_MS = 90;
+// Keep the pill at least this far from any viewport edge.
+const EDGE_MARGIN = 8;
+
+/**
+ * Place the pill at the cursor offset, but flip it to the opposite side when it
+ * would overflow the right/bottom edge. `offsetWidth/offsetHeight` are layout
+ * sizes (transform-agnostic), so scale/tilt don't skew the measurement.
+ */
+function resolvePosition(el: HTMLElement, clientX: number, clientY: number) {
+    const width = el.offsetWidth;
+    const height = el.offsetHeight;
+
+    let x = clientX + OFFSET_X;
+    if (x + width > window.innerWidth - EDGE_MARGIN) {
+        x = Math.max(EDGE_MARGIN, clientX - OFFSET_X - width);
+    }
+
+    let y = clientY + OFFSET_Y;
+    if (y + height > window.innerHeight - EDGE_MARGIN) {
+        y = Math.max(EDGE_MARGIN, clientY - OFFSET_Y - height);
+    }
+
+    return { x, y };
+}
 
 /**
  * Owns the one global tooltip element. Triggers call `show`/`hide` via context;
@@ -63,11 +87,13 @@ export default function TooltipProvider({ children }: { children: React.ReactNod
     }, []);
 
     const handlePointerMove = useCallback((event: PointerEvent) => {
-        const x = event.clientX + OFFSET_X;
-        const y = event.clientY + OFFSET_Y;
+        const el = surfaceRef.current;
+        if (!el) return;
+
+        const { x, y } = resolvePosition(el, event.clientX, event.clientY);
 
         if (reducedRef.current) {
-            gsap.set(surfaceRef.current, { x, y });
+            gsap.set(el, { x, y });
             return;
         }
 
@@ -101,7 +127,8 @@ export default function TooltipProvider({ children }: { children: React.ReactNod
 
             const reduced = reducedRef.current;
             timelineRef.current?.kill();
-            gsap.set(el, { x: clientX + OFFSET_X, y: clientY + OFFSET_Y, rotation: 0 });
+            const seed = resolvePosition(el, clientX, clientY);
+            gsap.set(el, { x: seed.x, y: seed.y, rotation: 0 });
             timelineRef.current = gsap.timeline().fromTo(
                 el,
                 { scale: 0.8, autoAlpha: 0 },
