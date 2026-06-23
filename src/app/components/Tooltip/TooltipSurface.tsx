@@ -1,11 +1,17 @@
 "use client";
 
 import { forwardRef } from "react";
-import type { TooltipContent } from "./types";
+import type { TooltipContent, TooltipEdges } from "./types";
 
 interface TooltipSurfaceProps {
     content: TooltipContent;
+    edges?: TooltipEdges;
 }
+
+// A very large radius reads as a pill — the default look.
+const PILL_RADIUS = "9999px";
+
+const toRadius = (edges: TooltipEdges | undefined) => (edges === undefined ? PILL_RADIUS : typeof edges === "number" ? `${edges}px` : edges);
 
 /**
  * The single floating element that every trigger shares. It renders nothing
@@ -16,14 +22,14 @@ interface TooltipSurfaceProps {
  * the follow + tilt animation. Starts hidden (autoAlpha 0 set by GSAP) to avoid
  * a flash on mount.
  */
-const TooltipSurface = forwardRef<HTMLDivElement, TooltipSurfaceProps>(function TooltipSurface({ content }, ref) {
+const TooltipSurface = forwardRef<HTMLDivElement, TooltipSurfaceProps>(function TooltipSurface({ content, edges }, ref) {
     return (
         <div
             ref={ref}
             role="tooltip"
             aria-hidden="true"
-            className="pointer-events-none fixed left-0 top-0 z-[9999] flex max-w-xs items-center gap-2 rounded-full border border-white/10 bg-[#0c0c12]/95 px-3.5 py-2 text-sm font-medium text-zinc-100 shadow-xl shadow-black/40 backdrop-blur-sm"
-            style={{ willChange: "transform", visibility: "hidden", opacity: 0 }}
+            className="pointer-events-none fixed left-0 top-0 z-[9999] flex max-w-xs items-center gap-2 border border-white/10 bg-[#0c0c12]/95 px-3.5 py-2 text-sm font-medium text-zinc-100 shadow-xl shadow-black/40 backdrop-blur-sm"
+            style={{ borderRadius: toRadius(edges), willChange: "transform", visibility: "hidden", opacity: 0 }}
         >
             {content}
         </div>

@@ -40,8 +40,7 @@ export default function AboutPage() {
             <FadeIn dir="up" duration={1} as="div" className="mt-28 max-w-3xl sm:mt-40">
                 <div className="relative h-32 w-32 mb-8 lg:h-40 lg:w-40">
                     <Image src={"/about/max-neon-portrait.jpg"} alt={"Photo of Max McKinney, behind a neon sign, looking at the camera"} fill priority className="object-cover w-60 rounded-full" />
-                    {/* DEMO: temporary smart-tooltip trigger — remove when real props land */}
-                    <Tooltip content={<>👋 Say hi!</>} className="absolute bottom-0 right-0">
+                    <Tooltip content={<>👋 Thanks for stopping by!</>} className="absolute bottom-0 right-0">
                         <span className="animate-hand-wave inline-block text-4xl lg:text-5xl">👋</span>
                     </Tooltip>
                 </div>

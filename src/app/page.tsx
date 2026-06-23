@@ -2,6 +2,7 @@ import { MBodyLead } from "@/app/components/Typography";
 import ProfessionalProjectCard from "@components/Cards/ProfessionalProjectCard";
 import { ShapeLogo, TextStagger, FadeIn } from "@/app/components/Anim";
 import { getAllWorkProjects } from "@/app/fetchers";
+import { Tooltip } from "@/app/components/Tooltip";
 
 export default async function Home() {
     const workProjects = await getAllWorkProjects();
@@ -14,7 +15,9 @@ export default async function Home() {
                 <div className="flex items-end relative pt-32 pb-8 md:pt-52 md:pb-16" id="Header">
                     <div className="contained-content z-10 flex flex-col gap-3 items-start">
                         <div className="mb-2 animate-shapes-in">
-                            <ShapeLogo />
+                            <Tooltip edges={8} content={<>Aren't you curious? My work has always spanned disciplines, these shapes abstractly represent that.</>}>
+                                <ShapeLogo />
+                            </Tooltip>
                         </div>
                         <TextStagger as="h1" className="font-medium text-6xl text-white sm:text-7xl md:text-9xl" stagger={0.03} delay={0.5} duration={0.6} dir="up" distance={30}>
                             designer.
