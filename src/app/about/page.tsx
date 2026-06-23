@@ -12,15 +12,17 @@ export const metadata: Metadata = {
 
 function PhotoTile({ photo, priority = false }: { photo: Photo; priority?: boolean }) {
     return (
-        // Each tile shares the row width equally; height follows the photo's own
-        // aspect ratio, so heights vary across the row.
-        <figure className="group min-w-0 flex-1">
+        // On mobile each tile takes a fixed share of the viewport so the row
+        // overflows and scroll-snaps, leaving the next image peeking. From `sm`
+        // up the tiles share the row width equally. Height follows the photo's
+        // own aspect ratio, so heights vary across the row.
+        <figure className="group min-w-0 w-[78%] shrink-0 snap-start sm:w-auto sm:flex-1">
             <div className={`relative w-full overflow-hidden rounded-lg bg-[#0c0c12] ${aspectClass[photo.aspect]}`}>
                 <Image
                     src={photo.src}
                     alt={photo.caption}
                     fill
-                    sizes="(max-width: 640px) 30vw, 15vw"
+                    sizes="(max-width: 640px) 78vw, 15vw"
                     priority={priority}
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
@@ -51,8 +53,11 @@ export default function AboutPage() {
                         <h2 className="mb-3 font-serif text-2xl font-medium text-white sm:text-3xl">{cat.title}</h2>
                         <p className="mb-7 max-w-xl text-base text-zinc-400 sm:text-lg">{cat.blurb}</p>
 
-                        {/* Up to 3 images in a row, fit to the section width; heights vary by aspect. */}
-                        <div className="flex items-start gap-4">
+                        {/* Up to 3 images. On mobile they overflow into a horizontal
+                            scroll-snap rail (full-bleed via -mx-6, with px-6 of inset so
+                            images peek and can still scroll fully off-screen); from `sm`
+                            up they fit the section width. Heights vary by aspect. */}
+                        <div className="-mx-6 flex items-start gap-4 snap-x snap-mandatory scroll-pl-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:snap-none sm:overflow-visible sm:px-0">
                             {cat.photos.slice(0, 3).map((photo, pi) => (
                                 <PhotoTile key={photo.src + photo.caption} photo={photo} priority={ci === 0 && pi === 0} />
                             ))}
