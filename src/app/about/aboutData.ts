@@ -19,7 +19,7 @@ export interface Category {
 
 export const bio = {
     name: "Max McKinney",
-    lead: "I build with empathy, and design to humanize technology.",
+    lead: "i build with empathy, and design to humanize technology.",
     body: "That said... outside of work I'm usually in the garage with a classic car, behind a camera, or building something small and strange on the web. This page is a little less polished than the rest of the site, just the things I point my attention at when interest or new hobbies strike.",
 };
 
