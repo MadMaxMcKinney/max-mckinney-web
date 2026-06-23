@@ -62,7 +62,7 @@ export const categories: Category[] = [
         photos: [
             { src: "/about/lim-1.jpg", caption: "The meeting.", aspect: "portrait" },
             { src: "/about/lim-2.jpg", caption: "The loss.", aspect: "landscape" },
-            { src: "/about/lim-3.jpg", caption: "The recovery.", aspect: "portrait" },
+            { src: "/about/lim-4.jpg", caption: "The recovery.", aspect: "portrait" },
         ],
     },
 ];
