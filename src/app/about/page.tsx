@@ -4,6 +4,7 @@ import { bio, categories, aspectClass, type Photo } from "./aboutData";
 import { MHeading01 } from "@/app/components/Typography";
 import Label from "@/app/components/Label";
 import { FadeIn } from "@/app/components/Anim";
+import { Tooltip } from "@/app/components/Tooltip";
 
 export const metadata: Metadata = {
     title: "About",
@@ -39,7 +40,10 @@ export default function AboutPage() {
             <FadeIn dir="up" duration={1} as="div" className="mt-28 max-w-3xl sm:mt-40">
                 <div className="relative h-32 w-32 mb-8 lg:h-40 lg:w-40">
                     <Image src={"/about/max-neon-portrait.jpg"} alt={"Photo of Max McKinney, behind a neon sign, looking at the camera"} fill priority className="object-cover w-60 rounded-full" />
-                    <span className="animate-hand-wave absolute bottom-0 right-0 inline-block text-4xl lg:text-5xl">👋</span>
+                    {/* DEMO: temporary smart-tooltip trigger — remove when real props land */}
+                    <Tooltip content={<>👋 Say hi!</>} className="absolute bottom-0 right-0">
+                        <span className="animate-hand-wave inline-block text-4xl lg:text-5xl">👋</span>
+                    </Tooltip>
                 </div>
                 <Label className="mb-5">Hi, I'm Max McKinney.</Label>
                 <MHeading01 className="mb-6 text-white">{bio.lead}</MHeading01>

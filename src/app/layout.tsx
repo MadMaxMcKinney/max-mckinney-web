@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/app/components/Nav";
 import Footer from "@/app/components/Footer";
+import { TooltipProvider } from "@/app/components/Tooltip";
 import siteConfig from "@/siteConfig";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -22,9 +23,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <Nav />
-                {children}
-                <Footer />
+                <TooltipProvider>
+                    <Nav />
+                    {children}
+                    <Footer />
+                </TooltipProvider>
                 <Analytics />
             </body>
         </html>
