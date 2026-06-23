@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { TooltipContext } from "./TooltipContext";
@@ -172,6 +173,13 @@ export default function TooltipProvider({ children }: { children: React.ReactNod
         },
         [handlePointerMove]
     );
+
+    // Client-side navigation unmounts the trigger without firing pointerleave,
+    // so the tooltip would otherwise stay floating. Hide on route change.
+    const pathname = usePathname();
+    useEffect(() => {
+        hide();
+    }, [pathname, hide]);
 
     const controller = useMemo<TooltipController>(() => ({ show, hide }), [show, hide]);
 
