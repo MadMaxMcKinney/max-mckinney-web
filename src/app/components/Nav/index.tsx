@@ -12,7 +12,7 @@ const Header = () => {
     const pathname = usePathname();
 
     return (
-        <FadeIn dir="up" as="header" duration={1} className="h-16 grid place-items-center w-full my-2 px-6 z-10 top-0 absolute border-b border-white/10">
+        <FadeIn dir="up" as="header" duration={1} className="h-16 grid place-items-center w-full px-6 z-10 top-0 absolute border-b border-white/10">
             <div className="flex justify-between mx-auto w-full max-w-[var(--content-max-width)]">
                 {/* Site Logo Container */}
                 <div className="flex flex-row items-center justify-start">
@@ -31,6 +31,11 @@ const Header = () => {
                     <li id="personalProjects">
                         <Link href="/personal">
                             <PageNavButton isActivePage={RegExp("/personal.?").test(pathname) ? true : false}>personal</PageNavButton>
+                        </Link>
+                    </li>
+                    <li id="about">
+                        <Link href="/about">
+                            <PageNavButton isActivePage={RegExp("/about.?").test(pathname) ? true : false}>about</PageNavButton>
                         </Link>
                     </li>
                 </ul>
