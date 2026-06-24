@@ -10,6 +10,8 @@ export interface PersonalGridProject {
     slug: string;
     title: string;
     icon: string;
+    // Image or video thumbnail (cardMedia). A video — including an external URL
+    // — is shown over the image `poster`. Falls back to `seoImage` upstream.
     media: string | null;
     poster: string | null;
     aspect: "16/9" | "9/16";
@@ -22,6 +24,11 @@ export interface PersonalGridProject {
 }
 
 const VIDEO_RE = /\.(mp4|webm|mov|m4v|ogg)$/i;
+
+/** True for a video URL, ignoring any query string / hash (e.g. CDN links). */
+function isVideo(src: string) {
+    return VIDEO_RE.test(src.split(/[?#]/, 1)[0]);
+}
 
 function aspectClass(a: "16/9" | "9/16") {
     return a === "9/16" ? "aspect-[9/16]" : "aspect-video";
@@ -39,6 +46,14 @@ function useColumnCount() {
     return n;
 }
 
+function TileVideo({ src, poster, className = "" }: { src: string; poster: string | null; className?: string }) {
+    return (
+        <video className={`absolute inset-0 h-full w-full object-cover ${className}`} autoPlay muted loop playsInline preload="metadata" poster={poster ?? undefined}>
+            <source src={src} />
+        </video>
+    );
+}
+
 function TileMedia({ project, className = "" }: { project: PersonalGridProject; className?: string }) {
     if (!project.media) {
         return (
@@ -47,12 +62,9 @@ function TileMedia({ project, className = "" }: { project: PersonalGridProject; 
             </div>
         );
     }
-    if (VIDEO_RE.test(project.media)) {
-        return (
-            <video className={`absolute inset-0 h-full w-full object-cover ${className}`} autoPlay muted loop playsInline preload="metadata" poster={project.poster ?? undefined}>
-                <source src={project.media} />
-            </video>
-        );
+    // A video cardMedia (local or external) plays over the image poster.
+    if (isVideo(project.media)) {
+        return <TileVideo src={project.media} poster={project.poster} className={className} />;
     }
     return <Image src={project.media} alt="" aria-hidden fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className={`object-cover ${className}`} />;
 }

@@ -29,7 +29,9 @@ export const PersonalProjectSchema = z.object({
     sourceLink: z.string().url("Source link must be a valid URL").optional(),
 
     // Card art (personal index page). cardMedia may be an image or a video
-    // (.mp4/.webm/.mov); when omitted the card falls back to `seoImage`.
+    // (.mp4/.webm/.mov), including an externally-hosted URL (e.g. a CDN link
+    // with query params). A video is shown over the image poster (`seoImage`).
+    // When omitted the card falls back to `seoImage`.
     cardMedia: z.string().optional(),
     cardAspect: z.enum(["16/9", "9/16"]).optional(), // defaults to "16/9"
 
