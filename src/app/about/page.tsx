@@ -20,7 +20,7 @@ function PhotoTile({ photo, priority = false }: { photo: Photo; priority?: boole
         // own aspect ratio, so heights vary across the row.
         <figure className="group min-w-0 w-[78%] shrink-0 snap-start sm:w-auto sm:flex-1">
             <div className={`relative w-full overflow-hidden rounded-lg bg-[#0c0c12] ${aspectClass[photo.aspect]}`}>
-                <Image src={photo.src} alt={photo.caption} fill priority={priority} className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
+                <Image src={photo.src} alt={photo.caption} fill priority={priority} sizes="(max-width: 640px) 78vw, 15vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
             </div>
             <figcaption className="mt-3 font-serif text-sm italic text-zinc-400">{photo.caption}</figcaption>
         </figure>
@@ -33,7 +33,7 @@ export default function AboutPage() {
             {/* Bio */}
             <FadeIn dir="up" duration={1} as="div" className="mt-28 max-w-3xl sm:mt-40">
                 <div className="relative h-32 w-32 mb-8 lg:h-40 lg:w-40">
-                    <Image src={maxNeonPortrait} alt={"Photo of Max McKinney, behind a neon sign, looking at the camera"} fill priority className="object-cover w-60 rounded-full" />
+                    <Image src={maxNeonPortrait} alt={"Photo of Max McKinney, behind a neon sign, looking at the camera"} fill priority sizes="(min-width: 1024px) 160px, 128px" className="object-cover w-60 rounded-full" />
                     <Tooltip content={<>👋 Thanks for stopping by!</>} className="absolute bottom-0 right-0">
                         <span className="animate-hand-wave inline-block text-4xl lg:text-5xl">👋</span>
                     </Tooltip>
