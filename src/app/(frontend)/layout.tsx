@@ -3,7 +3,7 @@ import "../globals.css";
 import Nav from "@/app/components/Nav";
 import Footer from "@/app/components/Footer";
 import { TooltipProvider } from "@/app/components/Tooltip";
-import { getSiteSettings } from "@/app/fetchers";
+import { getSiteSettings, mediaURL } from "@/app/fetchers";
 import { Analytics } from "@vercel/analytics/react";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
         settings?.description ||
         "I’m Max McKinney, a designer and engineer building for empathy and humanizing technology. I specialize in web experiences and thrive in undefined problem spaces.";
     const siteUrl = settings?.siteUrl || "https://maxmckinney.com";
+    const ogImage = mediaURL(settings?.ogImage);
     return {
         title: {
             template: `%s | ${title}`,
@@ -20,6 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
         description,
         metadataBase: new URL(siteUrl),
+        ...(ogImage ? { openGraph: { images: [ogImage] } } : {}),
     };
 }
 

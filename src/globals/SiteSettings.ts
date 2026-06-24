@@ -19,6 +19,13 @@ export const SiteSettings: GlobalConfig = {
                         { name: "title", type: "text", required: true, admin: { description: "Site title (used in metadata templates)." } },
                         { name: "description", type: "textarea", required: true, admin: { description: "Default meta description." } },
                         { name: "siteUrl", type: "text", required: true, admin: { description: "Canonical site URL, e.g. https://maxmckinney.com" } },
+                        {
+                            name: "ogImage",
+                            type: "upload",
+                            relationTo: "media",
+                            label: "Default Open Graph image",
+                            admin: { description: "Default social-share image (1200×630). Used site-wide unless a page provides its own." },
+                        },
                     ],
                 },
                 {

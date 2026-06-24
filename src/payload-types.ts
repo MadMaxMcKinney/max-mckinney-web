@@ -535,6 +535,10 @@ export interface SiteSetting {
    * Canonical site URL, e.g. https://maxmckinney.com
    */
   siteUrl: string;
+  /**
+   * Default social-share image (1200×630). Used site-wide unless a page provides its own.
+   */
+  ogImage?: (string | null) | Media;
   social?:
     | {
         label: string;
@@ -553,6 +557,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   siteUrl?: T;
+  ogImage?: T;
   social?:
     | T
     | {
