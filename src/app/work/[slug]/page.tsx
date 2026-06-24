@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { MHeading01, MBodyXL } from "@/app/components/Typography";
 import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/app/fetchers";
 import { WorkProject } from "@/types";

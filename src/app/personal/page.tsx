@@ -1,4 +1,4 @@
-import { MHeading01, MBodyXL, MHeading02 } from "@/app/components/Typography";
+import { MBodyXL, MHeading02 } from "@/app/components/Typography";
 import PersonalGrid, { PersonalGridProject } from "./PersonalGrid";
 import { getAllPersonalProjects } from "@/app/fetchers";
 import { Metadata } from "next";
@@ -6,8 +6,7 @@ import { FadeIn } from "@/app/components/Anim";
 
 export const metadata: Metadata = {
     title: "Personal",
-    description:
-        "These are some of my personal projects. I dabble in a lot, but primarily in web tech, native apps, and educational design content. There’s probably something here to catch your interest.",
+    description: "Designing and engineering, specifically around web technologies, native applications, and educational content, are my passion.",
 };
 
 export default async function () {
