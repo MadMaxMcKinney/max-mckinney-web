@@ -171,7 +171,6 @@ export interface WorkProject {
    * Freeform tags, e.g. Frontend, Systems, Product.
    */
   categories: string[];
-  image: string | Media;
   thumb: string | Media;
   /**
    * Hex color, e.g. #RRGGBB
@@ -406,7 +405,6 @@ export interface WorkProjectsSelect<T extends boolean = true> {
   projectDate?: T;
   projectAgency?: T;
   categories?: T;
-  image?: T;
   thumb?: T;
   themeColor?: T;
   accentColor?: T;

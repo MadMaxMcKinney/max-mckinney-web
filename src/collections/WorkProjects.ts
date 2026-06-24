@@ -47,10 +47,7 @@ export const WorkProjects: CollectionConfig = {
                 },
                 {
                     label: "Media",
-                    fields: [
-                        { name: "image", type: "upload", relationTo: "media", required: true, label: "Header image" },
-                        { name: "thumb", type: "upload", relationTo: "media", required: true, label: "Thumbnail" },
-                    ],
+                    fields: [{ name: "thumb", type: "upload", relationTo: "media", required: true, label: "Thumbnail" }],
                 },
                 {
                     label: "Theme",
