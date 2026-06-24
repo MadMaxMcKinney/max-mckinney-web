@@ -1,5 +1,5 @@
 import { MHeading01, MBodyXL } from "@/app/components/Typography";
-import { getAllWorkProjects, getWorkProjectBySlug } from "@/app/fetchers";
+import { getAllWorkProjects, getWorkProjectBySlug, mediaURL } from "@/app/fetchers";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/app/components/Anim";
@@ -23,9 +23,12 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
     const { slug } = await params;
     const data = await getWorkProjectBySlug(slug);
     if (!data) return {};
+    // Per-project OG override; falls back to the site default (root layout) when unset.
+    const ogImage = mediaURL(data.ogImage);
     return {
         title: data.title,
         description: data.projectBrief,
+        ...(ogImage ? { openGraph: { images: [ogImage] } } : {}),
     };
 }
 

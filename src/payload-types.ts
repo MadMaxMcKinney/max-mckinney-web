@@ -181,6 +181,10 @@ export interface WorkProject {
    */
   accentColor: string;
   /**
+   * Optional. Overrides the site default Open Graph image for this project's social share.
+   */
+  ogImage?: (string | null) | Media;
+  /**
    * URL segment. Auto-generated from the title if left blank.
    */
   slug: string;
@@ -272,6 +276,10 @@ export interface PersonalProject {
    * Hex color, e.g. #RRGGBB
    */
   accentForeground?: string | null;
+  /**
+   * Optional. Overrides this project's default social-share image (the SEO / hero image) for Open Graph.
+   */
+  ogImage?: (string | null) | Media;
   /**
    * URL segment. Auto-generated from the title if left blank.
    */
@@ -408,6 +416,7 @@ export interface WorkProjectsSelect<T extends boolean = true> {
   thumb?: T;
   themeColor?: T;
   accentColor?: T;
+  ogImage?: T;
   slug?: T;
   sortDate?: T;
   updatedAt?: T;
@@ -431,6 +440,7 @@ export interface PersonalProjectsSelect<T extends boolean = true> {
   seoImage?: T;
   accent?: T;
   accentForeground?: T;
+  ogImage?: T;
   slug?: T;
   sortDate?: T;
   updatedAt?: T;

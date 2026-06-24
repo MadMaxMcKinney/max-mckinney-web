@@ -6,6 +6,12 @@ import { TooltipProvider } from "@/app/components/Tooltip";
 import { getSiteSettings, mediaURL } from "@/app/fetchers";
 import { Analytics } from "@vercel/analytics/react";
 
+// ISR: regenerate frontend pages in the background at most once per hour, so
+// Payload edits (content, footer, global metadata) appear without a redeploy.
+// Inherited by all frontend routes; the [slug] pages keep generateStaticParams
+// to prebuild known projects, while dynamicParams renders new ones on demand.
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
     const settings = await getSiteSettings();
     const title = settings?.title || "Max McKinney";

@@ -3,6 +3,7 @@ import type { CollectionConfig } from "payload";
 import { slugField } from "../fields/slug";
 import { hexColorField } from "../fields/hexColor";
 import { bodyField } from "../fields/body";
+import { ogImageField } from "../fields/ogImage";
 
 export const WorkProjects: CollectionConfig = {
     slug: "work-projects",
@@ -52,6 +53,10 @@ export const WorkProjects: CollectionConfig = {
                 {
                     label: "Theme",
                     fields: [hexColorField("themeColor", { required: true }), hexColorField("accentColor", { required: true })],
+                },
+                {
+                    label: "SEO",
+                    fields: [ogImageField("Optional. Overrides the site default Open Graph image for this project's social share.")],
                 },
             ],
         },
