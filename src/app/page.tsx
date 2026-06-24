@@ -44,8 +44,8 @@ export default async function Home() {
                 <FadeIn delay={1.5} duration={1.5} className="contained-content mt-12" id="BioDescription">
                     <div className="text-zinc-400">
                         <MBodyLead className="mb-6">
-                            I'm <span className="text-white">Max McKinney</span>. A designer, engineer, and big 'ol nerd. I love to tinker and build with all things web technology based, extend
-                            software, and build classic cars. I'm currently a{" "}
+                            I'm <span className="text-white">Max McKinney</span>. A designer, engineer, and big 'ol nerd. I love to tinker and build with all things web technology based, extend and
+                            modify software, and build classic cars. I'm currently a{" "}
                             <Tooltip padding={4} edges={8} content={careerHighlightTooltip()} className="text-white underline decoration-dotted font-medium">
                                 principal designer at Figma
                             </Tooltip>
