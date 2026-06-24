@@ -36,30 +36,35 @@ function PhotoTile({ photo, priority = false }: { photo: Photo; priority?: boole
 export default function AboutPage() {
     return (
         <div className="page-grid page-grid-xl">
-            {/* Bio */}
-            <FadeIn dir="up" duration={1} as="div" className="mt-28 max-w-3xl sm:mt-40">
-                <div className="relative h-32 w-32 mb-8 lg:h-40 lg:w-40">
-                    <Image
-                        src={maxNeonPortrait}
-                        alt={"Photo of Max McKinney, behind a neon sign, looking at the camera"}
-                        fill
-                        priority
-                        sizes="(min-width: 1024px) 160px, 128px"
-                        className="object-cover w-60 rounded-full"
-                    />
-                    <Tooltip content={<>👋 Thanks for stopping by!</>} className="absolute bottom-0 right-0">
-                        <span className="animate-hand-wave inline-block text-4xl lg:text-5xl">👋</span>
-                    </Tooltip>
-                </div>
-                <Label className="mb-5">Hi, I'm Max McKinney.</Label>
-                <MHeading01 className="mb-6 text-white">{bio.lead}</MHeading01>
-                <p className="text-lg text-zinc-400 sm:text-xl">{bio.body}</p>
-            </FadeIn>
+            <div className="mt-28 sm:mt-40 max-w-3xl">
+                <FadeIn dir="up" duration={1} as="div">
+                    <div className="relative h-32 w-32 mb-8 lg:h-40 lg:w-40">
+                        <Image
+                            src={maxNeonPortrait}
+                            alt={"Photo of Max McKinney, behind a neon sign, looking at the camera"}
+                            fill
+                            priority
+                            sizes="(min-width: 1024px) 160px, 128px"
+                            className="object-cover w-60 rounded-full"
+                        />
+                        <Tooltip content={<>👋 Thanks for stopping by!</>} className="absolute bottom-0 right-0">
+                            <span className="animate-hand-wave inline-block text-4xl lg:text-5xl">👋</span>
+                        </Tooltip>
+                    </div>
+                </FadeIn>
+                <FadeIn dir="up" delay={0.2} duration={1} as="div">
+                    <Label className="mb-5">Hi, I'm Max McKinney.</Label>
+                    <MHeading01 className="mb-6 text-white">{bio.lead}</MHeading01>
+                </FadeIn>
+                <FadeIn dir="up" delay={0.4} duration={1} as="div">
+                    <p className="text-lg text-zinc-400 sm:text-xl">{bio.body}</p>
+                </FadeIn>
+            </div>
 
             {/* Category sections — 2x2 grid on desktop, stacked on mobile */}
             <div className="mt-20 grid grid-cols-1 gap-16 sm:mt-32 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-20">
                 {categories.map((cat, ci) => (
-                    <FadeIn key={cat.id} dir="up" duration={0.9} as="section">
+                    <FadeIn key={cat.id} dir="up" delay={0.6} duration={0.9} as="section">
                         <h2 className="mb-3 font-serif text-2xl font-medium text-white sm:text-3xl">{cat.title}</h2>
                         <p className="mb-7 max-w-xl text-base text-zinc-400 sm:text-lg">{cat.blurb}</p>
 

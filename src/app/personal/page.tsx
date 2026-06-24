@@ -38,7 +38,7 @@ export default async function () {
                 <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">I find myself constantly building.</MBodyXL>
             </FadeIn> */}
 
-            <FadeIn dir="up" delay={0.4} duration={1} as="div">
+            <FadeIn dir="up" delay={0.2} duration={1} as="div">
                 <MBodyXL className="mb-8 text-zinc-400 max-w-3xl">
                     Designing and engineering, specifically around web technologies, native applications, and educational content, are my passion. I try to make time to tinker and build in this space
                     outside of my career and other responsibilities (cars).
