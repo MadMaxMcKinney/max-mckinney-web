@@ -44,9 +44,9 @@ export const categories: Category[] = [
         title: "the garage.",
         blurb: "Classic rock, half-finished projects, and the smell of gasoline.",
         photos: [
-            { src: maxCars, caption: "Me (right) and my buddies", aspect: "landscape" },
-            { src: warehouseInside, caption: "Working on the lift", aspect: "portrait" },
-            { src: c10, caption: "Rebuilt a 1970 C10", aspect: "landscape" },
+            { src: maxCars, caption: "Me (right) and my buddies.", aspect: "landscape" },
+            { src: warehouseInside, caption: "Working on the lift.", aspect: "portrait" },
+            { src: c10, caption: "Rebuilt a 1970 C10.", aspect: "landscape" },
         ],
     },
     {
@@ -55,8 +55,8 @@ export const categories: Category[] = [
         blurb: "The views along the way.",
         photos: [
             { src: place2, caption: "More mountains, ft. Jeep!", aspect: "landscape" },
-            { src: place3, caption: "Route 66", aspect: "portrait" },
-            { src: place1, caption: "Colorado mountains", aspect: "portrait" },
+            { src: place3, caption: "Route 66.", aspect: "portrait" },
+            { src: place1, caption: "Colorado mountains.", aspect: "portrait" },
         ],
     },
     {
@@ -64,9 +64,9 @@ export const categories: Category[] = [
         title: "the craft.",
         blurb: "Designing and building anywhere and everywhere.",
         photos: [
-            { src: craft1, caption: "Overkill smart home infra", aspect: "square" },
-            { src: craft3, caption: "Designing t-shirts for my cars", aspect: "portrait" },
-            { src: craft2, caption: "Speaking at Config '25", aspect: "landscape" },
+            { src: craft1, caption: "Overkill smart home infra.", aspect: "square" },
+            { src: craft3, caption: "Designing t-shirts for my cars.", aspect: "portrait" },
+            { src: craft2, caption: "Speaking at Config '25.", aspect: "landscape" },
         ],
     },
     {

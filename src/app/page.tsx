@@ -14,7 +14,7 @@ export default async function Home() {
         return (
             <div className="flex flex-col pb-1 gap-2 text-sm text-center text-zinc-400">
                 <Image src="/work/figma-1.jpg" alt="Max McKinney speaking at Config 2025" width={400} height={300} className="rounded-md border border-white/5" />
-                <p>Speaking at Figma's Config 2025.</p>
+                <p>Me, speaking at Figma's Config 2025.</p>
             </div>
         );
     }
