@@ -242,7 +242,7 @@ export interface PersonalProject {
     };
     [k: string]: unknown;
   } | null;
-  projectTypes: ('web' | 'app' | 'ai' | 'ios' | 'brand' | 'education' | 'raycast' | 'tool' | 'cli')[];
+  projectTypes: ('web' | 'app' | 'ai' | 'iOS' | 'brand' | 'education' | 'raycast' | 'tool' | 'cli')[];
   /**
    * Primary external link (URL).
    */
