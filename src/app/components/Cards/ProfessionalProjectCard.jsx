@@ -23,7 +23,7 @@ const ProfessionalProjectCard = ({ info, slug }) => {
                     </>
                 }
             >
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[#0c0c12]">
+                <div className="relative aspect-16/10 w-full overflow-hidden rounded-lg bg-[#0c0c12]">
                     <Image
                         src={info.thumb}
                         alt={"Project image for portfolio item " + info.title}
@@ -37,7 +37,7 @@ const ProfessionalProjectCard = ({ info, slug }) => {
             {/* Content */}
             <div className="mt-6 flex flex-col gap-3 md:mt-8">
                 <Label>{meta}</Label>
-                <MHeading02 className="text-white transition-colors group-hover:text-[var(--accent)]">{info.title}</MHeading02>
+                <MHeading02 className="text-white transition-colors group-hover:text-(--accent)">{info.title}</MHeading02>
                 <MBody className="max-w-2xl text-zinc-400">{info.projectShortBrief}</MBody>
                 <span className="mt-1 inline-flex items-center gap-1.5 text-base font-medium text-white">
                     View case study

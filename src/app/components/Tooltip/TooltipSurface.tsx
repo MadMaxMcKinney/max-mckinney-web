@@ -52,7 +52,7 @@ const TooltipSurface = forwardRef<HTMLDivElement, TooltipSurfaceProps>(function 
             ref={ref}
             role="tooltip"
             aria-hidden="true"
-            className="pointer-events-none fixed left-0 top-0 z-[9999] flex max-w-xs items-center gap-2 border border-white/10 bg-[#0c0c12]/95 text-sm font-medium text-zinc-100 shadow-xl shadow-black/40 backdrop-blur-sm"
+            className="pointer-events-none fixed left-0 top-0 z-9999 flex max-w-xs items-center gap-2 border border-white/10 bg-[#0c0c12]/95 text-sm font-medium text-zinc-100 shadow-xl shadow-black/40 backdrop-blur-xs"
             style={{ borderRadius: toRadius(edges), ...resolvePadding(padding), willChange: "transform", visibility: "hidden", opacity: 0 }}
         >
             {content}

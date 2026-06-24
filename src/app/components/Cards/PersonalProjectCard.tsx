@@ -13,7 +13,7 @@ export default function PersonalProjectCard(props: PersonalProjectCardProps) {
         <div className={`relative group ${props.isFolder ? "mt-2 sm:mt-0" : ""}`}>
             <Link
                 style={{ "--accent": props.accent } as CSSProperties}
-                className={`flex flex-col gap-6 p-6 relative rounded-3xl border border-white/15 bg-[#0c0c12] overflow-clip z-10 transition-all md:p-8 after:absolute after:inset-0 after:bg-[var(--accent)] after:opacity-0 after:transition-all hover:border-[var(--accent)] hover:after:opacity-15 active:scale-[0.97] active:border-[var(--accent)] focus-visible:border-[var(--accent)] focus-visible:outline-none ${
+                className={`flex flex-col gap-6 p-6 relative rounded-3xl border border-white/15 bg-[#0c0c12] overflow-clip z-10 transition-all md:p-8 after:absolute after:inset-0 after:bg-(--accent) after:opacity-0 after:transition-all hover:border-(--accent) hover:after:opacity-15 active:scale-[0.97] active:border-(--accent) focus-visible:border-(--accent) focus-visible:outline-hidden ${
                     props.isFolder ? "bg-opacity-50 backdrop-blur-xl" : ""
                 }`}
                 href={props.href}

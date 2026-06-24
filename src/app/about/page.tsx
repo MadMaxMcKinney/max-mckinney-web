@@ -54,7 +54,7 @@ export default function AboutPage() {
                             scroll-snap rail (full-bleed via -mx-6, with px-6 of inset so
                             images peek and can still scroll fully off-screen); from `sm`
                             up they fit the section width. Heights vary by aspect. */}
-                        <div className="-mx-6 flex items-start gap-4 snap-x snap-mandatory scroll-pl-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:snap-none sm:overflow-visible sm:px-0">
+                        <div className="-mx-6 flex items-start gap-4 snap-x snap-mandatory scroll-pl-6 overflow-x-auto px-6 scrollbar-none [&::-webkit-scrollbar]:hidden sm:mx-0 sm:snap-none sm:overflow-visible sm:px-0">
                             {cat.photos.slice(0, 3).map((photo, pi) => (
                                 <PhotoTile key={photo.src + photo.caption} photo={photo} priority={ci === 0 && pi === 0} />
                             ))}

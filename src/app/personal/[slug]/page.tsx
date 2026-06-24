@@ -9,22 +9,20 @@ import BreadcrumbReturn from "@/app/components/BreadcrumbReturn";
 import Label from "@/app/components/Label";
 
 interface TemplateProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 export async function generateStaticParams() {
     const data = await getAllPersonalProjects({ includeFolders: false });
     return data.map((project) => ({
-        params: {
-            slug: project.slug,
-        },
+        slug: project.slug,
     }));
 }
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
-    const { slug } = params;
+    const { slug } = await params;
     const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
     return {
         title: data.frontmatter.title,
@@ -33,7 +31,7 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 }
 
 export default async function ({ params }: TemplateProps) {
-    const { slug } = params;
+    const { slug } = await params;
     const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
     return (
         <>
@@ -59,7 +57,7 @@ export default async function ({ params }: TemplateProps) {
                     {data.frontmatter.sourceLink && <PersonalProjectLinkSourceButton href={data.frontmatter.sourceLink} accent={data.frontmatter.accent} />}
                 </FadeIn>
 
-                <FadeIn dir="up" delay={1} duration={1.5} className="prose prose-lg prose-p:font-medium max-w-none text-zinc-300 mt-16 [&_img]:rounded-sm [&_p]:opacity-85">
+                <FadeIn dir="up" delay={1} duration={1.5} className="prose prose-lg prose-p:font-medium max-w-none text-zinc-300 mt-16 [&_img]:rounded-xs [&_p]:opacity-85">
                     {data.content}
                 </FadeIn>
             </div>

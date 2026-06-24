@@ -15,8 +15,7 @@ export const size = {
 
 export const contentType = "image/png";
 
-function getAbsoluteURL(path: string) {
-    const baseURL = headers().get("host");
+function getAbsoluteURL(path: string, baseURL: string | null) {
     if (path.startsWith("/")) {
         return `https://${baseURL}${path}`;
     } else {
@@ -25,8 +24,9 @@ function getAbsoluteURL(path: string) {
 }
 
 // Image generation
-export default async function Image({ params }: { params: { slug: string } }) {
-    const { slug } = params;
+export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const baseURL = (await headers()).get("host");
     const markdown = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
     return new ImageResponse(
         (
@@ -41,7 +41,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
                     justifyContent: "center",
                 }}
             >
-                <img src={getAbsoluteURL(markdown.frontmatter.seoImage)} width={size.width} height={size.height} alt="Google logo" style={{ objectFit: "cover", objectPosition: "bottom" }} />
+                <img src={getAbsoluteURL(markdown.frontmatter.seoImage, baseURL)} width={size.width} height={size.height} alt="Google logo" style={{ objectFit: "cover", objectPosition: "bottom" }} />
             </div>
         )
     );

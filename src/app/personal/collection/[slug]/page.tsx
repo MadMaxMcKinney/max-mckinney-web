@@ -11,22 +11,22 @@ import { FadeIn } from "@/app/components/Anim";
 import BreadcrumbReturn from "@/app/components/BreadcrumbReturn";
 
 interface TemplateProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 export async function generateStaticParams() {
     const data = await getAllPersonalProjects({ includeProjects: false });
+    // Folder files are named `folder-<slug>.mdx`; the route slug is the bare
+    // name (the page re-adds the "folder-" prefix when loading the file).
     return data.map((project) => ({
-        params: {
-            slug: project.slug,
-        },
+        slug: project.slug.replace(/^folder-/, ""),
     }));
 }
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
-    const { slug } = params;
+    const { slug } = await params;
     const data = await getMarkdownBySlug<PersonalProject>("folder-" + slug, ProjectDir.personal);
     return {
         title: data.frontmatter.title,
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
 }
 
 export default async function ({ params }: TemplateProps) {
-    const { slug } = params;
+    const { slug } = await params;
     const folder = (await getMarkdownBySlug<PersonalProject>("folder-" + slug, ProjectDir.personal)).frontmatter;
     const projectsInFolder = await getAllPersonalProjectsInFolder(slug);
 

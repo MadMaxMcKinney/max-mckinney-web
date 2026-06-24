@@ -54,14 +54,14 @@ export default function ImageContainer(props: ImageContainerProps) {
     return (
         <>
             {props.src && (
-                <div className="relative w-full rounded overflow-clip shadow-md">
+                <div className="relative w-full rounded-sm overflow-clip shadow-md">
                     <Image src={props.src} alt={props.alt ?? ""} width={1400} height={1400} className="w-full h-auto" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px" />
                 </div>
             )}
             {sources.length > 0 && (
                 <div className="flex gap-4 flex-col md:flex-row">
                     {sources.map((src, index) => (
-                        <div key={index} className="relative w-full rounded overflow-clip shadow-md">
+                        <div key={index} className="relative w-full rounded-sm overflow-clip shadow-md">
                             {" "}
                             <Image src={src} alt={altTexts[index] ?? ""} width={700} height={700} className="w-full h-auto" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 700px" />
                         </div>

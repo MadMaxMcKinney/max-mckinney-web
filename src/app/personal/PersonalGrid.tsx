@@ -31,7 +31,7 @@ function isVideo(src: string) {
 }
 
 function aspectClass(a: "16/9" | "9/16") {
-    return a === "9/16" ? "aspect-[9/16]" : "aspect-video";
+    return a === "9/16" ? "aspect-9/16" : "aspect-video";
 }
 
 /** Responsive column count for the masonry. */
@@ -75,9 +75,9 @@ function Tile({ project }: { project: PersonalGridProject }) {
         <Link href={project.href} style={{ "--accent": project.accent } as CSSProperties} className="group block">
             <div className={`relative overflow-hidden rounded-lg bg-[#0c0c12] ${aspectClass(project.aspect)}`}>
                 <TileMedia project={project} className="transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
-                {project.isFolder && <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">Collection</span>}
+                {project.isFolder && <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">Collection</span>}
             </div>
-            <h3 className="mt-3 font-serif text-base font-medium text-white transition-colors group-hover:text-[var(--accent)]">{project.title}</h3>
+            <h3 className="mt-3 font-serif text-base font-medium text-white transition-colors group-hover:text-(--accent)">{project.title}</h3>
             <Label className="mt-1">{meta}</Label>
         </Link>
     );

@@ -82,7 +82,7 @@ export const categories: Category[] = [
 ];
 
 export const aspectClass: Record<Aspect, string> = {
-    portrait: "aspect-[3/4]",
-    landscape: "aspect-[4/3]",
+    portrait: "aspect-3/4",
+    landscape: "aspect-4/3",
     square: "aspect-square",
 };

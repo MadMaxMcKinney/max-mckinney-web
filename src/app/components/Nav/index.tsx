@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <FadeIn dir="up" as="header" duration={1} className="h-16 grid place-items-center w-full px-6 z-10 top-0 absolute border-b border-white/10">
-            <div className="flex justify-between mx-auto w-full max-w-[var(--content-max-width)]">
+            <div className="flex justify-between mx-auto w-full max-w-(--content-max-width)">
                 {/* Site Logo Container */}
                 <div className="flex flex-row items-center justify-start">
                     <Link className="transition-opacity hover:opacity-80" href="/">

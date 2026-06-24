@@ -1,21 +1,30 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Lottie from "react-lottie";
-import * as animationData from "@assets/lottie/max-shape.json";
+import React, { useEffect, useMemo, useRef } from "react";
+import Lottie, { type LottieRefCurrentProps } from "lottie-react";
+import rawAnimationData from "@assets/lottie/max-shape.json";
 
 export default function ShapeLogo() {
-    const [isPlayingShapes, setIsPlayingShapes] = useState(false);
+    const lottieRef = useRef<LottieRefCurrentProps>(null);
 
+    // lottie-web mutates the animation data, but the JSON import is non-extensible,
+    // so hand it a mutable deep clone.
+    const animationData = useMemo(() => structuredClone(rawAnimationData), []);
+
+    // Hold on the first frame, then play after a short beat (matches the
+    // previous delayed-autoplay behavior).
     useEffect(() => {
-        setTimeout(() => {
-            setIsPlayingShapes(true);
-        }, 400);
+        const timer = setTimeout(() => lottieRef.current?.play(), 400);
+        return () => clearTimeout(timer);
     }, []);
 
     return (
         <Lottie
-            options={{ loop: false, autoplay: isPlayingShapes, rendererSettings: { preserveAspectRatio: "xMidYMid slice" }, animationData: animationData }}
+            lottieRef={lottieRef}
+            animationData={animationData}
+            loop={false}
+            autoplay={false}
+            rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
             style={{ width: "150px", height: "45px", cursor: "default" }}
         />
     );

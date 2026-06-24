@@ -5,7 +5,7 @@ import { FadeIn } from "@/app/components/Anim";
 const Footer = () => {
     return (
         <footer className="px-6 py-6 mt-20 border-t border-white/10 sm:mb-10 sm:mt-40 md:mt-40">
-            <FadeIn delay={0.3} duration={1.5} className="flex flex-col justify-between mx-auto w-full sm:flex-row max-w-[var(--content-max-width)]">
+            <FadeIn delay={0.3} duration={1.5} className="flex flex-col justify-between mx-auto w-full sm:flex-row max-w-(--content-max-width)">
                 {/* Social */}
                 <FadeIn delay={0.6} duration={1} className="grid grid-flow-col gap-6 items-center list-none mb-8 sm:mb-0 sm:justify-start">
                     <SocialButton href="https://github.com/MadMaxMcKinney" target="_blank" rel="noopener noreferrer">

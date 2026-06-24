@@ -60,7 +60,7 @@ export default async function Home() {
                 </FadeIn>
 
                 {/* Project Card Grid — two staggered columns */}
-                <FadeIn delay={2} duration={1.5} id="ProjectGrid" className="mx-auto mt-24 grid max-w-[var(--content-max-width)] grid-cols-1 gap-x-12 sm:mt-32 md:grid-cols-2">
+                <FadeIn delay={2} duration={1.5} id="ProjectGrid" className="mx-auto mt-24 grid max-w-(--content-max-width) grid-cols-1 gap-x-12 sm:mt-32 md:grid-cols-2">
                     <div className="flex flex-col gap-20 lg:gap-28">
                         {leftColumn.map((project) => (
                             <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>
