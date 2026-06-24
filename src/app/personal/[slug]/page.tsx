@@ -15,7 +15,7 @@ interface TemplateProps {
 }
 
 export async function generateStaticParams() {
-    const data = await getAllPersonalProjects({ includeFolders: false });
+    const data = await getAllPersonalProjects();
     return data.map((project) => ({
         slug: project.slug,
     }));

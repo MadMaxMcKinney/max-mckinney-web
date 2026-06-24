@@ -67,19 +67,11 @@ export async function getAllWorkProjects(sortedByLatest = true) {
 }
 
 /**
- * Get all personal projects including folders. Folders are projects that have a `folderFor` frontmatter key.
+ * Get all personal projects.
  * @param sortedByLatest Will sort the projects by the latest date
- * @param includeFolders Will include folders in the returned array
- * @param includeProjects Will include normal projects in the returned array
  * @returns An array of personal projects
  */
-export async function getAllPersonalProjects(
-    { sortedByLatest, includeFolders, includeProjects }: { sortedByLatest?: boolean; includeFolders?: boolean; includeProjects?: boolean } = {
-        sortedByLatest: true,
-        includeFolders: true,
-        includeProjects: true,
-    }
-) {
+export async function getAllPersonalProjects(sortedByLatest = true) {
     const fileNames = fs.readdirSync(ProjectDir.personal);
     const allPersonalProjectsData: { frontmatter: PersonalProject; content: ReactElement<any, string | JSXElementConstructor<any>>; slug: string }[] = [];
 
@@ -87,11 +79,6 @@ export async function getAllPersonalProjects(
         fileNames.map(async (fileName) => {
             const slug = fileName.replace(/\.mdx$/, "");
             const project = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
-
-            // If we don't want to include folders and the project is a folder, skip it, otherwise add it to the array
-            if (!includeFolders && project.frontmatter.folderFor) return;
-            if (!includeProjects && !project.frontmatter.folderFor) return;
-
             allPersonalProjectsData.push(project);
         })
     );
@@ -109,42 +96,4 @@ export async function getAllPersonalProjects(
         });
         return sortedData;
     }
-}
-
-/**
- * Gets all personal projects in a specific folder, sorted by latest. This is useful for the collection pages so you don't need to filter the projects yourself from the `getAllPersonalProjects` function.
- * @param folder The folder to get the projects from
- * @returns An array of personal projects
- * @example
- * const projectsInFolder = await getAllPersonalProjectsInFolder("raycast");
- * console.log(projectsInFolder);
- * // Returns all projects with the frontmatter key `folder` set to "raycast"
- */
-export async function getAllPersonalProjectsInFolder(folder: string) {
-    const fileNames = fs.readdirSync(ProjectDir.personal);
-    const allPersonalProjectsData: { frontmatter: PersonalProject; content: ReactElement<any, string | JSXElementConstructor<any>>; slug: string }[] = [];
-    // Get all projects in the folder
-    await Promise.all(
-        fileNames.map(async (fileName) => {
-            const slug = fileName.replace(/\.mdx$/, "");
-            const project = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
-
-            if (project.frontmatter.folder?.toLowerCase() === folder.toLowerCase()) {
-                allPersonalProjectsData.push(project);
-            } else {
-                return;
-            }
-        })
-    );
-
-    // Sort by latest
-    const sortedData = allPersonalProjectsData;
-    sortedData.sort((a, b) => {
-        if (a!.frontmatter.sortDate < b!.frontmatter.sortDate) {
-            return 1;
-        } else {
-            return -1;
-        }
-    });
-    return sortedData;
 }

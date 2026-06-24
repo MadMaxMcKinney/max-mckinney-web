@@ -18,9 +18,6 @@ export interface PersonalGridProject {
     accent: string;
     projectTypes: string[];
     href: string;
-    // Collection grouping (currently unused — collections are flattened inline).
-    isFolder?: boolean;
-    childCount?: number;
 }
 
 const VIDEO_RE = /\.(mp4|webm|mov|m4v|ogg)$/i;
@@ -70,12 +67,11 @@ function TileMedia({ project, className = "" }: { project: PersonalGridProject; 
 }
 
 function Tile({ project }: { project: PersonalGridProject }) {
-    const meta = project.isFolder ? `Collection · ${project.childCount} ${project.childCount === 1 ? "project" : "projects"}` : project.projectTypes.join(" · ");
+    const meta = project.projectTypes.join(" · ");
     return (
         <Link href={project.href} style={{ "--accent": project.accent } as CSSProperties} className="group block">
             <div className={`relative overflow-hidden rounded-lg bg-[#0c0c12] ${aspectClass(project.aspect)}`}>
                 <TileMedia project={project} className="transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
-                {project.isFolder && <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">Collection</span>}
             </div>
             <h3 className="mt-3 font-serif text-base font-medium text-white transition-colors group-hover:text-(--accent)">{project.title}</h3>
             <Label className="mt-1">{meta}</Label>

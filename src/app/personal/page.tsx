@@ -13,24 +13,21 @@ export const metadata: Metadata = {
 export default async function () {
     const all = await getAllPersonalProjects();
 
-    // Show every project inline, sorted by date. Collection members blend in with the
-    // rest; the collection entry pages themselves (folderFor) are skipped.
-    const projects: PersonalGridProject[] = all
-        .filter((p) => !p.frontmatter.folderFor)
-        .map((p) => {
-            const fm = p.frontmatter as any;
-            return {
-                slug: p.slug,
-                title: fm.title,
-                icon: fm.icon,
-                media: fm.cardMedia ?? fm.seoImage ?? null,
-                poster: fm.seoImage ?? null,
-                aspect: (fm.cardAspect as "16/9" | "9/16") ?? "16/9",
-                accent: fm.accent,
-                projectTypes: fm.projectTypes,
-                href: `/personal/${p.slug}`,
-            };
-        });
+    // Show every project inline, sorted by date.
+    const projects: PersonalGridProject[] = all.map((p) => {
+        const fm = p.frontmatter as any;
+        return {
+            slug: p.slug,
+            title: fm.title,
+            icon: fm.icon,
+            media: fm.cardMedia ?? fm.seoImage ?? null,
+            poster: fm.seoImage ?? null,
+            aspect: (fm.cardAspect as "16/9" | "9/16") ?? "16/9",
+            accent: fm.accent,
+            projectTypes: fm.projectTypes,
+            href: `/personal/${p.slug}`,
+        };
+    });
 
     return (
         <div className="page-grid page-grid-xl">
