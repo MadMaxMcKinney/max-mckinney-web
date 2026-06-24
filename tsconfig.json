@@ -33,6 +33,12 @@
       ],
       "@util/*": [
         "./src/util/*"
+      ],
+      "@payload-config": [
+        "./src/payload.config.ts"
+      ],
+      "@payload-types": [
+        "./src/payload-types.ts"
       ]
     },
     "target": "ES2017"

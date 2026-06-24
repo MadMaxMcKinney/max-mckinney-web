@@ -1,5 +1,4 @@
-import { ProjectDir, getMarkdownBySlug } from "@/app/fetchers";
-import { PersonalProject } from "@/types";
+import { getPersonalProjectBySlug, mediaURL } from "@/app/fetchers";
 import { ImageResponse } from "next/og";
 import { headers } from "next/headers";
 
@@ -12,25 +11,23 @@ export const size = {
 };
 
 // Image metadata
-
 export const contentType = "image/png";
 
 function getAbsoluteURL(path: string, baseURL: string | null) {
     if (path.startsWith("/")) {
         return `https://${baseURL}${path}`;
-    } else {
-        return path;
     }
+    return path;
 }
 
 // Image generation
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const baseURL = (await headers()).get("host");
-    const markdown = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
+    const project = await getPersonalProjectBySlug(slug);
+    const seo = mediaURL(project?.seoImage) ?? "";
     return new ImageResponse(
         (
-            // ImageResponse JSX element
             <div
                 style={{
                     background: "black",
@@ -41,7 +38,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
                     justifyContent: "center",
                 }}
             >
-                <img src={getAbsoluteURL(markdown.frontmatter.seoImage, baseURL)} width={size.width} height={size.height} alt="Google logo" style={{ objectFit: "cover", objectPosition: "bottom" }} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={getAbsoluteURL(seo, baseURL)} width={size.width} height={size.height} alt={project?.title ?? ""} style={{ objectFit: "cover", objectPosition: "bottom" }} />
             </div>
         )
     );

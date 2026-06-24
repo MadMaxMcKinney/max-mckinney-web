@@ -63,12 +63,12 @@ export default async function Home() {
                 <FadeIn delay={2} duration={1.5} id="ProjectGrid" className="mx-auto mt-24 grid max-w-(--content-max-width) grid-cols-1 gap-x-12 sm:mt-32 md:grid-cols-2">
                     <div className="flex flex-col gap-20 lg:gap-28">
                         {leftColumn.map((project) => (
-                            <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>
+                            <ProfessionalProjectCard info={project} slug={project.slug} key={project.title}></ProfessionalProjectCard>
                         ))}
                     </div>
                     <div className="flex flex-col gap-20 md:mt-24 lg:mt-32 lg:gap-28">
                         {rightColumn.map((project) => (
-                            <ProfessionalProjectCard info={project.frontmatter} slug={project.slug} key={project.frontmatter.title}></ProfessionalProjectCard>
+                            <ProfessionalProjectCard info={project} slug={project.slug} key={project.title}></ProfessionalProjectCard>
                         ))}
                     </div>
                 </FadeIn>

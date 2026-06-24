@@ -1,12 +1,12 @@
 import { MHeading01, MBodyXL } from "@/app/components/Typography";
-import { getMarkdownBySlug, ProjectDir, getAllPersonalProjects } from "@/app/fetchers";
+import { getAllPersonalProjects, getPersonalProjectBySlug } from "@/app/fetchers";
 import PersonalProjectLinkButton from "@components/Buttons/PersonalProjectLinkButton";
 import PersonalProjectLinkSourceButton from "@components/Buttons/PersonalProjectLinkSourceButton";
 import { Metadata } from "next";
-import { PersonalProject } from "@/types";
+import { notFound } from "next/navigation";
 import { FadeIn } from "@/app/components/Anim";
-import BreadcrumbReturn from "@/app/components/BreadcrumbReturn";
 import Label from "@/app/components/Label";
+import RichText from "@/app/components/RichText";
 
 interface TemplateProps {
     params: Promise<{
@@ -23,42 +23,41 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
     const { slug } = await params;
-    const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
+    const data = await getPersonalProjectBySlug(slug);
+    if (!data) return {};
     return {
-        title: data.frontmatter.title,
-        description: data.frontmatter.description,
+        title: data.title,
+        description: data.description,
     };
 }
 
 export default async function ({ params }: TemplateProps) {
     const { slug } = await params;
-    const data = await getMarkdownBySlug<PersonalProject>(slug, ProjectDir.personal);
+    const data = await getPersonalProjectBySlug(slug);
+    if (!data) notFound();
+
     return (
         <>
             <div className="page-grid">
-                {/* <FadeIn duration={1} className="mt-32 sm:mt-56 mb-6 flex flex-col items-start">
-                    <BreadcrumbReturn href="/personal/" location="Back to Personal/" />
-                </FadeIn> */}
-
                 <FadeIn dir="up" delay={0.1} duration={1} as="div" className="mt-32 sm:mt-56">
-                    <Label className="mb-3">{data.frontmatter.projectTypes.join(" · ")}</Label>
+                    <Label className="mb-3">{data.projectTypes.join(" · ")}</Label>
                 </FadeIn>
 
                 <FadeIn dir="up" delay={0.2} duration={1} as="div">
-                    <MHeading01 className="mb-6 text-white">{data.frontmatter.title}</MHeading01>
+                    <MHeading01 className="mb-6 text-white">{data.title}</MHeading01>
                 </FadeIn>
 
                 <FadeIn dir="up" delay={0.4} duration={1} as="div">
-                    <MBodyXL className="text-zinc-400 mb-8 max-w-3xl">{data.frontmatter.description}</MBodyXL>
+                    <MBodyXL className="text-zinc-400 mb-8 max-w-3xl">{data.description}</MBodyXL>
                 </FadeIn>
 
                 <FadeIn dir="up" delay={0.6} duration={1} className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                    {data.frontmatter.projectLink && <PersonalProjectLinkButton href={data.frontmatter.projectLink} accent={data.frontmatter.accent} />}
-                    {data.frontmatter.sourceLink && <PersonalProjectLinkSourceButton href={data.frontmatter.sourceLink} accent={data.frontmatter.accent} />}
+                    {data.projectLink && <PersonalProjectLinkButton href={data.projectLink} accent={data.accent} />}
+                    {data.sourceLink && <PersonalProjectLinkSourceButton href={data.sourceLink} accent={data.accent} />}
                 </FadeIn>
 
                 <FadeIn dir="up" delay={1} duration={1.5} className="prose prose-lg prose-p:font-medium max-w-none text-zinc-300 mt-16 [&_img]:rounded-xs [&_p]:opacity-85">
-                    {data.content}
+                    <RichText data={data.body} />
                 </FadeIn>
             </div>
         </>

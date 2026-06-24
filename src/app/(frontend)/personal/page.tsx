@@ -1,6 +1,6 @@
 import { MBodyXL, MHeading02 } from "@/app/components/Typography";
 import PersonalGrid, { PersonalGridProject } from "./PersonalGrid";
-import { getAllPersonalProjects } from "@/app/fetchers";
+import { getAllPersonalProjects, mediaURL } from "@/app/fetchers";
 import { Metadata } from "next";
 import { FadeIn } from "@/app/components/Anim";
 
@@ -13,20 +13,17 @@ export default async function () {
     const all = await getAllPersonalProjects();
 
     // Show every project inline, sorted by date.
-    const projects: PersonalGridProject[] = all.map((p) => {
-        const fm = p.frontmatter as any;
-        return {
-            slug: p.slug,
-            title: fm.title,
-            icon: fm.icon,
-            media: fm.cardMedia ?? fm.seoImage ?? null,
-            poster: fm.seoImage ?? null,
-            aspect: (fm.cardAspect as "16/9" | "9/16") ?? "16/9",
-            accent: fm.accent,
-            projectTypes: fm.projectTypes,
-            href: `/personal/${p.slug}`,
-        };
-    });
+    const projects: PersonalGridProject[] = all.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        icon: mediaURL(p.icon) ?? "",
+        media: mediaURL(p.cardMedia) ?? mediaURL(p.seoImage),
+        poster: mediaURL(p.seoImage),
+        aspect: (p.cardAspect as "16/9" | "9/16") ?? "16/9",
+        accent: p.accent,
+        projectTypes: p.projectTypes,
+        href: `/personal/${p.slug}`,
+    }));
 
     return (
         <div className="page-grid page-grid-xl">

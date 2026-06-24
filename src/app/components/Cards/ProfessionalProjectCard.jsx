@@ -9,6 +9,7 @@ import { MaxShape } from "@/app/components/MaxShape";
 
 const ProfessionalProjectCard = ({ info, slug }) => {
     const meta = [info.projectRole, info.projectClient].filter(Boolean).join(" · ");
+    const thumbSrc = typeof info.thumb === "string" ? info.thumb : info.thumb?.url;
 
     return (
         <Link href={`/work/${slug}`} style={{ "--accent": info.accentColor }} className="group block">
@@ -25,7 +26,7 @@ const ProfessionalProjectCard = ({ info, slug }) => {
             >
                 <div className="relative aspect-16/10 w-full overflow-hidden rounded-lg bg-[#0c0c12]">
                     <Image
-                        src={info.thumb}
+                        src={thumbSrc}
                         alt={"Project image for portfolio item " + info.title}
                         fill
                         sizes="(max-width: 1024px) 100vw, 1024px"

@@ -1,9 +1,10 @@
 import { MHeading01, MBodyXL } from "@/app/components/Typography";
-import { ProjectDir, getAllWorkProjects, getMarkdownBySlug } from "@/app/fetchers";
-import { WorkProject } from "@/types";
+import { getAllWorkProjects, getWorkProjectBySlug } from "@/app/fetchers";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { FadeIn } from "@/app/components/Anim";
 import Label from "@/app/components/Label";
+import RichText from "@/app/components/RichText";
 
 interface TemplateProps {
     params: Promise<{
@@ -20,10 +21,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: TemplateProps): Promise<Metadata> {
     const { slug } = await params;
-    const data = await getMarkdownBySlug<WorkProject>(slug, ProjectDir.work);
+    const data = await getWorkProjectBySlug(slug);
+    if (!data) return {};
     return {
-        title: data.frontmatter.title,
-        description: data.frontmatter.projectBrief,
+        title: data.title,
+        description: data.projectBrief,
     };
 }
 
@@ -38,8 +40,8 @@ function ProjectDetail({ label, value }: { label: string; value: string }) {
 
 export default async function Template({ params }: TemplateProps) {
     const { slug } = await params;
-    const data = await getMarkdownBySlug<WorkProject>(slug, ProjectDir.work);
-    const fm = data.frontmatter;
+    const fm = await getWorkProjectBySlug(slug);
+    if (!fm) notFound();
 
     return (
         <div className="page-grid">
@@ -64,20 +66,13 @@ export default async function Template({ params }: TemplateProps) {
                 </div>
             </FadeIn>
 
-            {/* Hero image — sits above the content and fades into it */}
-            {/* <FadeIn dir="up" delay={0.6} duration={1.2} as="div" className="relative">
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-[#0c0c12]">
-                    <Image src={fm.image} alt={fm.title} fill priority sizes="(max-width: 1100px) 100vw, 1100px" className="object-cover" />
-                </div>
-            </FadeIn> */}
-
             <FadeIn
                 dir="up"
                 delay={0.8}
                 duration={1.2}
                 className="prose prose-lg max-w-none text-zinc-300 prose-headings:font-medium prose-headings:text-white prose-p:text-zinc-300 prose-a:text-zinc-300 prose-ul:text-zinc-300 prose-li:my-1 [&_img]:rounded-sm"
             >
-                {data.content}
+                <RichText data={fm.body} />
             </FadeIn>
         </div>
     );

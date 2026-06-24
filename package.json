@@ -2,11 +2,16 @@
     "name": "max-mckinney-web",
     "version": "0.1.0",
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
+        "payload": "payload",
+        "generate:types": "payload generate:types",
+        "generate:importmap": "payload generate:importmap",
+        "migrate": "tsx scripts/migrate-to-payload.ts",
         "create:project": "tsx scripts/create-project.ts"
     },
     "dependencies": {
@@ -14,27 +19,36 @@
         "@mdx-js/loader": "^3.0.1",
         "@mdx-js/react": "^3.0.1",
         "@next/mdx": "^14.1.0",
+        "@payloadcms/db-mongodb": "^3.85.1",
+        "@payloadcms/next": "^3.85.1",
+        "@payloadcms/richtext-lexical": "^3.85.1",
+        "@payloadcms/storage-vercel-blob": "^3.85.1",
         "@types/mdx": "^2.0.11",
         "@vercel/analytics": "^1.2.2",
+        "graphql": "^16.14.2",
         "gsap": "^3.13.0",
         "lottie-react": "^2.4.1",
         "next": "16.2.9",
         "next-mdx-remote": "^6.0.0",
+        "payload": "^3.85.1",
         "plaiceholder": "^3.0.0",
         "prop-types": "^15.8.1",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
-        "react-icons": "^5.0.1"
+        "react-icons": "^5.0.1",
+        "sharp": "^0.35.2"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
-            "sharp"
+            "sharp",
+            "esbuild"
         ]
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4.3.1",
         "@tailwindcss/typography": "^0.5.10",
         "@types/inquirer": "^9.0.9",
+        "@types/js-yaml": "^4.0.9",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
