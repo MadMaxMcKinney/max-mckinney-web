@@ -8,6 +8,9 @@ export const hexColorField = (name: string, options: { label?: string; required?
     required: options.required ?? false,
     admin: {
         description: "Hex color, e.g. #RRGGBB",
+        components: {
+            Field: "/fields/ColorPickerField#ColorPickerField",
+        },
     },
     validate: (value: string | null | undefined) => {
         if (!value) return options.required ? "Required" : true;

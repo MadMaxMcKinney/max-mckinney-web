@@ -30,7 +30,7 @@ export const PersonalProjects: CollectionConfig = {
                     ],
                 },
                 {
-                    label: "Meta",
+                    label: "Details",
                     fields: [
                         {
                             name: "projectTypes",
@@ -47,8 +47,6 @@ export const PersonalProjects: CollectionConfig = {
                 {
                     label: "Media",
                     fields: [
-                        { name: "icon", type: "upload", relationTo: "media", required: true, admin: { description: "Square app/icon art." } },
-                        { name: "seoImage", type: "upload", relationTo: "media", required: true, label: "SEO / hero image" },
                         {
                             name: "cardMedia",
                             type: "upload",
@@ -64,6 +62,8 @@ export const PersonalProjects: CollectionConfig = {
                                 { label: "9 / 16 (portrait)", value: "9/16" },
                             ],
                         },
+                        { name: "icon", type: "upload", relationTo: "media", required: false, admin: { description: "Square app/icon art." } },
+                        { name: "seoImage", type: "upload", relationTo: "media", required: true, label: "SEO / hero image" },
                     ],
                 },
                 {

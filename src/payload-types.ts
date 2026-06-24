@@ -255,15 +255,15 @@ export interface PersonalProject {
    */
   locationText: string;
   /**
-   * Square app/icon art.
-   */
-  icon: string | Media;
-  seoImage: string | Media;
-  /**
    * Optional card art (image or video). Falls back to the SEO image. A video plays over the SEO image as poster.
    */
   cardMedia?: (string | null) | Media;
   cardAspect?: ('16/9' | '9/16') | null;
+  /**
+   * Square app/icon art.
+   */
+  icon?: (string | null) | Media;
+  seoImage: string | Media;
   /**
    * Hex color, e.g. #RRGGBB
    */
@@ -425,10 +425,10 @@ export interface PersonalProjectsSelect<T extends boolean = true> {
   projectLink?: T;
   sourceLink?: T;
   locationText?: T;
-  icon?: T;
-  seoImage?: T;
   cardMedia?: T;
   cardAspect?: T;
+  icon?: T;
+  seoImage?: T;
   accent?: T;
   accentForeground?: T;
   slug?: T;
@@ -536,7 +536,7 @@ export interface SiteSetting {
    */
   siteUrl: string;
   /**
-   * Default social-share image (1200×630). Used site-wide unless a page provides its own.
+   * Default social-share image (1920x1080). Used site-wide unless a page provides its own.
    */
   ogImage?: (string | null) | Media;
   social?:

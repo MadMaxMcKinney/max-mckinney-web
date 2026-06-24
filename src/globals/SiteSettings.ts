@@ -23,13 +23,13 @@ export const SiteSettings: GlobalConfig = {
                             name: "ogImage",
                             type: "upload",
                             relationTo: "media",
-                            label: "Default Open Graph image",
-                            admin: { description: "Default social-share image (1200×630). Used site-wide unless a page provides its own." },
+                            label: "Open Graph image",
+                            admin: { description: "Default social-share image (1920x1080). Used site-wide unless a page provides its own." },
                         },
                     ],
                 },
                 {
-                    label: "Social",
+                    label: "Socials",
                     fields: [
                         {
                             name: "social",
