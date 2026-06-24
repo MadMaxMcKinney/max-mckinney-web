@@ -74,9 +74,9 @@ export const categories: Category[] = [
         title: "the in-between.",
         blurb: "Favorite photography niche, liminal spaces.",
         photos: [
-            { src: lim1, caption: "The meeting.", aspect: "portrait" },
-            { src: lim2, caption: "The loss.", aspect: "landscape" },
-            { src: lim4, caption: "The recovery.", aspect: "portrait" },
+            { src: lim1, caption: "The office.", aspect: "portrait" },
+            { src: lim2, caption: "The field.", aspect: "landscape" },
+            { src: lim4, caption: "The hallway.", aspect: "portrait" },
         ],
     },
 ];
