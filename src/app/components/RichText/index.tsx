@@ -33,10 +33,13 @@ function GalleryBlockView({ images, subtitle }: { images?: { image?: MediaValue 
     if (resolved.length === 0) return null;
     return (
         <>
-            <div className="flex gap-4 flex-col md:flex-row">
+            {/* Mirrors the About page photos: on mobile a full-bleed horizontal
+                scroll-snap rail (peek via -mx-6/px-6, images can scroll fully
+                off-screen); from `sm` up a two-column grid. */}
+            <div className="-mx-6 flex items-start gap-4 snap-x snap-mandatory scroll-pl-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:snap-none sm:overflow-visible sm:px-0">
                 {resolved.map((m, i) => (
-                    <div key={i} className="relative w-full rounded-sm overflow-clip shadow-md">
-                        <Image src={m.url} alt={m.alt} width={m.width ?? 700} height={m.height ?? 700} className="w-full h-auto" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 700px" />
+                    <div key={i} className="relative w-[78%] min-w-0 shrink-0 snap-start overflow-clip rounded-sm shadow-md sm:w-auto">
+                        <Image src={m.url} alt={m.alt} width={m.width ?? 700} height={m.height ?? 700} className="w-full h-auto" sizes="(max-width: 640px) 78vw, (max-width: 1100px) 48vw, 540px" />
                     </div>
                 ))}
             </div>

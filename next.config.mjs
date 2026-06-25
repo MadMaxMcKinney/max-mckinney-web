@@ -5,7 +5,9 @@ const nextConfig = {
     images: {
         // Serve optimized images as WebP (this is also Next's default).
         formats: ["image/webp"],
-        remotePatterns: [{ hostname: "*" }],
+        // Scope the image optimizer to Vercel Blob only, so it can't be used
+        // as an open proxy for arbitrary remote hosts.
+        remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
     },
 };
 
