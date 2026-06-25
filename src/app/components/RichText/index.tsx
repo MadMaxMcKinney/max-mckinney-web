@@ -48,12 +48,40 @@ function GalleryBlockView({ images, subtitle }: { images?: { image?: MediaValue 
     );
 }
 
-function VideoBlockView({ video, subtitle }: { video?: MediaValue; subtitle?: string | null }) {
+function VideoBlockView({
+    video,
+    controls,
+    autoplay,
+    loop,
+    muted,
+    playsInline,
+    preload,
+    subtitle,
+}: {
+    video?: MediaValue;
+    controls?: boolean | null;
+    autoplay?: boolean | null;
+    loop?: boolean | null;
+    muted?: boolean | null;
+    playsInline?: boolean | null;
+    preload?: ("metadata" | "auto" | "none") | null;
+    subtitle?: string | null;
+}) {
     const m = resolveMedia(video);
     if (!m) return null;
+    // Treat unset as the defaults so already-migrated videos keep controls + loop.
+    const autoPlay = autoplay === true;
     return (
         <>
-            <video width="100%" controls loop className="rounded-sm overflow-clip shadow-md">
+            <video
+                className="w-full rounded-sm overflow-clip shadow-md"
+                controls={controls !== false}
+                loop={loop !== false}
+                autoPlay={autoPlay}
+                muted={muted === true || autoPlay} // browsers require muted to autoplay
+                playsInline={playsInline !== false}
+                preload={preload ?? "metadata"}
+            >
                 <source src={m.url} />
             </video>
             <Caption>{subtitle}</Caption>

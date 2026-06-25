@@ -628,6 +628,24 @@ export interface VideoBlock {
    * Optional caption shown beneath the video.
    */
   subtitle?: string | null;
+  /**
+   * Show player controls.
+   */
+  controls?: boolean | null;
+  /**
+   * Most browsers require Muted.
+   */
+  autoplay?: boolean | null;
+  loop?: boolean | null;
+  muted?: boolean | null;
+  /**
+   * Inline (non-fullscreen) playback on mobile.
+   */
+  playsInline?: boolean | null;
+  /**
+   * How much of the video to preload before playback.
+   */
+  preload?: ('metadata' | 'auto' | 'none') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'videoBlock';

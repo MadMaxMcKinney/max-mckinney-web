@@ -14,7 +14,10 @@ export const ImageBlock: Block = {
     ],
 };
 
-/** A video with an optional caption — equivalent to the old `<video><source/></video>`. */
+/**
+ * A video with an optional caption, exposing the common HTML `<video>` element
+ * attributes so authors can tune playback.
+ */
 export const VideoBlock: Block = {
     slug: "videoBlock",
     interfaceName: "VideoBlock",
@@ -22,6 +25,34 @@ export const VideoBlock: Block = {
     fields: [
         { name: "video", type: "upload", relationTo: "media", required: true, admin: { description: "An uploaded video (mp4/webm)." } },
         { name: "subtitle", type: "text", admin: { description: "Optional caption shown beneath the video." } },
+        {
+            type: "collapsible",
+            label: "Playback options",
+            admin: { initCollapsed: true },
+            fields: [
+                {
+                    type: "row",
+                    fields: [
+                        { name: "controls", type: "checkbox", defaultValue: true, label: "Controls", admin: { width: "20%", description: "Show player controls." } },
+                        { name: "autoplay", type: "checkbox", defaultValue: false, label: "Autoplay", admin: { width: "20%", description: "Most browsers require Muted." } },
+                        { name: "loop", type: "checkbox", defaultValue: true, label: "Loop", admin: { width: "20%" } },
+                        { name: "muted", type: "checkbox", defaultValue: false, label: "Muted", admin: { width: "20%" } },
+                        { name: "playsInline", type: "checkbox", defaultValue: true, label: "Plays inline", admin: { width: "20%", description: "Inline (non-fullscreen) playback on mobile." } },
+                    ],
+                },
+                {
+                    name: "preload",
+                    type: "select",
+                    defaultValue: "metadata",
+                    options: [
+                        { label: "Metadata (default)", value: "metadata" },
+                        { label: "Auto", value: "auto" },
+                        { label: "None", value: "none" },
+                    ],
+                    admin: { description: "How much of the video to preload before playback." },
+                },
+            ],
+        },
     ],
 };
 
