@@ -7,7 +7,11 @@ const nextConfig = {
         formats: ["image/webp"],
         // Scope the image optimizer to Vercel Blob only, so it can't be used
         // as an open proxy for arbitrary remote hosts.
-        remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+        remotePatterns: [
+            { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+            { protocol: "https", hostname: "maxmckinney.com" },
+            { protocol: "https", hostname: "*.vercel.app" },
+        ],
     },
 };
 
