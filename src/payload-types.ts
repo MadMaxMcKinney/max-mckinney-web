@@ -190,6 +190,7 @@ export interface WorkProject {
   ogImage?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -285,6 +286,7 @@ export interface PersonalProject {
   ogImage?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -415,6 +417,7 @@ export interface WorkProjectsSelect<T extends boolean = true> {
   ogImage?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -438,6 +441,7 @@ export interface PersonalProjectsSelect<T extends boolean = true> {
   ogImage?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

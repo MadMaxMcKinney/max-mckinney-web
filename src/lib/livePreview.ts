@@ -9,16 +9,31 @@ const breakpoints = [
     { label: "Desktop", name: "desktop", width: 1440, height: 900 },
 ];
 
-type LivePreviewConfig = NonNullable<NonNullable<CollectionConfig["admin"]>["livePreview"]>;
+type Prefix = "work" | "personal";
 
 /**
- * Live Preview config for a project collection. `pathPrefix` is the frontend
- * route segment (e.g. "work" → /work/[slug]). The preview pane points at the
- * real page; a slugless doc previews the index while it has no slug yet.
+ * Build a URL to the draft-preview route, which enables Next.js Draft Mode for
+ * the authenticated editor and redirects to the real page so the preview renders
+ * unpublished content. Falls back to the index path while a doc has no slug yet.
  */
-export function projectLivePreview(pathPrefix: "work" | "personal"): LivePreviewConfig {
+function previewURL(prefix: Prefix, collection: string, slug: string | undefined): string {
+    const path = `/${prefix}/${slug ?? ""}`;
+    const params = new URLSearchParams({ path, collection, slug: slug ?? "" });
+    return `${getServerSideURL()}/next/preview?${params.toString()}`;
+}
+
+type ProjectAdmin = Pick<NonNullable<CollectionConfig["admin"]>, "livePreview" | "preview">;
+
+/**
+ * Live Preview + static "Preview" button config for a project collection.
+ * `prefix` is the frontend route segment (e.g. "work" → /work/[slug]).
+ */
+export function projectPreview(prefix: Prefix, collection: string): ProjectAdmin {
     return {
-        url: ({ data }) => `${getServerSideURL()}/${pathPrefix}/${(data?.slug as string) ?? ""}`,
-        breakpoints,
+        livePreview: {
+            url: ({ data }) => previewURL(prefix, collection, data?.slug as string | undefined),
+            breakpoints,
+        },
+        preview: (data) => previewURL(prefix, collection, data?.slug as string | undefined),
     };
 }

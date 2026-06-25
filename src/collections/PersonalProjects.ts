@@ -5,20 +5,27 @@ import { hexColorField } from "../fields/hexColor";
 import { bodyField } from "../fields/body";
 import { ogImageField } from "../fields/ogImage";
 import { PROJECT_TYPES } from "../lib/projectTypes";
-import { projectLivePreview } from "../lib/livePreview";
+import { projectPreview } from "../lib/livePreview";
+import { publishedOrAuthenticated } from "../lib/access";
 
 export const PersonalProjects: CollectionConfig = {
     slug: "personal-projects",
     labels: { singular: "Personal Project", plural: "Personal Projects" },
     admin: {
         useAsTitle: "title",
-        defaultColumns: ["title", "projectTypes", "sortDate"],
+        defaultColumns: ["title", "_status", "projectTypes", "sortDate"],
         group: "Content",
         description: "Personal projects shown on /personal.",
-        livePreview: projectLivePreview("personal"),
+        ...projectPreview("personal", "personal-projects"),
     },
     access: {
-        read: () => true,
+        read: publishedOrAuthenticated,
+    },
+    versions: {
+        drafts: {
+            autosave: { interval: 375 },
+        },
+        maxPerDoc: 5,
     },
     fields: [
         {

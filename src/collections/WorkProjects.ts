@@ -4,20 +4,27 @@ import { slugField } from "../fields/slug";
 import { hexColorField } from "../fields/hexColor";
 import { bodyField } from "../fields/body";
 import { ogImageField } from "../fields/ogImage";
-import { projectLivePreview } from "../lib/livePreview";
+import { projectPreview } from "../lib/livePreview";
+import { publishedOrAuthenticated } from "../lib/access";
 
 export const WorkProjects: CollectionConfig = {
     slug: "work-projects",
     labels: { singular: "Work Project", plural: "Work Projects" },
     admin: {
         useAsTitle: "title",
-        defaultColumns: ["title", "projectClient", "sortDate"],
+        defaultColumns: ["title", "_status", "projectClient", "sortDate"],
         group: "Content",
         description: "Professional / client case studies shown on the home page and /work.",
-        livePreview: projectLivePreview("work"),
+        ...projectPreview("work", "work-projects"),
     },
     access: {
-        read: () => true,
+        read: publishedOrAuthenticated,
+    },
+    versions: {
+        drafts: {
+            autosave: { interval: 375 },
+        },
+        maxPerDoc: 5,
     },
     fields: [
         {
