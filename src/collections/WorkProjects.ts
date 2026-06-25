@@ -4,6 +4,7 @@ import { slugField } from "../fields/slug";
 import { hexColorField } from "../fields/hexColor";
 import { bodyField } from "../fields/body";
 import { ogImageField } from "../fields/ogImage";
+import { projectLivePreview } from "../lib/livePreview";
 
 export const WorkProjects: CollectionConfig = {
     slug: "work-projects",
@@ -13,6 +14,7 @@ export const WorkProjects: CollectionConfig = {
         defaultColumns: ["title", "projectClient", "sortDate"],
         group: "Content",
         description: "Professional / client case studies shown on the home page and /work.",
+        livePreview: projectLivePreview("work"),
     },
     access: {
         read: () => true,

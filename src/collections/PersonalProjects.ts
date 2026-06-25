@@ -5,6 +5,7 @@ import { hexColorField } from "../fields/hexColor";
 import { bodyField } from "../fields/body";
 import { ogImageField } from "../fields/ogImage";
 import { PROJECT_TYPES } from "../lib/projectTypes";
+import { projectLivePreview } from "../lib/livePreview";
 
 export const PersonalProjects: CollectionConfig = {
     slug: "personal-projects",
@@ -14,6 +15,7 @@ export const PersonalProjects: CollectionConfig = {
         defaultColumns: ["title", "projectTypes", "sortDate"],
         group: "Content",
         description: "Personal projects shown on /personal.",
+        livePreview: projectLivePreview("personal"),
     },
     access: {
         read: () => true,

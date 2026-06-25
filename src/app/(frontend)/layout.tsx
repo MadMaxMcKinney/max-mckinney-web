@@ -4,6 +4,7 @@ import Nav from "@/app/components/Nav";
 import Footer from "@/app/components/Footer";
 import { TooltipProvider } from "@/app/components/Tooltip";
 import { getSiteSettings, mediaURL } from "@/app/fetchers";
+import RefreshRouteOnSave from "@/app/components/RefreshRouteOnSave";
 import { Analytics } from "@vercel/analytics/react";
 
 // ISR: regenerate frontend pages in the background at most once per hour, so
@@ -39,6 +40,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
+                <RefreshRouteOnSave />
                 <TooltipProvider>
                     <Nav />
                     {children}
