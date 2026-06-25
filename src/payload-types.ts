@@ -157,6 +157,10 @@ export interface WorkProject {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Controls ordering (newest first).
+   */
+  sortDate: string;
   projectClient: string;
   projectRole: string;
   /**
@@ -175,23 +179,15 @@ export interface WorkProject {
   /**
    * Hex color, e.g. #RRGGBB
    */
-  themeColor: string;
-  /**
-   * Hex color, e.g. #RRGGBB
-   */
   accentColor: string;
-  /**
-   * Optional. Overrides the site default Open Graph image for this project's social share.
-   */
-  ogImage?: (string | null) | Media;
   /**
    * URL segment. Auto-generated from the title if left blank.
    */
   slug: string;
   /**
-   * Controls ordering (newest first).
+   * Optional. Overrides the site default Open Graph image for this project's social share.
    */
-  sortDate: string;
+  ogImage?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -245,6 +241,10 @@ export interface PersonalProject {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Controls ordering (newest first).
+   */
+  sortDate: string;
   projectTypes: ('web' | 'app' | 'ai' | 'iOS' | 'brand' | 'education' | 'raycast' | 'tool' | 'cli')[];
   /**
    * Primary external link (URL).
@@ -267,7 +267,6 @@ export interface PersonalProject {
    * Square app/icon art.
    */
   icon?: (string | null) | Media;
-  seoImage: string | Media;
   /**
    * Hex color, e.g. #RRGGBB
    */
@@ -277,17 +276,13 @@ export interface PersonalProject {
    */
   accentForeground?: string | null;
   /**
-   * Optional. Overrides this project's default social-share image (the SEO / hero image) for Open Graph.
-   */
-  ogImage?: (string | null) | Media;
-  /**
    * URL segment. Auto-generated from the title if left blank.
    */
   slug: string;
   /**
-   * Controls ordering (newest first).
+   * Optional. Overrides the site default Open Graph image for this project's social share.
    */
-  sortDate: string;
+  ogImage?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -408,17 +403,16 @@ export interface WorkProjectsSelect<T extends boolean = true> {
   projectShortBrief?: T;
   projectBrief?: T;
   body?: T;
+  sortDate?: T;
   projectClient?: T;
   projectRole?: T;
   projectDate?: T;
   projectAgency?: T;
   categories?: T;
   thumb?: T;
-  themeColor?: T;
   accentColor?: T;
-  ogImage?: T;
   slug?: T;
-  sortDate?: T;
+  ogImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -430,6 +424,7 @@ export interface PersonalProjectsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   body?: T;
+  sortDate?: T;
   projectTypes?: T;
   projectLink?: T;
   sourceLink?: T;
@@ -437,12 +432,10 @@ export interface PersonalProjectsSelect<T extends boolean = true> {
   cardMedia?: T;
   cardAspect?: T;
   icon?: T;
-  seoImage?: T;
   accent?: T;
   accentForeground?: T;
-  ogImage?: T;
   slug?: T;
-  sortDate?: T;
+  ogImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }

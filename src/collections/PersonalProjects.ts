@@ -34,6 +34,12 @@ export const PersonalProjects: CollectionConfig = {
                     label: "Details",
                     fields: [
                         {
+                            name: "sortDate",
+                            type: "date",
+                            required: true,
+                            admin: { date: { pickerAppearance: "dayOnly", displayFormat: "yyyy-MM-dd" }, description: "Controls ordering (newest first)." },
+                        },
+                        {
                             name: "projectTypes",
                             type: "select",
                             hasMany: true,
@@ -64,7 +70,6 @@ export const PersonalProjects: CollectionConfig = {
                             ],
                         },
                         { name: "icon", type: "upload", relationTo: "media", required: false, admin: { description: "Square app/icon art." } },
-                        { name: "seoImage", type: "upload", relationTo: "media", required: true, label: "SEO / hero image" },
                     ],
                 },
                 {
@@ -73,16 +78,9 @@ export const PersonalProjects: CollectionConfig = {
                 },
                 {
                     label: "SEO",
-                    fields: [ogImageField("Optional. Overrides this project's default social-share image (the SEO / hero image) for Open Graph.")],
+                    fields: [slugField("title"), ogImageField("Optional. Overrides the site default Open Graph image for this project's social share.")],
                 },
             ],
-        },
-        slugField("title"),
-        {
-            name: "sortDate",
-            type: "date",
-            required: true,
-            admin: { position: "sidebar", date: { pickerAppearance: "dayOnly", displayFormat: "yyyy-MM-dd" }, description: "Controls ordering (newest first)." },
         },
     ],
 };

@@ -25,8 +25,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
     const { slug } = await params;
     const baseURL = (await headers()).get("host");
     const project = await getPersonalProjectBySlug(slug);
-    // Per-project OG override; falls back to the SEO / hero image.
-    const seo = mediaURL(project?.ogImage) ?? mediaURL(project?.seoImage) ?? "";
+    const seo = mediaURL(project?.ogImage) ?? "";
     return new ImageResponse(
         (
             <div

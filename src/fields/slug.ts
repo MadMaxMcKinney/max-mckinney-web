@@ -11,7 +11,7 @@ export const formatSlug = (val: string): string =>
 
 /**
  * A URL slug field that auto-fills from a source field (default `title`) when
- * left blank, but stays editable. Lives in the admin sidebar.
+ * left blank, but stays editable.
  */
 export const slugField = (sourceField = "title"): Field => ({
     name: "slug",
@@ -20,7 +20,6 @@ export const slugField = (sourceField = "title"): Field => ({
     unique: true,
     required: true,
     admin: {
-        position: "sidebar",
         description: "URL segment. Auto-generated from the title if left blank.",
     },
     hooks: {

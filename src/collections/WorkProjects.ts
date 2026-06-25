@@ -33,6 +33,12 @@ export const WorkProjects: CollectionConfig = {
                 {
                     label: "Details",
                     fields: [
+                        {
+                            name: "sortDate",
+                            type: "date",
+                            required: true,
+                            admin: { date: { pickerAppearance: "dayOnly", displayFormat: "yyyy-MM-dd" }, description: "Controls ordering (newest first)." },
+                        },
                         { name: "projectClient", type: "text", required: true },
                         { name: "projectRole", type: "text", required: true },
                         { name: "projectDate", type: "text", required: true, admin: { description: 'e.g. "2021 – Present"' } },
@@ -52,20 +58,13 @@ export const WorkProjects: CollectionConfig = {
                 },
                 {
                     label: "Theme",
-                    fields: [hexColorField("themeColor", { required: true }), hexColorField("accentColor", { required: true })],
+                    fields: [hexColorField("accentColor", { required: true })],
                 },
                 {
                     label: "SEO",
-                    fields: [ogImageField("Optional. Overrides the site default Open Graph image for this project's social share.")],
+                    fields: [slugField("title"), ogImageField("Optional. Overrides the site default Open Graph image for this project's social share.")],
                 },
             ],
-        },
-        slugField("title"),
-        {
-            name: "sortDate",
-            type: "date",
-            required: true,
-            admin: { position: "sidebar", date: { pickerAppearance: "dayOnly", displayFormat: "yyyy-MM-dd" }, description: "Controls ordering (newest first)." },
         },
     ],
 };

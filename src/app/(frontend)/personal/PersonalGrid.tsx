@@ -11,7 +11,7 @@ export interface PersonalGridProject {
     title: string;
     icon: string;
     // Image or video thumbnail (cardMedia). A video — including an external URL
-    // — is shown over the image `poster`. Falls back to `seoImage` upstream.
+    // — is shown over the image `poster`. Falls back to `ogImage` upstream.
     media: string | null;
     poster: string | null;
     aspect: "16/9" | "9/16";
