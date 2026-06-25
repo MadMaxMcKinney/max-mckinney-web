@@ -44,9 +44,6 @@ importers:
       payload:
         specifier: ^3.85.1
         version: 3.85.1(graphql@16.14.2)(typescript@5.9.2)
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
       react:
         specifier: ^19.2.0
         version: 19.2.7

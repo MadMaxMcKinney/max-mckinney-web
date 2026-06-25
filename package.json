@@ -25,7 +25,6 @@
         "lottie-react": "^2.4.1",
         "next": "16.2.9",
         "payload": "^3.85.1",
-        "prop-types": "^15.8.1",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
         "react-icons": "^5.0.1",
