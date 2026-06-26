@@ -43,7 +43,13 @@ export default buildConfig({
         vercelBlobStorage({
             enabled: true,
             collections: {
-                [Media.slug]: true,
+                // Media is public (read: () => true). Serve files straight from the
+                // public Blob URL instead of proxying through Payload's
+                // /api/media/file route — the proxy URL is relative + same-origin,
+                // so on a protected Vercel preview the next/image optimizer's fetch
+                // hits deployment-protection auth and the image fails. The direct
+                // Blob URL is public/CDN-served and matches our remotePatterns.
+                [Media.slug]: { disablePayloadAccessControl: true },
             },
             token: process.env.BLOB_READ_WRITE_TOKEN || "",
         }),
