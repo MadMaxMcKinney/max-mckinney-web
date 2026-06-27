@@ -57,7 +57,6 @@ export const PersonalProjects: CollectionConfig = {
                         },
                         { name: "projectLink", type: "text", required: true, admin: { description: "Primary external link (URL)." } },
                         { name: "sourceLink", type: "text", admin: { description: "Optional source/repo link (URL)." } },
-                        { name: "locationText", type: "text", required: true, admin: { description: 'Breadcrumb/location label, e.g. "figmalearn/".' } },
                     ],
                 },
                 {

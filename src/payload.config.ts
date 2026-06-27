@@ -25,6 +25,13 @@ export default buildConfig({
         meta: {
             titleSuffix: "— Max McKinney",
         },
+        components: {
+            // Replace Payload's default branding with the static hero shape mark.
+            graphics: {
+                Icon: "/components/admin/MaxShapeIcon#MaxShapeIcon",
+                Logo: "/components/admin/MaxShapeMark#MaxShapeMark",
+            },
+        },
     },
     collections: [WorkProjects, PersonalProjects, Media, Users],
     globals: [SiteSettings],

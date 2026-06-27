@@ -256,10 +256,6 @@ export interface PersonalProject {
    */
   sourceLink?: string | null;
   /**
-   * Breadcrumb/location label, e.g. "figmalearn/".
-   */
-  locationText: string;
-  /**
    * Optional card art (image or video). Falls back to the SEO image. A video plays over the SEO image as poster.
    */
   cardMedia?: (string | null) | Media;
@@ -431,7 +427,6 @@ export interface PersonalProjectsSelect<T extends boolean = true> {
   projectTypes?: T;
   projectLink?: T;
   sourceLink?: T;
-  locationText?: T;
   cardMedia?: T;
   cardAspect?: T;
   icon?: T;
