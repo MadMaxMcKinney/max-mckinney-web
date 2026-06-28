@@ -20,7 +20,7 @@ function ImageBlockView({ image, subtitle }: { image?: MediaValue; subtitle?: st
     if (!m) return null;
     return (
         <>
-            <div className="relative w-full rounded-sm overflow-clip shadow-md">
+            <div className="relative w-full rounded-lg overflow-clip shadow-md">
                 <Image src={m.url} alt={m.alt} width={m.width ?? 1400} height={m.height ?? 1400} className="w-full h-auto" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px" />
             </div>
             <Caption>{subtitle}</Caption>
@@ -38,7 +38,7 @@ function GalleryBlockView({ images, subtitle }: { images?: { image?: MediaValue 
                 off-screen); from `sm` up a two-column grid. */}
             <div className="-mx-6 flex items-start gap-4 snap-x snap-mandatory scroll-pl-6 overflow-x-auto px-6 scrollbar-width:none [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:snap-none sm:overflow-visible sm:px-0">
                 {resolved.map((m, i) => (
-                    <div key={i} className="relative w-[78%] min-w-0 shrink-0 snap-start overflow-clip rounded-sm shadow-md sm:w-auto">
+                    <div key={i} className="relative w-[78%] min-w-0 shrink-0 snap-start overflow-clip rounded-lg shadow-md sm:w-auto">
                         <Image src={m.url} alt={m.alt} width={m.width ?? 700} height={m.height ?? 700} className="w-full h-auto" sizes="(max-width: 640px) 78vw, (max-width: 1100px) 48vw, 540px" />
                     </div>
                 ))}
@@ -74,7 +74,7 @@ function VideoBlockView({
     return (
         <>
             <video
-                className="w-full rounded-sm overflow-clip shadow-md"
+                className="w-full rounded-lg overflow-clip shadow-md"
                 controls={controls !== false}
                 loop={loop !== false}
                 autoPlay={autoPlay}
