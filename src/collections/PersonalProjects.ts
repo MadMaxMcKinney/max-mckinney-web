@@ -55,6 +55,12 @@ export const PersonalProjects: CollectionConfig = {
                             required: true,
                             options: PROJECT_TYPES.map((t) => ({ label: t, value: t })),
                         },
+                        {
+                            name: "openLinkDirectly",
+                            type: "checkbox",
+                            defaultValue: false,
+                            admin: { description: "If true, the project will open directly to the project link instead of the project page." },
+                        },
                         { name: "projectLink", type: "text", required: true, admin: { description: "Primary external link (URL)." } },
                         { name: "sourceLink", type: "text", admin: { description: "Optional source/repo link (URL)." } },
                     ],

@@ -22,7 +22,8 @@ export default async function () {
         aspect: (p.cardAspect as "16/9" | "9/16") ?? "16/9",
         accent: p.accent,
         projectTypes: p.projectTypes,
-        href: `/personal/${p.slug}`,
+        href: p.openLinkDirectly ? p.projectLink : `/personal/${p.slug}`,
+        external: Boolean(p.openLinkDirectly),
     }));
 
     return (

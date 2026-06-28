@@ -18,6 +18,8 @@ export interface PersonalGridProject {
     accent: string;
     projectTypes: string[];
     href: string;
+    // When true, `href` is an external URL opened directly (new tab) instead of the project page.
+    external?: boolean;
 }
 
 const VIDEO_RE = /\.(mp4|webm|mov|m4v|ogg)$/i;
@@ -68,8 +70,9 @@ function TileMedia({ project, className = "" }: { project: PersonalGridProject; 
 
 function Tile({ project }: { project: PersonalGridProject }) {
     const meta = project.projectTypes.join(" · ");
+    const linkProps = project.external ? { target: "_blank", rel: "noopener noreferrer" } : {};
     return (
-        <Link href={project.href} style={{ "--accent": project.accent } as CSSProperties} className="group block">
+        <Link href={project.href} {...linkProps} style={{ "--accent": project.accent } as CSSProperties} className="group block">
             <div className={`relative overflow-hidden rounded-lg bg-[#0c0c12] ${aspectClass(project.aspect)}`}>
                 <TileMedia project={project} className="transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
             </div>

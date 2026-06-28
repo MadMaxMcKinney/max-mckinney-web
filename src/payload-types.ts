@@ -248,6 +248,10 @@ export interface PersonalProject {
   sortDate: string;
   projectTypes: ('web' | 'app' | 'ai' | 'iOS' | 'brand' | 'education' | 'raycast' | 'tool' | 'cli')[];
   /**
+   * If true, the project will open directly to the project link instead of the project page.
+   */
+  openLinkDirectly?: boolean | null;
+  /**
    * Primary external link (URL).
    */
   projectLink: string;
@@ -425,6 +429,7 @@ export interface PersonalProjectsSelect<T extends boolean = true> {
   body?: T;
   sortDate?: T;
   projectTypes?: T;
+  openLinkDirectly?: T;
   projectLink?: T;
   sourceLink?: T;
   cardMedia?: T;
