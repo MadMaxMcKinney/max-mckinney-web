@@ -1,4 +1,4 @@
-import { getAllPersonalProjects, getPersonalProjectBySlug } from "@/app/fetchers";
+import { getAllPersonalProjects, getPersonalProjectBySlug, mediaURL } from "@/app/fetchers";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getServerSideURL } from "@/lib/getServerSideURL";
@@ -21,9 +21,12 @@ export async function generateMetadata({ params }: TemplateProps): Promise<Metad
     const { slug } = await params;
     const data = await getPersonalProjectBySlug(slug);
     if (!data) return {};
+    // Per-project OG override; falls back to the site default (root layout) when unset.
+    const ogImage = mediaURL(data.ogImage);
     return {
         title: data.title,
         description: data.description,
+        ...(ogImage ? { openGraph: { images: [ogImage] } } : {}),
     };
 }
 
