@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap')
-layer(base);
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap") layer(base);
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @config '../../tailwind.config.ts';
 
@@ -14,55 +13,51 @@ layer(base);
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
 }
 
 @utility contained-content {
-  max-width: 680px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+    max-width: 680px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @utility page-grid {
-  display: grid;
-  grid-template-columns: [start] minmax(
-      var(--page-grid-padding),
-      1fr
-    ) [center] minmax(auto, var(--page-grid-content-width)) [end] minmax(
-      var(--page-grid-padding),
-      1fr
-    );
-  & > * {
-    grid-column: center;
-  }
+    display: grid;
+    grid-template-columns:
+        [start] minmax(var(--page-grid-padding), 1fr)
+        [center] minmax(auto, var(--page-grid-content-width)) [end] minmax(var(--page-grid-padding), 1fr);
+    & > * {
+        grid-column: center;
+    }
 }
 
 @utility page-grid-breakout-full {
-  grid-column: 1 / 4;
-  padding: 0px var(--page-grid-padding);
+    grid-column: 1 / 4;
+    padding: 0px var(--page-grid-padding);
 }
 
 @utility page-grid-sm {
-  --page-grid-content-width: 900px;
+    --page-grid-content-width: 900px;
 }
 
 @utility page-grid-xl {
-  --page-grid-content-width: var(--content-max-width);
+    --page-grid-content-width: var(--content-max-width);
 }
 
 @layer utilities {
-  :root {
-    --content-max-width: 1600px;
-    --page-grid-content-width: 1100px;
-    --page-grid-padding: 24px;
-  }
+    :root {
+        --content-max-width: 1600px;
+        --page-grid-content-width: 1100px;
+        --page-grid-padding: 24px;
+    }
 }
 
 /* Subtle, looping hand-wave for the 👋 emoji. Pivots from the bottom-right
@@ -122,12 +117,6 @@ h6 {
 
 .gatsby-image-wrapper-constrained {
     display: block !important;
-}
-
-video {
-    border-radius: 2px;
-    box-shadow: 0px 4px 15px #00000017;
-    margin-bottom: 24px;
 }
 
 .award {

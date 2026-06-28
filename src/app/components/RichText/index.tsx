@@ -20,10 +20,19 @@ function ImageBlockView({ image, subtitle }: { image?: MediaValue; subtitle?: st
     if (!m) return null;
     return (
         <>
-            <div className="relative w-full rounded-lg overflow-clip shadow-md">
-                <Image src={m.url} alt={m.alt} width={m.width ?? 1400} height={m.height ?? 1400} className="w-full h-auto" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px" />
+            <div className="flex flex-col items-center gap-2 my-8">
+                <div className="relative w-full rounded-lg overflow-clip shadow-md">
+                    <Image
+                        src={m.url}
+                        alt={m.alt}
+                        width={m.width ?? 1400}
+                        height={m.height ?? 1400}
+                        className="w-full not-prose h-auto"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px"
+                    />
+                </div>
+                <Caption>{subtitle}</Caption>
             </div>
-            <Caption>{subtitle}</Caption>
         </>
     );
 }
@@ -36,14 +45,23 @@ function GalleryBlockView({ images, subtitle }: { images?: { image?: MediaValue 
             {/* Mirrors the About page photos: on mobile a full-bleed horizontal
                 scroll-snap rail (peek via -mx-6/px-6, images can scroll fully
                 off-screen); from `sm` up a two-column grid. */}
-            <div className="-mx-6 flex items-start gap-4 snap-x snap-mandatory scroll-pl-6 overflow-x-auto px-6 scrollbar-width:none [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:snap-none sm:overflow-visible sm:px-0">
-                {resolved.map((m, i) => (
-                    <div key={i} className="relative w-[78%] min-w-0 shrink-0 snap-start overflow-clip rounded-lg shadow-md sm:w-auto">
-                        <Image src={m.url} alt={m.alt} width={m.width ?? 700} height={m.height ?? 700} className="w-full h-auto" sizes="(max-width: 640px) 78vw, (max-width: 1100px) 48vw, 540px" />
-                    </div>
-                ))}
+            <div className="flex flex-col items-center gap-2 my-8">
+                <div className="-mx-6 flex items-start gap-4 snap-x snap-mandatory scroll-pl-6 overflow-x-auto px-6 scrollbar-width:none [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:snap-none sm:overflow-visible sm:px-0">
+                    {resolved.map((m, i) => (
+                        <div key={i} className="relative w-[78%] min-w-0 shrink-0 snap-start overflow-clip rounded-lg shadow-md sm:w-auto">
+                            <Image
+                                src={m.url}
+                                alt={m.alt}
+                                width={m.width ?? 700}
+                                height={m.height ?? 700}
+                                className="w-full not-prose h-auto"
+                                sizes="(max-width: 640px) 78vw, (max-width: 1100px) 48vw, 540px"
+                            />
+                        </div>
+                    ))}
+                </div>
+                <Caption>{subtitle}</Caption>
             </div>
-            <Caption>{subtitle}</Caption>
         </>
     );
 }
@@ -72,9 +90,9 @@ function VideoBlockView({
     // Treat unset as the defaults so already-migrated videos keep controls + loop.
     const autoPlay = autoplay === true;
     return (
-        <>
+        <div className="flex flex-col items-center gap-2 my-8">
             <video
-                className="w-full rounded-lg overflow-clip shadow-md"
+                className="w-full not-prose rounded-lg overflow-clip shadow-md"
                 controls={controls !== false}
                 loop={loop !== false}
                 autoPlay={autoPlay}
@@ -85,7 +103,7 @@ function VideoBlockView({
                 <source src={m.url} />
             </video>
             <Caption>{subtitle}</Caption>
-        </>
+        </div>
     );
 }
 
